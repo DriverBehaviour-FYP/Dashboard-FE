@@ -3,6 +3,7 @@
 import ScatterComponent from "./../component/ScatterComponent";
 import CircularProgressComponent from "./../component/CircularProgressComponent";
 import MetaDataComponent from "./../component/MetaDataComponent";
+import SummaryComponent from "./../component/SummaryComponent";
 
 const dashboard = ({ endValue }) => {
   return (
@@ -15,8 +16,14 @@ const dashboard = ({ endValue }) => {
           <MetaDataComponent />
         </div>
       </div>
-      <div className="row">
-        <ScatterComponent />
+      <div className="row pt-5">
+        <div className="col-md-6 ">
+          <ScatterComponent />
+        </div>
+        <div className="col-md-2"></div>
+        <div className="col-md-4">
+          <SummaryComponent />
+        </div>
       </div>
     </div>
   );
