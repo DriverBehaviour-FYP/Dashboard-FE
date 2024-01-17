@@ -1,0 +1,2975 @@
+.progress {
+  width: 100px;
+  height: 100px !important;
+  float: left;
+  line-height: 100px;
+  background: none;
+  margin: 10px;
+  box-shadow: none;
+  position: relative;
+}
+.progress:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 12px solid #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.progress > span {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+.progress .progress-left {
+  left: 0;
+}
+.progress .progress-bar {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border-width: 12px;
+  border-style: solid;
+  position: absolute;
+  top: 0;
+}
+.progress .progress-left .progress-bar {
+  left: 100%;
+  border-top-right-radius: 80px;
+  border-bottom-right-radius: 80px;
+  border-left: 0;
+  -webkit-transform-origin: center left;
+  transform-origin: center left;
+}
+.progress .progress-right {
+  right: 0;
+}
+.progress .progress-right .progress-bar {
+  left: -100%;
+  border-top-left-radius: 80px;
+  border-bottom-left-radius: 80px;
+  border-right: 0;
+  -webkit-transform-origin: center right;
+  transform-origin: center right;
+  /* animation: loading-180 1.8s linear forwards; */
+}
+.progress .progress-value {
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: #000;
+  font-size: 14px;
+  color: #fff;
+  line-height: 100px;
+  text-align: center;
+  position: absolute;
+  top: 2%;
+  left: 5%;
+}
+.progress.green .progress-bar {
+  border-color: #046319;
+}
+.progress-right-180 {
+  animation: loading-180 1.8s linear forwards;
+}
+@keyframes loading-0 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+@keyframes loading-1 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(1deg);
+    transform: rotate(1deg);
+  }
+}
+@keyframes loading-2 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg);
+  }
+}
+@keyframes loading-3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(3deg);
+    transform: rotate(3deg);
+  }
+}
+@keyframes loading-4 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(4deg);
+    transform: rotate(4deg);
+  }
+}
+@keyframes loading-5 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(5deg);
+    transform: rotate(5deg);
+  }
+}
+@keyframes loading-6 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(6deg);
+    transform: rotate(6deg);
+  }
+}
+@keyframes loading-7 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(7deg);
+    transform: rotate(7deg);
+  }
+}
+@keyframes loading-8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(8deg);
+    transform: rotate(8deg);
+  }
+}
+@keyframes loading-9 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(9deg);
+    transform: rotate(9deg);
+  }
+}
+@keyframes loading-10 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+  }
+}
+@keyframes loading-11 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(11deg);
+    transform: rotate(11deg);
+  }
+}
+@keyframes loading-12 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(12deg);
+    transform: rotate(12deg);
+  }
+}
+@keyframes loading-13 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(13deg);
+    transform: rotate(13deg);
+  }
+}
+@keyframes loading-14 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(14deg);
+    transform: rotate(14deg);
+  }
+}
+@keyframes loading-15 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(15deg);
+    transform: rotate(15deg);
+  }
+}
+@keyframes loading-16 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(16deg);
+    transform: rotate(16deg);
+  }
+}
+@keyframes loading-17 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(17deg);
+    transform: rotate(17deg);
+  }
+}
+@keyframes loading-18 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(18deg);
+    transform: rotate(18deg);
+  }
+}
+@keyframes loading-19 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(19deg);
+    transform: rotate(19deg);
+  }
+}
+@keyframes loading-20 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(20deg);
+    transform: rotate(20deg);
+  }
+}
+@keyframes loading-21 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(21deg);
+    transform: rotate(21deg);
+  }
+}
+@keyframes loading-22 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(22deg);
+    transform: rotate(22deg);
+  }
+}
+@keyframes loading-23 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(23deg);
+    transform: rotate(23deg);
+  }
+}
+@keyframes loading-24 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(24deg);
+    transform: rotate(24deg);
+  }
+}
+@keyframes loading-25 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(25deg);
+    transform: rotate(25deg);
+  }
+}
+@keyframes loading-26 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(26deg);
+    transform: rotate(26deg);
+  }
+}
+@keyframes loading-27 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(27deg);
+    transform: rotate(27deg);
+  }
+}
+@keyframes loading-28 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(28deg);
+    transform: rotate(28deg);
+  }
+}
+@keyframes loading-29 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(29deg);
+    transform: rotate(29deg);
+  }
+}
+@keyframes loading-30 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+  }
+}
+@keyframes loading-31 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(31deg);
+    transform: rotate(31deg);
+  }
+}
+@keyframes loading-32 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(32deg);
+    transform: rotate(32deg);
+  }
+}
+@keyframes loading-33 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(33deg);
+    transform: rotate(33deg);
+  }
+}
+@keyframes loading-34 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(34deg);
+    transform: rotate(34deg);
+  }
+}
+@keyframes loading-35 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(35deg);
+    transform: rotate(35deg);
+  }
+}
+@keyframes loading-36 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(36deg);
+    transform: rotate(36deg);
+  }
+}
+@keyframes loading-37 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(37deg);
+    transform: rotate(37deg);
+  }
+}
+@keyframes loading-38 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(38deg);
+    transform: rotate(38deg);
+  }
+}
+@keyframes loading-39 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(39deg);
+    transform: rotate(39deg);
+  }
+}
+@keyframes loading-40 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(40deg);
+    transform: rotate(40deg);
+  }
+}
+@keyframes loading-41 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(41deg);
+    transform: rotate(41deg);
+  }
+}
+@keyframes loading-42 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(42deg);
+    transform: rotate(42deg);
+  }
+}
+@keyframes loading-43 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(43deg);
+    transform: rotate(43deg);
+  }
+}
+@keyframes loading-44 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(44deg);
+    transform: rotate(44deg);
+  }
+}
+@keyframes loading-45 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
+@keyframes loading-46 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(46deg);
+    transform: rotate(46deg);
+  }
+}
+@keyframes loading-47 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(47deg);
+    transform: rotate(47deg);
+  }
+}
+@keyframes loading-48 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(48deg);
+    transform: rotate(48deg);
+  }
+}
+@keyframes loading-49 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(49deg);
+    transform: rotate(49deg);
+  }
+}
+@keyframes loading-50 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(50deg);
+    transform: rotate(50deg);
+  }
+}
+@keyframes loading-51 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(51deg);
+    transform: rotate(51deg);
+  }
+}
+@keyframes loading-52 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(52deg);
+    transform: rotate(52deg);
+  }
+}
+@keyframes loading-53 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(53deg);
+    transform: rotate(53deg);
+  }
+}
+@keyframes loading-54 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(54deg);
+    transform: rotate(54deg);
+  }
+}
+@keyframes loading-55 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(55deg);
+    transform: rotate(55deg);
+  }
+}
+@keyframes loading-56 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(56deg);
+    transform: rotate(56deg);
+  }
+}
+@keyframes loading-57 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(57deg);
+    transform: rotate(57deg);
+  }
+}
+@keyframes loading-58 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(58deg);
+    transform: rotate(58deg);
+  }
+}
+@keyframes loading-59 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(59deg);
+    transform: rotate(59deg);
+  }
+}
+@keyframes loading-60 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(60deg);
+    transform: rotate(60deg);
+  }
+}
+@keyframes loading-61 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(61deg);
+    transform: rotate(61deg);
+  }
+}
+@keyframes loading-62 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(62deg);
+    transform: rotate(62deg);
+  }
+}
+@keyframes loading-63 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(63deg);
+    transform: rotate(63deg);
+  }
+}
+@keyframes loading-64 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(64deg);
+    transform: rotate(64deg);
+  }
+}
+@keyframes loading-65 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(65deg);
+    transform: rotate(65deg);
+  }
+}
+@keyframes loading-66 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(66deg);
+    transform: rotate(66deg);
+  }
+}
+@keyframes loading-67 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(67deg);
+    transform: rotate(67deg);
+  }
+}
+@keyframes loading-68 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(68deg);
+    transform: rotate(68deg);
+  }
+}
+@keyframes loading-69 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(69deg);
+    transform: rotate(69deg);
+  }
+}
+@keyframes loading-70 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(70deg);
+    transform: rotate(70deg);
+  }
+}
+@keyframes loading-71 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(71deg);
+    transform: rotate(71deg);
+  }
+}
+@keyframes loading-72 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(72deg);
+    transform: rotate(72deg);
+  }
+}
+@keyframes loading-73 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(73deg);
+    transform: rotate(73deg);
+  }
+}
+@keyframes loading-74 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(74deg);
+    transform: rotate(74deg);
+  }
+}
+@keyframes loading-75 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(75deg);
+    transform: rotate(75deg);
+  }
+}
+@keyframes loading-76 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(76deg);
+    transform: rotate(76deg);
+  }
+}
+@keyframes loading-77 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(77deg);
+    transform: rotate(77deg);
+  }
+}
+@keyframes loading-78 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(78deg);
+    transform: rotate(78deg);
+  }
+}
+@keyframes loading-79 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(79deg);
+    transform: rotate(79deg);
+  }
+}
+@keyframes loading-80 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(80deg);
+    transform: rotate(80deg);
+  }
+}
+@keyframes loading-81 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(81deg);
+    transform: rotate(81deg);
+  }
+}
+@keyframes loading-82 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(82deg);
+    transform: rotate(82deg);
+  }
+}
+@keyframes loading-83 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(83deg);
+    transform: rotate(83deg);
+  }
+}
+@keyframes loading-84 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(84deg);
+    transform: rotate(84deg);
+  }
+}
+@keyframes loading-85 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(85deg);
+    transform: rotate(85deg);
+  }
+}
+@keyframes loading-86 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(86deg);
+    transform: rotate(86deg);
+  }
+}
+@keyframes loading-87 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(87deg);
+    transform: rotate(87deg);
+  }
+}
+@keyframes loading-88 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(88deg);
+    transform: rotate(88deg);
+  }
+}
+@keyframes loading-89 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(89deg);
+    transform: rotate(89deg);
+  }
+}
+@keyframes loading-90 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+}
+@keyframes loading-91 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(91deg);
+    transform: rotate(91deg);
+  }
+}
+@keyframes loading-92 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(92deg);
+    transform: rotate(92deg);
+  }
+}
+@keyframes loading-93 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(93deg);
+    transform: rotate(93deg);
+  }
+}
+@keyframes loading-94 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(94deg);
+    transform: rotate(94deg);
+  }
+}
+@keyframes loading-95 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(95deg);
+    transform: rotate(95deg);
+  }
+}
+@keyframes loading-96 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(96deg);
+    transform: rotate(96deg);
+  }
+}
+@keyframes loading-97 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(97deg);
+    transform: rotate(97deg);
+  }
+}
+@keyframes loading-98 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(98deg);
+    transform: rotate(98deg);
+  }
+}
+@keyframes loading-99 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(99deg);
+    transform: rotate(99deg);
+  }
+}
+@keyframes loading-100 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(100deg);
+    transform: rotate(100deg);
+  }
+}
+@keyframes loading-101 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(101deg);
+    transform: rotate(101deg);
+  }
+}
+@keyframes loading-102 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(102deg);
+    transform: rotate(102deg);
+  }
+}
+@keyframes loading-103 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(103deg);
+    transform: rotate(103deg);
+  }
+}
+@keyframes loading-104 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(104deg);
+    transform: rotate(104deg);
+  }
+}
+@keyframes loading-105 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(105deg);
+    transform: rotate(105deg);
+  }
+}
+@keyframes loading-106 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(106deg);
+    transform: rotate(106deg);
+  }
+}
+@keyframes loading-107 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(107deg);
+    transform: rotate(107deg);
+  }
+}
+@keyframes loading-108 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(108deg);
+    transform: rotate(108deg);
+  }
+}
+@keyframes loading-109 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(109deg);
+    transform: rotate(109deg);
+  }
+}
+@keyframes loading-110 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(110deg);
+    transform: rotate(110deg);
+  }
+}
+@keyframes loading-111 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(111deg);
+    transform: rotate(111deg);
+  }
+}
+@keyframes loading-112 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(112deg);
+    transform: rotate(112deg);
+  }
+}
+@keyframes loading-113 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(113deg);
+    transform: rotate(113deg);
+  }
+}
+@keyframes loading-114 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(114deg);
+    transform: rotate(114deg);
+  }
+}
+@keyframes loading-115 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(115deg);
+    transform: rotate(115deg);
+  }
+}
+@keyframes loading-116 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(116deg);
+    transform: rotate(116deg);
+  }
+}
+@keyframes loading-117 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(117deg);
+    transform: rotate(117deg);
+  }
+}
+@keyframes loading-118 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(118deg);
+    transform: rotate(118deg);
+  }
+}
+@keyframes loading-119 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(119deg);
+    transform: rotate(119deg);
+  }
+}
+@keyframes loading-120 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(120deg);
+    transform: rotate(120deg);
+  }
+}
+@keyframes loading-121 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(121deg);
+    transform: rotate(121deg);
+  }
+}
+@keyframes loading-122 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(122deg);
+    transform: rotate(122deg);
+  }
+}
+@keyframes loading-123 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(123deg);
+    transform: rotate(123deg);
+  }
+}
+@keyframes loading-124 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(124deg);
+    transform: rotate(124deg);
+  }
+}
+@keyframes loading-125 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(125deg);
+    transform: rotate(125deg);
+  }
+}
+@keyframes loading-126 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(126deg);
+    transform: rotate(126deg);
+  }
+}
+@keyframes loading-127 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(127deg);
+    transform: rotate(127deg);
+  }
+}
+@keyframes loading-128 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(128deg);
+    transform: rotate(128deg);
+  }
+}
+@keyframes loading-129 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(129deg);
+    transform: rotate(129deg);
+  }
+}
+@keyframes loading-130 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(130deg);
+    transform: rotate(130deg);
+  }
+}
+@keyframes loading-131 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(131deg);
+    transform: rotate(131deg);
+  }
+}
+@keyframes loading-132 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(132deg);
+    transform: rotate(132deg);
+  }
+}
+@keyframes loading-133 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(133deg);
+    transform: rotate(133deg);
+  }
+}
+@keyframes loading-134 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(134deg);
+    transform: rotate(134deg);
+  }
+}
+@keyframes loading-135 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+  }
+}
+@keyframes loading-136 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(136deg);
+    transform: rotate(136deg);
+  }
+}
+@keyframes loading-137 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(137deg);
+    transform: rotate(137deg);
+  }
+}
+@keyframes loading-138 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(138deg);
+    transform: rotate(138deg);
+  }
+}
+@keyframes loading-139 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(139deg);
+    transform: rotate(139deg);
+  }
+}
+@keyframes loading-140 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(140deg);
+    transform: rotate(140deg);
+  }
+}
+@keyframes loading-141 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(141deg);
+    transform: rotate(141deg);
+  }
+}
+@keyframes loading-142 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(142deg);
+    transform: rotate(142deg);
+  }
+}
+@keyframes loading-143 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(143deg);
+    transform: rotate(143deg);
+  }
+}
+@keyframes loading-144 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(144deg);
+    transform: rotate(144deg);
+  }
+}
+@keyframes loading-145 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(145deg);
+    transform: rotate(145deg);
+  }
+}
+@keyframes loading-146 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(146deg);
+    transform: rotate(146deg);
+  }
+}
+@keyframes loading-147 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(147deg);
+    transform: rotate(147deg);
+  }
+}
+@keyframes loading-148 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(148deg);
+    transform: rotate(148deg);
+  }
+}
+@keyframes loading-149 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(149deg);
+    transform: rotate(149deg);
+  }
+}
+@keyframes loading-150 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(150deg);
+    transform: rotate(150deg);
+  }
+}
+@keyframes loading-151 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(151deg);
+    transform: rotate(151deg);
+  }
+}
+@keyframes loading-152 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(152deg);
+    transform: rotate(152deg);
+  }
+}
+@keyframes loading-153 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(153deg);
+    transform: rotate(153deg);
+  }
+}
+@keyframes loading-154 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(154deg);
+    transform: rotate(154deg);
+  }
+}
+@keyframes loading-155 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(155deg);
+    transform: rotate(155deg);
+  }
+}
+@keyframes loading-156 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(156deg);
+    transform: rotate(156deg);
+  }
+}
+@keyframes loading-157 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(157deg);
+    transform: rotate(157deg);
+  }
+}
+@keyframes loading-158 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(158deg);
+    transform: rotate(158deg);
+  }
+}
+@keyframes loading-159 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(159deg);
+    transform: rotate(159deg);
+  }
+}
+@keyframes loading-160 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(160deg);
+    transform: rotate(160deg);
+  }
+}
+@keyframes loading-161 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(161deg);
+    transform: rotate(161deg);
+  }
+}
+@keyframes loading-162 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(162deg);
+    transform: rotate(162deg);
+  }
+}
+@keyframes loading-163 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(163deg);
+    transform: rotate(163deg);
+  }
+}
+@keyframes loading-164 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(164deg);
+    transform: rotate(164deg);
+  }
+}
+@keyframes loading-165 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(165deg);
+    transform: rotate(165deg);
+  }
+}
+@keyframes loading-166 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(166deg);
+    transform: rotate(166deg);
+  }
+}
+@keyframes loading-167 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(167deg);
+    transform: rotate(167deg);
+  }
+}
+@keyframes loading-168 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(168deg);
+    transform: rotate(168deg);
+  }
+}
+@keyframes loading-169 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(169deg);
+    transform: rotate(169deg);
+  }
+}
+@keyframes loading-170 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(170deg);
+    transform: rotate(170deg);
+  }
+}
+@keyframes loading-171 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(171deg);
+    transform: rotate(171deg);
+  }
+}
+@keyframes loading-172 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(172deg);
+    transform: rotate(172deg);
+  }
+}
+@keyframes loading-173 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(173deg);
+    transform: rotate(173deg);
+  }
+}
+@keyframes loading-174 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(174deg);
+    transform: rotate(174deg);
+  }
+}
+@keyframes loading-175 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(175deg);
+    transform: rotate(175deg);
+  }
+}
+@keyframes loading-176 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(176deg);
+    transform: rotate(176deg);
+  }
+}
+@keyframes loading-177 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(177deg);
+    transform: rotate(177deg);
+  }
+}
+@keyframes loading-178 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(178deg);
+    transform: rotate(178deg);
+  }
+}
+@keyframes loading-179 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(179deg);
+    transform: rotate(179deg);
+  }
+}
+@keyframes loading-180 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+}
+.progress-left-0 {
+  animation: loading-0 1.5s linear forwards 1.8s;
+}
+.progress-left-1 {
+  animation: loading-1 1.5s linear forwards 1.8s;
+}
+.progress-left-2 {
+  animation: loading-2 1.5s linear forwards 1.8s;
+}
+.progress-left-3 {
+  animation: loading-3 1.5s linear forwards 1.8s;
+}
+.progress-left-4 {
+  animation: loading-4 1.5s linear forwards 1.8s;
+}
+.progress-left-5 {
+  animation: loading-5 1.5s linear forwards 1.8s;
+}
+.progress-left-6 {
+  animation: loading-6 1.5s linear forwards 1.8s;
+}
+.progress-left-7 {
+  animation: loading-7 1.5s linear forwards 1.8s;
+}
+.progress-left-8 {
+  animation: loading-8 1.5s linear forwards 1.8s;
+}
+.progress-left-9 {
+  animation: loading-9 1.5s linear forwards 1.8s;
+}
+.progress-left-10 {
+  animation: loading-10 1.5s linear forwards 1.8s;
+}
+.progress-left-11 {
+  animation: loading-11 1.5s linear forwards 1.8s;
+}
+.progress-left-12 {
+  animation: loading-12 1.5s linear forwards 1.8s;
+}
+.progress-left-13 {
+  animation: loading-13 1.5s linear forwards 1.8s;
+}
+.progress-left-14 {
+  animation: loading-14 1.5s linear forwards 1.8s;
+}
+.progress-left-15 {
+  animation: loading-15 1.5s linear forwards 1.8s;
+}
+.progress-left-16 {
+  animation: loading-16 1.5s linear forwards 1.8s;
+}
+.progress-left-17 {
+  animation: loading-17 1.5s linear forwards 1.8s;
+}
+.progress-left-18 {
+  animation: loading-18 1.5s linear forwards 1.8s;
+}
+.progress-left-19 {
+  animation: loading-19 1.5s linear forwards 1.8s;
+}
+.progress-left-20 {
+  animation: loading-20 1.5s linear forwards 1.8s;
+}
+.progress-left-21 {
+  animation: loading-21 1.5s linear forwards 1.8s;
+}
+.progress-left-22 {
+  animation: loading-22 1.5s linear forwards 1.8s;
+}
+.progress-left-23 {
+  animation: loading-23 1.5s linear forwards 1.8s;
+}
+.progress-left-24 {
+  animation: loading-24 1.5s linear forwards 1.8s;
+}
+.progress-left-25 {
+  animation: loading-25 1.5s linear forwards 1.8s;
+}
+.progress-left-26 {
+  animation: loading-26 1.5s linear forwards 1.8s;
+}
+.progress-left-27 {
+  animation: loading-27 1.5s linear forwards 1.8s;
+}
+.progress-left-28 {
+  animation: loading-28 1.5s linear forwards 1.8s;
+}
+.progress-left-29 {
+  animation: loading-29 1.5s linear forwards 1.8s;
+}
+.progress-left-30 {
+  animation: loading-30 1.5s linear forwards 1.8s;
+}
+.progress-left-31 {
+  animation: loading-31 1.5s linear forwards 1.8s;
+}
+.progress-left-32 {
+  animation: loading-32 1.5s linear forwards 1.8s;
+}
+.progress-left-33 {
+  animation: loading-33 1.5s linear forwards 1.8s;
+}
+.progress-left-34 {
+  animation: loading-34 1.5s linear forwards 1.8s;
+}
+.progress-left-35 {
+  animation: loading-35 1.5s linear forwards 1.8s;
+}
+.progress-left-36 {
+  animation: loading-36 1.5s linear forwards 1.8s;
+}
+.progress-left-37 {
+  animation: loading-37 1.5s linear forwards 1.8s;
+}
+.progress-left-38 {
+  animation: loading-38 1.5s linear forwards 1.8s;
+}
+.progress-left-39 {
+  animation: loading-39 1.5s linear forwards 1.8s;
+}
+.progress-left-40 {
+  animation: loading-40 1.5s linear forwards 1.8s;
+}
+.progress-left-41 {
+  animation: loading-41 1.5s linear forwards 1.8s;
+}
+.progress-left-42 {
+  animation: loading-42 1.5s linear forwards 1.8s;
+}
+.progress-left-43 {
+  animation: loading-43 1.5s linear forwards 1.8s;
+}
+.progress-left-44 {
+  animation: loading-44 1.5s linear forwards 1.8s;
+}
+.progress-left-45 {
+  animation: loading-45 1.5s linear forwards 1.8s;
+}
+.progress-left-46 {
+  animation: loading-46 1.5s linear forwards 1.8s;
+}
+.progress-left-47 {
+  animation: loading-47 1.5s linear forwards 1.8s;
+}
+.progress-left-48 {
+  animation: loading-48 1.5s linear forwards 1.8s;
+}
+.progress-left-49 {
+  animation: loading-49 1.5s linear forwards 1.8s;
+}
+.progress-left-50 {
+  animation: loading-50 1.5s linear forwards 1.8s;
+}
+.progress-left-51 {
+  animation: loading-51 1.5s linear forwards 1.8s;
+}
+.progress-left-52 {
+  animation: loading-52 1.5s linear forwards 1.8s;
+}
+.progress-left-53 {
+  animation: loading-53 1.5s linear forwards 1.8s;
+}
+.progress-left-54 {
+  animation: loading-54 1.5s linear forwards 1.8s;
+}
+.progress-left-55 {
+  animation: loading-55 1.5s linear forwards 1.8s;
+}
+.progress-left-56 {
+  animation: loading-56 1.5s linear forwards 1.8s;
+}
+.progress-left-57 {
+  animation: loading-57 1.5s linear forwards 1.8s;
+}
+.progress-left-58 {
+  animation: loading-58 1.5s linear forwards 1.8s;
+}
+.progress-left-59 {
+  animation: loading-59 1.5s linear forwards 1.8s;
+}
+.progress-left-60 {
+  animation: loading-60 1.5s linear forwards 1.8s;
+}
+.progress-left-61 {
+  animation: loading-61 1.5s linear forwards 1.8s;
+}
+.progress-left-62 {
+  animation: loading-62 1.5s linear forwards 1.8s;
+}
+.progress-left-63 {
+  animation: loading-63 1.5s linear forwards 1.8s;
+}
+.progress-left-64 {
+  animation: loading-64 1.5s linear forwards 1.8s;
+}
+.progress-left-65 {
+  animation: loading-65 1.5s linear forwards 1.8s;
+}
+.progress-left-66 {
+  animation: loading-66 1.5s linear forwards 1.8s;
+}
+.progress-left-67 {
+  animation: loading-67 1.5s linear forwards 1.8s;
+}
+.progress-left-68 {
+  animation: loading-68 1.5s linear forwards 1.8s;
+}
+.progress-left-69 {
+  animation: loading-69 1.5s linear forwards 1.8s;
+}
+.progress-left-70 {
+  animation: loading-70 1.5s linear forwards 1.8s;
+}
+.progress-left-71 {
+  animation: loading-71 1.5s linear forwards 1.8s;
+}
+.progress-left-72 {
+  animation: loading-72 1.5s linear forwards 1.8s;
+}
+.progress-left-73 {
+  animation: loading-73 1.5s linear forwards 1.8s;
+}
+.progress-left-74 {
+  animation: loading-74 1.5s linear forwards 1.8s;
+}
+.progress-left-75 {
+  animation: loading-75 1.5s linear forwards 1.8s;
+}
+.progress-left-76 {
+  animation: loading-76 1.5s linear forwards 1.8s;
+}
+.progress-left-77 {
+  animation: loading-77 1.5s linear forwards 1.8s;
+}
+.progress-left-78 {
+  animation: loading-78 1.5s linear forwards 1.8s;
+}
+.progress-left-79 {
+  animation: loading-79 1.5s linear forwards 1.8s;
+}
+.progress-left-80 {
+  animation: loading-80 1.5s linear forwards 1.8s;
+}
+.progress-left-81 {
+  animation: loading-81 1.5s linear forwards 1.8s;
+}
+.progress-left-82 {
+  animation: loading-82 1.5s linear forwards 1.8s;
+}
+.progress-left-83 {
+  animation: loading-83 1.5s linear forwards 1.8s;
+}
+.progress-left-84 {
+  animation: loading-84 1.5s linear forwards 1.8s;
+}
+.progress-left-85 {
+  animation: loading-85 1.5s linear forwards 1.8s;
+}
+.progress-left-86 {
+  animation: loading-86 1.5s linear forwards 1.8s;
+}
+.progress-left-87 {
+  animation: loading-87 1.5s linear forwards 1.8s;
+}
+.progress-left-88 {
+  animation: loading-88 1.5s linear forwards 1.8s;
+}
+.progress-left-89 {
+  animation: loading-89 1.5s linear forwards 1.8s;
+}
+.progress-left-90 {
+  animation: loading-90 1.5s linear forwards 1.8s;
+}
+.progress-left-91 {
+  animation: loading-91 1.5s linear forwards 1.8s;
+}
+.progress-left-92 {
+  animation: loading-92 1.5s linear forwards 1.8s;
+}
+.progress-left-93 {
+  animation: loading-93 1.5s linear forwards 1.8s;
+}
+.progress-left-94 {
+  animation: loading-94 1.5s linear forwards 1.8s;
+}
+.progress-left-95 {
+  animation: loading-95 1.5s linear forwards 1.8s;
+}
+.progress-left-96 {
+  animation: loading-96 1.5s linear forwards 1.8s;
+}
+.progress-left-97 {
+  animation: loading-97 1.5s linear forwards 1.8s;
+}
+.progress-left-98 {
+  animation: loading-98 1.5s linear forwards 1.8s;
+}
+.progress-left-99 {
+  animation: loading-99 1.5s linear forwards 1.8s;
+}
+.progress-left-100 {
+  animation: loading-100 1.5s linear forwards 1.8s;
+}
+.progress-left-101 {
+  animation: loading-101 1.5s linear forwards 1.8s;
+}
+.progress-left-102 {
+  animation: loading-102 1.5s linear forwards 1.8s;
+}
+.progress-left-103 {
+  animation: loading-103 1.5s linear forwards 1.8s;
+}
+.progress-left-104 {
+  animation: loading-104 1.5s linear forwards 1.8s;
+}
+.progress-left-105 {
+  animation: loading-105 1.5s linear forwards 1.8s;
+}
+.progress-left-106 {
+  animation: loading-106 1.5s linear forwards 1.8s;
+}
+.progress-left-107 {
+  animation: loading-107 1.5s linear forwards 1.8s;
+}
+.progress-left-108 {
+  animation: loading-108 1.5s linear forwards 1.8s;
+}
+.progress-left-109 {
+  animation: loading-109 1.5s linear forwards 1.8s;
+}
+.progress-left-110 {
+  animation: loading-110 1.5s linear forwards 1.8s;
+}
+.progress-left-111 {
+  animation: loading-111 1.5s linear forwards 1.8s;
+}
+.progress-left-112 {
+  animation: loading-112 1.5s linear forwards 1.8s;
+}
+.progress-left-113 {
+  animation: loading-113 1.5s linear forwards 1.8s;
+}
+.progress-left-114 {
+  animation: loading-114 1.5s linear forwards 1.8s;
+}
+.progress-left-115 {
+  animation: loading-115 1.5s linear forwards 1.8s;
+}
+.progress-left-116 {
+  animation: loading-116 1.5s linear forwards 1.8s;
+}
+.progress-left-117 {
+  animation: loading-117 1.5s linear forwards 1.8s;
+}
+.progress-left-118 {
+  animation: loading-118 1.5s linear forwards 1.8s;
+}
+.progress-left-119 {
+  animation: loading-119 1.5s linear forwards 1.8s;
+}
+.progress-left-120 {
+  animation: loading-120 1.5s linear forwards 1.8s;
+}
+.progress-left-121 {
+  animation: loading-121 1.5s linear forwards 1.8s;
+}
+.progress-left-122 {
+  animation: loading-122 1.5s linear forwards 1.8s;
+}
+.progress-left-123 {
+  animation: loading-123 1.5s linear forwards 1.8s;
+}
+.progress-left-124 {
+  animation: loading-124 1.5s linear forwards 1.8s;
+}
+.progress-left-125 {
+  animation: loading-125 1.5s linear forwards 1.8s;
+}
+.progress-left-126 {
+  animation: loading-126 1.5s linear forwards 1.8s;
+}
+.progress-left-127 {
+  animation: loading-127 1.5s linear forwards 1.8s;
+}
+.progress-left-128 {
+  animation: loading-128 1.5s linear forwards 1.8s;
+}
+.progress-left-129 {
+  animation: loading-129 1.5s linear forwards 1.8s;
+}
+.progress-left-130 {
+  animation: loading-130 1.5s linear forwards 1.8s;
+}
+.progress-left-131 {
+  animation: loading-131 1.5s linear forwards 1.8s;
+}
+.progress-left-132 {
+  animation: loading-132 1.5s linear forwards 1.8s;
+}
+.progress-left-133 {
+  animation: loading-133 1.5s linear forwards 1.8s;
+}
+.progress-left-134 {
+  animation: loading-134 1.5s linear forwards 1.8s;
+}
+.progress-left-135 {
+  animation: loading-135 1.5s linear forwards 1.8s;
+}
+.progress-left-136 {
+  animation: loading-136 1.5s linear forwards 1.8s;
+}
+.progress-left-137 {
+  animation: loading-137 1.5s linear forwards 1.8s;
+}
+.progress-left-138 {
+  animation: loading-138 1.5s linear forwards 1.8s;
+}
+.progress-left-139 {
+  animation: loading-139 1.5s linear forwards 1.8s;
+}
+.progress-left-140 {
+  animation: loading-140 1.5s linear forwards 1.8s;
+}
+.progress-left-141 {
+  animation: loading-141 1.5s linear forwards 1.8s;
+}
+.progress-left-142 {
+  animation: loading-142 1.5s linear forwards 1.8s;
+}
+.progress-left-143 {
+  animation: loading-143 1.5s linear forwards 1.8s;
+}
+.progress-left-144 {
+  animation: loading-144 1.5s linear forwards 1.8s;
+}
+.progress-left-145 {
+  animation: loading-145 1.5s linear forwards 1.8s;
+}
+.progress-left-146 {
+  animation: loading-146 1.5s linear forwards 1.8s;
+}
+.progress-left-147 {
+  animation: loading-147 1.5s linear forwards 1.8s;
+}
+.progress-left-148 {
+  animation: loading-148 1.5s linear forwards 1.8s;
+}
+.progress-left-149 {
+  animation: loading-149 1.5s linear forwards 1.8s;
+}
+.progress-left-150 {
+  animation: loading-150 1.5s linear forwards 1.8s;
+}
+.progress-left-151 {
+  animation: loading-151 1.5s linear forwards 1.8s;
+}
+.progress-left-152 {
+  animation: loading-152 1.5s linear forwards 1.8s;
+}
+.progress-left-153 {
+  animation: loading-153 1.5s linear forwards 1.8s;
+}
+.progress-left-154 {
+  animation: loading-154 1.5s linear forwards 1.8s;
+}
+.progress-left-155 {
+  animation: loading-155 1.5s linear forwards 1.8s;
+}
+.progress-left-156 {
+  animation: loading-156 1.5s linear forwards 1.8s;
+}
+.progress-left-157 {
+  animation: loading-157 1.5s linear forwards 1.8s;
+}
+.progress-left-158 {
+  animation: loading-158 1.5s linear forwards 1.8s;
+}
+.progress-left-159 {
+  animation: loading-159 1.5s linear forwards 1.8s;
+}
+.progress-left-160 {
+  animation: loading-160 1.5s linear forwards 1.8s;
+}
+.progress-left-161 {
+  animation: loading-161 1.5s linear forwards 1.8s;
+}
+.progress-left-162 {
+  animation: loading-162 1.5s linear forwards 1.8s;
+}
+.progress-left-163 {
+  animation: loading-163 1.5s linear forwards 1.8s;
+}
+.progress-left-164 {
+  animation: loading-164 1.5s linear forwards 1.8s;
+}
+.progress-left-165 {
+  animation: loading-165 1.5s linear forwards 1.8s;
+}
+.progress-left-166 {
+  animation: loading-166 1.5s linear forwards 1.8s;
+}
+.progress-left-167 {
+  animation: loading-167 1.5s linear forwards 1.8s;
+}
+.progress-left-168 {
+  animation: loading-168 1.5s linear forwards 1.8s;
+}
+.progress-left-169 {
+  animation: loading-169 1.5s linear forwards 1.8s;
+}
+.progress-left-170 {
+  animation: loading-170 1.5s linear forwards 1.8s;
+}
+.progress-left-171 {
+  animation: loading-171 1.5s linear forwards 1.8s;
+}
+.progress-left-172 {
+  animation: loading-172 1.5s linear forwards 1.8s;
+}
+.progress-left-173 {
+  animation: loading-173 1.5s linear forwards 1.8s;
+}
+.progress-left-174 {
+  animation: loading-174 1.5s linear forwards 1.8s;
+}
+.progress-left-175 {
+  animation: loading-175 1.5s linear forwards 1.8s;
+}
+.progress-left-176 {
+  animation: loading-176 1.5s linear forwards 1.8s;
+}
+.progress-left-177 {
+  animation: loading-177 1.5s linear forwards 1.8s;
+}
+.progress-left-178 {
+  animation: loading-178 1.5s linear forwards 1.8s;
+}
+.progress-left-179 {
+  animation: loading-179 1.5s linear forwards 1.8s;
+}
+.progress-left-180 {
+  animation: loading-180 1.5s linear forwards 1.8s;
+}
+.progress-right-0 {
+  animation: loading-0 1.8s linear forwards;
+}
+.progress-right-1 {
+  animation: loading-1 1.8s linear forwards;
+}
+.progress-right-2 {
+  animation: loading-2 1.8s linear forwards;
+}
+.progress-right-3 {
+  animation: loading-3 1.8s linear forwards;
+}
+.progress-right-4 {
+  animation: loading-4 1.8s linear forwards;
+}
+.progress-right-5 {
+  animation: loading-5 1.8s linear forwards;
+}
+.progress-right-6 {
+  animation: loading-6 1.8s linear forwards;
+}
+.progress-right-7 {
+  animation: loading-7 1.8s linear forwards;
+}
+.progress-right-8 {
+  animation: loading-8 1.8s linear forwards;
+}
+.progress-right-9 {
+  animation: loading-9 1.8s linear forwards;
+}
+.progress-right-10 {
+  animation: loading-10 1.8s linear forwards;
+}
+.progress-right-11 {
+  animation: loading-11 1.8s linear forwards;
+}
+.progress-right-12 {
+  animation: loading-12 1.8s linear forwards;
+}
+.progress-right-13 {
+  animation: loading-13 1.8s linear forwards;
+}
+.progress-right-14 {
+  animation: loading-14 1.8s linear forwards;
+}
+.progress-right-15 {
+  animation: loading-15 1.8s linear forwards;
+}
+.progress-right-16 {
+  animation: loading-16 1.8s linear forwards;
+}
+.progress-right-17 {
+  animation: loading-17 1.8s linear forwards;
+}
+.progress-right-18 {
+  animation: loading-18 1.8s linear forwards;
+}
+.progress-right-19 {
+  animation: loading-19 1.8s linear forwards;
+}
+.progress-right-20 {
+  animation: loading-20 1.8s linear forwards;
+}
+.progress-right-21 {
+  animation: loading-21 1.8s linear forwards;
+}
+.progress-right-22 {
+  animation: loading-22 1.8s linear forwards;
+}
+.progress-right-23 {
+  animation: loading-23 1.8s linear forwards;
+}
+.progress-right-24 {
+  animation: loading-24 1.8s linear forwards;
+}
+.progress-right-25 {
+  animation: loading-25 1.8s linear forwards;
+}
+.progress-right-26 {
+  animation: loading-26 1.8s linear forwards;
+}
+.progress-right-27 {
+  animation: loading-27 1.8s linear forwards;
+}
+.progress-right-28 {
+  animation: loading-28 1.8s linear forwards;
+}
+.progress-right-29 {
+  animation: loading-29 1.8s linear forwards;
+}
+.progress-right-30 {
+  animation: loading-30 1.8s linear forwards;
+}
+.progress-right-31 {
+  animation: loading-31 1.8s linear forwards;
+}
+.progress-right-32 {
+  animation: loading-32 1.8s linear forwards;
+}
+.progress-right-33 {
+  animation: loading-33 1.8s linear forwards;
+}
+.progress-right-34 {
+  animation: loading-34 1.8s linear forwards;
+}
+.progress-right-35 {
+  animation: loading-35 1.8s linear forwards;
+}
+.progress-right-36 {
+  animation: loading-36 1.8s linear forwards;
+}
+.progress-right-37 {
+  animation: loading-37 1.8s linear forwards;
+}
+.progress-right-38 {
+  animation: loading-38 1.8s linear forwards;
+}
+.progress-right-39 {
+  animation: loading-39 1.8s linear forwards;
+}
+.progress-right-40 {
+  animation: loading-40 1.8s linear forwards;
+}
+.progress-right-41 {
+  animation: loading-41 1.8s linear forwards;
+}
+.progress-right-42 {
+  animation: loading-42 1.8s linear forwards;
+}
+.progress-right-43 {
+  animation: loading-43 1.8s linear forwards;
+}
+.progress-right-44 {
+  animation: loading-44 1.8s linear forwards;
+}
+.progress-right-45 {
+  animation: loading-45 1.8s linear forwards;
+}
+.progress-right-46 {
+  animation: loading-46 1.8s linear forwards;
+}
+.progress-right-47 {
+  animation: loading-47 1.8s linear forwards;
+}
+.progress-right-48 {
+  animation: loading-48 1.8s linear forwards;
+}
+.progress-right-49 {
+  animation: loading-49 1.8s linear forwards;
+}
+.progress-right-50 {
+  animation: loading-50 1.8s linear forwards;
+}
+.progress-right-51 {
+  animation: loading-51 1.8s linear forwards;
+}
+.progress-right-52 {
+  animation: loading-52 1.8s linear forwards;
+}
+.progress-right-53 {
+  animation: loading-53 1.8s linear forwards;
+}
+.progress-right-54 {
+  animation: loading-54 1.8s linear forwards;
+}
+.progress-right-55 {
+  animation: loading-55 1.8s linear forwards;
+}
+.progress-right-56 {
+  animation: loading-56 1.8s linear forwards;
+}
+.progress-right-57 {
+  animation: loading-57 1.8s linear forwards;
+}
+.progress-right-58 {
+  animation: loading-58 1.8s linear forwards;
+}
+.progress-right-59 {
+  animation: loading-59 1.8s linear forwards;
+}
+.progress-right-60 {
+  animation: loading-60 1.8s linear forwards;
+}
+.progress-right-61 {
+  animation: loading-61 1.8s linear forwards;
+}
+.progress-right-62 {
+  animation: loading-62 1.8s linear forwards;
+}
+.progress-right-63 {
+  animation: loading-63 1.8s linear forwards;
+}
+.progress-right-64 {
+  animation: loading-64 1.8s linear forwards;
+}
+.progress-right-65 {
+  animation: loading-65 1.8s linear forwards;
+}
+.progress-right-66 {
+  animation: loading-66 1.8s linear forwards;
+}
+.progress-right-67 {
+  animation: loading-67 1.8s linear forwards;
+}
+.progress-right-68 {
+  animation: loading-68 1.8s linear forwards;
+}
+.progress-right-69 {
+  animation: loading-69 1.8s linear forwards;
+}
+.progress-right-70 {
+  animation: loading-70 1.8s linear forwards;
+}
+.progress-right-71 {
+  animation: loading-71 1.8s linear forwards;
+}
+.progress-right-72 {
+  animation: loading-72 1.8s linear forwards;
+}
+.progress-right-73 {
+  animation: loading-73 1.8s linear forwards;
+}
+.progress-right-74 {
+  animation: loading-74 1.8s linear forwards;
+}
+.progress-right-75 {
+  animation: loading-75 1.8s linear forwards;
+}
+.progress-right-76 {
+  animation: loading-76 1.8s linear forwards;
+}
+.progress-right-77 {
+  animation: loading-77 1.8s linear forwards;
+}
+.progress-right-78 {
+  animation: loading-78 1.8s linear forwards;
+}
+.progress-right-79 {
+  animation: loading-79 1.8s linear forwards;
+}
+.progress-right-80 {
+  animation: loading-80 1.8s linear forwards;
+}
+.progress-right-81 {
+  animation: loading-81 1.8s linear forwards;
+}
+.progress-right-82 {
+  animation: loading-82 1.8s linear forwards;
+}
+.progress-right-83 {
+  animation: loading-83 1.8s linear forwards;
+}
+.progress-right-84 {
+  animation: loading-84 1.8s linear forwards;
+}
+.progress-right-85 {
+  animation: loading-85 1.8s linear forwards;
+}
+.progress-right-86 {
+  animation: loading-86 1.8s linear forwards;
+}
+.progress-right-87 {
+  animation: loading-87 1.8s linear forwards;
+}
+.progress-right-88 {
+  animation: loading-88 1.8s linear forwards;
+}
+.progress-right-89 {
+  animation: loading-89 1.8s linear forwards;
+}
+.progress-right-90 {
+  animation: loading-90 1.8s linear forwards;
+}
+.progress-right-91 {
+  animation: loading-91 1.8s linear forwards;
+}
+.progress-right-92 {
+  animation: loading-92 1.8s linear forwards;
+}
+.progress-right-93 {
+  animation: loading-93 1.8s linear forwards;
+}
+.progress-right-94 {
+  animation: loading-94 1.8s linear forwards;
+}
+.progress-right-95 {
+  animation: loading-95 1.8s linear forwards;
+}
+.progress-right-96 {
+  animation: loading-96 1.8s linear forwards;
+}
+.progress-right-97 {
+  animation: loading-97 1.8s linear forwards;
+}
+.progress-right-98 {
+  animation: loading-98 1.8s linear forwards;
+}
+.progress-right-99 {
+  animation: loading-99 1.8s linear forwards;
+}
+.progress-right-100 {
+  animation: loading-100 1.8s linear forwards;
+}
+.progress-right-101 {
+  animation: loading-101 1.8s linear forwards;
+}
+.progress-right-102 {
+  animation: loading-102 1.8s linear forwards;
+}
+.progress-right-103 {
+  animation: loading-103 1.8s linear forwards;
+}
+.progress-right-104 {
+  animation: loading-104 1.8s linear forwards;
+}
+.progress-right-105 {
+  animation: loading-105 1.8s linear forwards;
+}
+.progress-right-106 {
+  animation: loading-106 1.8s linear forwards;
+}
+.progress-right-107 {
+  animation: loading-107 1.8s linear forwards;
+}
+.progress-right-108 {
+  animation: loading-108 1.8s linear forwards;
+}
+.progress-right-109 {
+  animation: loading-109 1.8s linear forwards;
+}
+.progress-right-110 {
+  animation: loading-110 1.8s linear forwards;
+}
+.progress-right-111 {
+  animation: loading-111 1.8s linear forwards;
+}
+.progress-right-112 {
+  animation: loading-112 1.8s linear forwards;
+}
+.progress-right-113 {
+  animation: loading-113 1.8s linear forwards;
+}
+.progress-right-114 {
+  animation: loading-114 1.8s linear forwards;
+}
+.progress-right-115 {
+  animation: loading-115 1.8s linear forwards;
+}
+.progress-right-116 {
+  animation: loading-116 1.8s linear forwards;
+}
+.progress-right-117 {
+  animation: loading-117 1.8s linear forwards;
+}
+.progress-right-118 {
+  animation: loading-118 1.8s linear forwards;
+}
+.progress-right-119 {
+  animation: loading-119 1.8s linear forwards;
+}
+.progress-right-120 {
+  animation: loading-120 1.8s linear forwards;
+}
+.progress-right-121 {
+  animation: loading-121 1.8s linear forwards;
+}
+.progress-right-122 {
+  animation: loading-122 1.8s linear forwards;
+}
+.progress-right-123 {
+  animation: loading-123 1.8s linear forwards;
+}
+.progress-right-124 {
+  animation: loading-124 1.8s linear forwards;
+}
+.progress-right-125 {
+  animation: loading-125 1.8s linear forwards;
+}
+.progress-right-126 {
+  animation: loading-126 1.8s linear forwards;
+}
+.progress-right-127 {
+  animation: loading-127 1.8s linear forwards;
+}
+.progress-right-128 {
+  animation: loading-128 1.8s linear forwards;
+}
+.progress-right-129 {
+  animation: loading-129 1.8s linear forwards;
+}
+.progress-right-130 {
+  animation: loading-130 1.8s linear forwards;
+}
+.progress-right-131 {
+  animation: loading-131 1.8s linear forwards;
+}
+.progress-right-132 {
+  animation: loading-132 1.8s linear forwards;
+}
+.progress-right-133 {
+  animation: loading-133 1.8s linear forwards;
+}
+.progress-right-134 {
+  animation: loading-134 1.8s linear forwards;
+}
+.progress-right-135 {
+  animation: loading-135 1.8s linear forwards;
+}
+.progress-right-136 {
+  animation: loading-136 1.8s linear forwards;
+}
+.progress-right-137 {
+  animation: loading-137 1.8s linear forwards;
+}
+.progress-right-138 {
+  animation: loading-138 1.8s linear forwards;
+}
+.progress-right-139 {
+  animation: loading-139 1.8s linear forwards;
+}
+.progress-right-140 {
+  animation: loading-140 1.8s linear forwards;
+}
+.progress-right-141 {
+  animation: loading-141 1.8s linear forwards;
+}
+.progress-right-142 {
+  animation: loading-142 1.8s linear forwards;
+}
+.progress-right-143 {
+  animation: loading-143 1.8s linear forwards;
+}
+.progress-right-144 {
+  animation: loading-144 1.8s linear forwards;
+}
+.progress-right-145 {
+  animation: loading-145 1.8s linear forwards;
+}
+.progress-right-146 {
+  animation: loading-146 1.8s linear forwards;
+}
+.progress-right-147 {
+  animation: loading-147 1.8s linear forwards;
+}
+.progress-right-148 {
+  animation: loading-148 1.8s linear forwards;
+}
+.progress-right-149 {
+  animation: loading-149 1.8s linear forwards;
+}
+.progress-right-150 {
+  animation: loading-150 1.8s linear forwards;
+}
+.progress-right-151 {
+  animation: loading-151 1.8s linear forwards;
+}
+.progress-right-152 {
+  animation: loading-152 1.8s linear forwards;
+}
+.progress-right-153 {
+  animation: loading-153 1.8s linear forwards;
+}
+.progress-right-154 {
+  animation: loading-154 1.8s linear forwards;
+}
+.progress-right-155 {
+  animation: loading-155 1.8s linear forwards;
+}
+.progress-right-156 {
+  animation: loading-156 1.8s linear forwards;
+}
+.progress-right-157 {
+  animation: loading-157 1.8s linear forwards;
+}
+.progress-right-158 {
+  animation: loading-158 1.8s linear forwards;
+}
+.progress-right-159 {
+  animation: loading-159 1.8s linear forwards;
+}
+.progress-right-160 {
+  animation: loading-160 1.8s linear forwards;
+}
+.progress-right-161 {
+  animation: loading-161 1.8s linear forwards;
+}
+.progress-right-162 {
+  animation: loading-162 1.8s linear forwards;
+}
+.progress-right-163 {
+  animation: loading-163 1.8s linear forwards;
+}
+.progress-right-164 {
+  animation: loading-164 1.8s linear forwards;
+}
+.progress-right-165 {
+  animation: loading-165 1.8s linear forwards;
+}
+.progress-right-166 {
+  animation: loading-166 1.8s linear forwards;
+}
+.progress-right-167 {
+  animation: loading-167 1.8s linear forwards;
+}
+.progress-right-168 {
+  animation: loading-168 1.8s linear forwards;
+}
+.progress-right-169 {
+  animation: loading-169 1.8s linear forwards;
+}
+.progress-right-170 {
+  animation: loading-170 1.8s linear forwards;
+}
+.progress-right-171 {
+  animation: loading-171 1.8s linear forwards;
+}
+.progress-right-172 {
+  animation: loading-172 1.8s linear forwards;
+}
+.progress-right-173 {
+  animation: loading-173 1.8s linear forwards;
+}
+.progress-right-174 {
+  animation: loading-174 1.8s linear forwards;
+}
+.progress-right-175 {
+  animation: loading-175 1.8s linear forwards;
+}
+.progress-right-176 {
+  animation: loading-176 1.8s linear forwards;
+}
+.progress-right-177 {
+  animation: loading-177 1.8s linear forwards;
+}
+.progress-right-178 {
+  animation: loading-178 1.8s linear forwards;
+}
+.progress-right-179 {
+  animation: loading-179 1.8s linear forwards;
+}
+.progress-right-180 {
+  animation: loading-180 1.8s linear forwards;
+}
