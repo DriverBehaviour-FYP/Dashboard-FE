@@ -1,4 +1,4 @@
-import React from "react";
+import { React } from "react";
 // import MapComponent from "./component/MapComponent";
 import Dashboard from "./page/dashboard";
 import NavBarComponent from "./component/NavBarComponent";

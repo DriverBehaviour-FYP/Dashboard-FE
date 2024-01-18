@@ -1,4 +1,4 @@
-import React from "react";
+import { React } from "react";
 import CircularProgressBar from "./CircularProgress";
 const CircularProgressComponent = () => {
   const dataSet = [
