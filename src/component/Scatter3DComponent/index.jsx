@@ -6,7 +6,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Scatter } from "react-chartjs-2";
+import { Scatter } from "react-chartjs-2"; // Correct import statement
 
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
@@ -20,11 +20,17 @@ const options = {
       },
     },
     x: {
-      type: "linear",
-      position: "bottom",
+      beginAtZero: true,
       title: {
         display: true,
         text: "X Axis Label",
+      },
+    },
+    z: {
+      beginAtZero: true,
+      title: {
+        display: true,
+        text: "Z Axis Label",
       },
     },
   },
@@ -33,7 +39,7 @@ const options = {
       callbacks: {
         label: (context) => {
           const dataPoint = context.parsed;
-          return `X: ${dataPoint.x}, Y: ${dataPoint.y}`;
+          return `X: ${dataPoint.x}, Y: ${dataPoint.y}, Z: ${dataPoint.z}`;
         },
         title: (tooltipItem) => {
           const index = tooltipItem[0].dataIndex;
@@ -51,12 +57,14 @@ const options = {
     }
   },
 };
-const rotateColors = ["red", "blue", "green", "black"]; // Add more colors as needed
+
+const rotateColors = ["red", "blue", "green", "black"];
 
 const getRandomColor = () => {
   const index = Math.floor(Math.random() * rotateColors.length);
   return rotateColors[index];
 };
+
 const data = {
   datasets: [
     {
@@ -64,6 +72,7 @@ const data = {
       data: Array.from({ length: 100 }, () => ({
         x: Math.random() * 200 - 100,
         y: Math.random() * 200 - 100,
+        z: Math.random() * 200 - 100,
       })),
       pointLabel: "Test",
       pointBackgroundColor: Array.from({ length: 100 }, () => getRandomColor()),

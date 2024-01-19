@@ -1,11 +1,12 @@
 // import React, { useState, useEffect } from "react";
 
+// import Scatter3DComponent from "../component/Scatter3DComponent";
 import ScatterComponent from "../component/ScatterComponent";
 import CircularProgressComponent from "../component/CircularProgressComponent";
 import MetaDataComponent from "../component/MetaDataComponent";
 import SummaryComponent from "../component/SummaryComponent";
 
-const dashboard = ({ endValue }) => {
+const dashboard = () => {
   return (
     <div className="container">
       <div className="row">
