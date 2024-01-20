@@ -1,5 +1,7 @@
 // import React, { useState, useEffect } from "react";
 import "./index.css";
+import PropTypes from "prop-types";
+
 const CircularProgressBar = ({ endValue }) => {
   const decimalNumber = (endValue / 100) * 360;
   const rotationDegree = Math.floor(decimalNumber);
@@ -20,5 +22,7 @@ const CircularProgressBar = ({ endValue }) => {
     </div>
   );
 };
-
+CircularProgressBar.propTypes = {
+  endValue: PropTypes.number.isRequired,
+};
 export default CircularProgressBar;

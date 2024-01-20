@@ -12,6 +12,19 @@ code {
     monospace;
 }
 
-.ash-box {
-  background-color: rgb(140, 199, 199);
+.light-purpal-box {
+  background-color: rgb(230, 226, 233);
+}
+.white-box {
+  background-color: white;
+}
+.box {
+  background: linear-gradient(
+    90deg,
+    rgba(229, 143, 236, 0.589) 0%,
+    rgba(201, 5, 194, 0.781) 100%
+  );
+  -webkit-box-shadow: 5px 6px 14px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 6px 14px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 6px 14px -1px rgba(0, 0, 0, 0.75);
 }

@@ -1,4 +1,9 @@
 import { useEffect, useState } from "react";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const SummaryComponent = () => {
   const [selectedOption, setSelectedOption] = useState("Option 1");
@@ -22,26 +27,29 @@ const SummaryComponent = () => {
   }, [data, selectedOption]);
 
   return (
-    <div className="container">
+    <div className="container white-box rounded-2 p-3">
       <div className="row">
         <div className="col">
-          <form>
-            <div className="form-group">
-              <label htmlFor="selectOption">Select an option:</label>
-              <select
-                id="selectOption"
-                className="form-control"
+          <Box sx={{ minWidth: 120 }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">
+                Select Driver Behavior
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
                 value={selectedOption}
+                label="Select Driver Behavior"
                 onChange={handleSelectChange}
               >
-                {Object.keys(data).map((option) => (
-                  <option key={option} value={option}>
+                {Object.keys(data).map((option, index) => (
+                  <MenuItem value={option} key={index}>
                     {option}
-                  </option>
+                  </MenuItem>
                 ))}
-              </select>
-            </div>
-          </form>
+              </Select>
+            </FormControl>
+          </Box>
           <h4>Summary Table</h4>
           {Object.keys(selectedOptionData).length > 0 ? (
             <table className="table table-striped table-bordered table-hover">

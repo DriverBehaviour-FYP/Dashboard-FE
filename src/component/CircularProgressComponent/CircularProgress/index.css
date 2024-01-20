@@ -3,7 +3,6 @@
   height: 100px !important;
   float: left;
   line-height: 100px;
-  background: none;
   margin: 10px;
   box-shadow: none;
   position: relative;
@@ -13,7 +12,7 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 12px solid #fff;
+  border: 12px solid #cebcd1;
   position: absolute;
   top: 0;
   left: 0;
@@ -62,9 +61,10 @@
   width: 90%;
   height: 90%;
   border-radius: 50%;
-  background: #000;
+  background: rgb(255, 255, 255);
   font-size: 14px;
-  color: #fff;
+  color: #4e0448;
+  font-weight: 600;
   line-height: 100px;
   text-align: center;
   position: absolute;
@@ -72,7 +72,10 @@
   left: 5%;
 }
 .progress.green .progress-bar {
-  border-color: #046319;
+  border-color: #ce08bd;
+}
+.progress.green {
+  background-color: white;
 }
 .progress-right-180 {
   animation: loading-180 1.8s linear forwards;

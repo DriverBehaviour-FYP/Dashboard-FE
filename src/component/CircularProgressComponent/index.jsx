@@ -1,4 +1,3 @@
-import { React } from "react";
 import CircularProgressBar from "./CircularProgress";
 const CircularProgressComponent = () => {
   const dataSet = [
@@ -8,20 +7,23 @@ const CircularProgressComponent = () => {
     { topic: "Std Acc", value: 75.5 },
   ];
   return (
-    <div className="container ash-box">
+    <div className="container white-box rounded-2">
       <div className="row">
         <div className="col-md-2"></div>
         <div className="col-md-8">
-          <h2 className="text-center">Summary Statics All Drivers</h2>
+          <h3 className="text-center">Summary Statics</h3>
+          <h6 className="text-center" style={{ color: "#800080" }}>
+            All Drivers
+          </h6>
         </div>
         <div className="col-md-2"></div>
       </div>
       <div className="row">
         {dataSet &&
-          dataSet.map((ele) => (
-            <div className="col-md-3">
+          dataSet.map((ele, index) => (
+            <div className="col-xl-3" key={index}>
               <CircularProgressBar endValue={ele.value} />
-              <h4 className="text-center">{ele.topic}</h4>
+              <h6 className="text-center">{ele.topic}</h6>
             </div>
           ))}
       </div>

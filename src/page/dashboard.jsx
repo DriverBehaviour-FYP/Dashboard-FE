@@ -8,16 +8,16 @@ import SummaryComponent from "../component/SummaryComponent";
 
 const dashboard = () => {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-6">
+    <div className="container light-purpal-box">
+      <div className="row mt-3">
+        <div className="col-md-6 d-flex align-items-stretch">
           <CircularProgressComponent />
         </div>
-        <div className="col-md-6">
+        <div className="col-md-6 d-flex align-items-stretch">
           <MetaDataComponent />
         </div>
       </div>
-      <div className="row pt-5">
+      <div className="row pt-5  mb-3">
         <div className="col-md-6 ">
           <ScatterComponent />
         </div>

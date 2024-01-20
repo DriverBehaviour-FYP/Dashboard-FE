@@ -72,7 +72,13 @@ const data = {
 };
 
 const ScatterComponent = () => {
-  return <Scatter options={options} data={data} />;
+  return (
+    <Scatter
+      options={options}
+      data={data}
+      className="white-box rounded-2 p-3"
+    />
+  );
 };
 
 export default ScatterComponent;

@@ -8,21 +8,21 @@ const MetaDataComponent = () => {
   ];
 
   return (
-    <div className="container ash-box">
+    <div className="container white-box rounded-2">
       <div className="row">
         <div className="col-md-2"></div>
         <div className="col-md-8">
-          <h2 className="text-center">Meta Data</h2>
+          <h3 className="text-center">Meta Data</h3>
         </div>
         <div className="col-md-2"></div>
       </div>
       <div className="row mt-3">
         {metaData.map((meta, index) => (
-          <div key={index} className="col-md-6 col-lg-3 mb-4">
-            <div className="card">
-              <div className="card-body">
+          <div key={index} className="col-md-6 col-lg-3 mb-4 pt-2">
+            <div className="box rounded-2 p-2">
+              <div className="card-body  p-2">
                 <p className="card-text text-center">{meta.value}</p>
-                <h5 className="card-title text-center">{meta.title}</h5>
+                <h6 className="card-title text-center">{meta.title}</h6>
               </div>
             </div>
           </div>
