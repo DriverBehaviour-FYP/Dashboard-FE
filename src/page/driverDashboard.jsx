@@ -4,7 +4,7 @@
 import ScatterComponent from "../component/ScatterComponent";
 import CircularProgressComponent from "../component/CircularProgressComponent";
 import MetaDataComponent from "../component/MetaDataComponent";
-import SummaryComponent from "../component/SummaryComponent";
+// import SummaryComponent from "../component/SummaryComponent";
 import driverData from "../data/116-driver-graph-data.json";
 import driverMetaData from "../data/116-driver-meta-data.json";
 import driverSummaryStatics from "../data/116-driver-summary-statics.json";
@@ -24,7 +24,9 @@ const DriverDashboard = () => {
         </div>
       </div>
       <div className="row pt-5  mb-3">
-        <div className="col-md-6 ">
+        <div className="col-md-2"></div>
+
+        <div className="col-md-8 ">
           <ScatterComponent
             driverData={driverData}
             xAxisLabel={"Trip Id"}
@@ -32,9 +34,9 @@ const DriverDashboard = () => {
           />
         </div>
         <div className="col-md-2"></div>
-        <div className="col-md-4">
+        {/* <div className="col-md-4">
           <SummaryComponent />
-        </div>
+        </div> */}
       </div>
     </div>
   );

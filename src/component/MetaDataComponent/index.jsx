@@ -4,17 +4,17 @@ const MetaDataComponent = ({ metaData, topicName }) => {
   // Sample metadata
   const topic = {
     allDriver: {
+      "data-collection-start-date": "Start Date",
       "data-collection-end-date": "End Date",
       "data-collection-period": "Period",
-      "data-collection-start-date": "Start Date",
       "no-of-bus-stops": "No Of Bus Stops",
       "no-of-drivers": "No Of Bus Drivers",
       "no-of-trips": "No Of Trips",
     },
     driver: {
       "data-collection-end-date": "End Date",
-      "data-collection-period": "Period",
       "data-collection-start-date": "Start Date",
+      "data-collection-period": "Period",
       "driver-id": "Driver Id",
       "no-of-trips": "No Of Trips",
     },
@@ -41,7 +41,7 @@ const MetaDataComponent = ({ metaData, topicName }) => {
           <div key={index} className="col-md-6 col-lg-3 mb-4 pt-2">
             <div className="box rounded-2 p-2 card h-100">
               <div className="card-body p-2">
-                <p className="card-text text-center">{meta.value}</p>
+                <h3 className="card-text text-center">{meta.value}</h3>
                 <h6 className="card-title text-center">{meta.title}</h6>
               </div>
             </div>
@@ -52,9 +52,9 @@ const MetaDataComponent = ({ metaData, topicName }) => {
   );
 };
 const FirstDataType = PropTypes.shape({
+  "data-collection-start-date": PropTypes.string.isRequired,
   "data-collection-end-date": PropTypes.string.isRequired,
   "data-collection-period": PropTypes.number.isRequired,
-  "data-collection-start-date": PropTypes.string.isRequired,
   "no-of-bus_stops": PropTypes.number.isRequired,
   "no-of-drivers": PropTypes.number.isRequired,
   "no-of-trips": PropTypes.number.isRequired,
@@ -67,9 +67,9 @@ const FirstDataType = PropTypes.shape({
   success: PropTypes.bool.isRequired,
 });
 const SecondDataType = PropTypes.shape({
+  "data-collection-start-date": PropTypes.string.isRequired,
   "data-collection-end-date": PropTypes.string.isRequired,
   "data-collection-period": PropTypes.number.isRequired,
-  "data-collection-start-date": PropTypes.string.isRequired,
   "driver-id": PropTypes.number.isRequired,
   "no-of-trips": PropTypes.number.isRequired,
   routes: PropTypes.arrayOf(
