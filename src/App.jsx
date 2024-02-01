@@ -1,5 +1,6 @@
 // import MapComponent from "./component/MapComponent";
 import Dashboard from "./page/dashboard";
+import DriverDashboard from "./page/driverDashboard";
 import NavBarComponent from "./component/NavBarComponent";
 import FooterComponent from "./component/FooterComponent";
 
@@ -12,11 +13,11 @@ function App() {
         <NavBarComponent />
         <main>
           <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/summary" element={<Dashboard />} />
-            <Route path="/search" element={<Dashboard />} />
+            <Route path="/driver/all" element={<Dashboard />} />
+            <Route path="/driver/116" element={<DriverDashboard />} />
+            {/* <Route path="/search" element={<Dashboard />} />
             <Route path="/about" element={<Dashboard />} />
-            <Route path="/contact" element={<Dashboard />} />
+            <Route path="/contact" element={<Dashboard />} /> */}
             <Route path="*" element={<Dashboard />} />
           </Routes>
         </main>

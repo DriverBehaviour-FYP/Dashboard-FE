@@ -7,71 +7,75 @@ import {
   Legend,
 } from "chart.js";
 import { Scatter } from "react-chartjs-2";
+import PropTypes from "prop-types";
 
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-const options = {
-  scales: {
-    y: {
-      beginAtZero: true,
-      title: {
-        display: true,
-        text: "Y Axis Label",
-      },
-    },
-    x: {
-      type: "linear",
-      position: "bottom",
-      title: {
-        display: true,
-        text: "X Axis Label",
-      },
-    },
-  },
-  plugins: {
-    tooltip: {
-      callbacks: {
-        label: (context) => {
-          const dataPoint = context.parsed;
-          return `X: ${dataPoint.x}, Y: ${dataPoint.y}`;
-        },
-        title: (tooltipItem) => {
-          const index = tooltipItem[0].dataIndex;
-          return `Point ${index + 1}`;
-        },
-      },
-    },
-  },
-  onClick: (event, elements) => {
-    if (elements.length > 0) {
-      const index = elements[0].index;
-      // const dataPoint = chart.data.datasets[0].data[index];
-      const url = `https://example.com/${index + 1}`;
-      window.location.href = url;
-    }
-  },
-};
 const rotateColors = ["red", "blue", "green", "black"]; // Add more colors as needed
 
 const getRandomColor = () => {
   const index = Math.floor(Math.random() * rotateColors.length);
   return rotateColors[index];
 };
-const data = {
-  datasets: [
-    {
-      label: "A dataset",
-      data: Array.from({ length: 100 }, () => ({
-        x: Math.random() * 200 - 100,
-        y: Math.random() * 200 - 100,
-      })),
-      pointLabel: "Test",
-      pointBackgroundColor: Array.from({ length: 100 }, () => getRandomColor()),
-    },
-  ],
-};
 
-const ScatterComponent = () => {
+const ScatterComponent = ({ driverData, xAxisName, xAxisLabel }) => {
+  const options = {
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "Score",
+        },
+      },
+      x: {
+        type: "linear",
+        position: "bottom",
+        title: {
+          display: true,
+          text: xAxisLabel,
+        },
+      },
+    },
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: (context) => {
+            const dataPoint = context.parsed;
+            return `X: ${dataPoint.x}, Y: ${dataPoint.y}`;
+          },
+          title: (tooltipItem) => {
+            const index = tooltipItem[0].dataIndex;
+            return `Point ${index + 1}`;
+          },
+        },
+      },
+    },
+    onClick: (event, elements) => {
+      if (elements.length > 0) {
+        const index = elements[0].index;
+        // const dataPoint = chart.data.datasets[0].data[index];
+        const url = `https://example.com/${index + 1}`;
+        window.location.href = url;
+      }
+    },
+  };
+  const data = {
+    datasets: [
+      {
+        label: "A dataset",
+        data: driverData[xAxisName].map((deviceId, index) => ({
+          x: index,
+          y: driverData.scaledScores[index],
+        })),
+        pointLabel: "Driver Behaviour",
+        pointBackgroundColor: Array.from({ length: 100 }, () =>
+          getRandomColor()
+        ),
+      },
+    ],
+  };
+
   return (
     <Scatter
       options={options}
@@ -80,5 +84,13 @@ const ScatterComponent = () => {
     />
   );
 };
-
+ScatterComponent.propTypes = {
+  driverData: PropTypes.shape({
+    deviceid: PropTypes.arrayOf(PropTypes.number).isRequired,
+    score: PropTypes.arrayOf(PropTypes.number).isRequired,
+    scaledScores: PropTypes.arrayOf(PropTypes.number).isRequired,
+  }).isRequired,
+  xAxisName: PropTypes.string.isRequired,
+  xAxisLabel: PropTypes.string.isRequired,
+};
 export default ScatterComponent;

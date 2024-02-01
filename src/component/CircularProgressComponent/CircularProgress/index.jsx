@@ -2,8 +2,8 @@
 import "./index.css";
 import PropTypes from "prop-types";
 
-const CircularProgressBar = ({ endValue }) => {
-  const decimalNumber = (endValue / 100) * 360;
+const CircularProgressBar = ({ avg, max, min }) => {
+  const decimalNumber = (avg / (max - min)) * 360;
   const rotationDegree = Math.floor(decimalNumber);
   const leftDegree = rotationDegree > 180 ? rotationDegree - 180 : 0;
   const rightDegree = rotationDegree > 180 ? 180 : rotationDegree;
@@ -17,12 +17,14 @@ const CircularProgressBar = ({ endValue }) => {
         <span className="progress-right ">
           <span className={`progress-bar progress-right-${rightDegree}`}></span>
         </span>
-        <div className="progress-value">{endValue}%</div>
+        <div className="progress-value">{avg.toFixed(4)}</div>
       </div>
     </div>
   );
 };
 CircularProgressBar.propTypes = {
-  endValue: PropTypes.number.isRequired,
+  avg: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired,
+  min: PropTypes.number.isRequired,
 };
 export default CircularProgressBar;

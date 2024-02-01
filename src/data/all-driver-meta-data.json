@@ -1,0 +1,15 @@
+{
+  "data-collection-end-date": "2022-11-01",
+  "data-collection-period": 6879,
+  "data-collection-start-date": "2004-01-01",
+  "no-of-bus-stops": 27,
+  "no-of-drivers": 26,
+  "no-of-trips": 17196,
+  "routes": [
+    {
+      "terminal-1": "Kandy",
+      "terminal-2": "Digana"
+    }
+  ],
+  "success": true
+}
