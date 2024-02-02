@@ -1,19 +1,19 @@
 // import React, { useState, useEffect } from "react";
 
 // import Scatter3DComponent from "../component/Scatter3DComponent";
-import ScatterComponent from "../component/ScatterComponent";
 import CircularProgressComponent from "../component/CircularProgressComponent";
 import MetaDataComponent from "../component/MetaDataComponent";
 // import SummaryComponent from "../component/SummaryComponent";
-import driverData from "../data/116-driver-graph-data.json";
+// import driverData from "../data/116-driver-graph-data.json";
 import driverMetaData from "../data/116-driver-meta-data.json";
+import MapComponent from "../component/MapComponent";
 import driverSummaryStatics from "../data/116-driver-summary-statics.json";
 
-const DriverDashboard = () => {
+const TripDashboard = () => {
   return (
     <div className="container light-purpal-box">
       <h1 className="text-center" style={{ color: "#800080" }}>
-        Driver Id 116
+        Trip Id 116
       </h1>
       <div className="row mt-3">
         <div className="col-md-6 d-flex align-items-stretch">
@@ -30,11 +30,7 @@ const DriverDashboard = () => {
         <div className="col-md-2"></div>
 
         <div className="col-md-8 ">
-          <ScatterComponent
-            driverData={driverData}
-            xAxisLabel={"Trips"}
-            xAxisName={"trip_id"}
-          />
+          <MapComponent />
         </div>
         <div className="col-md-2"></div>
         {/* <div className="col-md-4">
@@ -45,4 +41,4 @@ const DriverDashboard = () => {
   );
 };
 
-export default DriverDashboard;
+export default TripDashboard;

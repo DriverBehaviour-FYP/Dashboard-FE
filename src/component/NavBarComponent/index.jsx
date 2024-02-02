@@ -11,10 +11,10 @@ const NavBarComponent = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Link to="/pricing" className="nav-link">
+            <Link to="/driver/all" className="nav-link">
               Home
             </Link>
-            <Link to="/features" className="nav-link">
+            <Link to="/driver/116" className="nav-link">
               Real Time Analysis
             </Link>
             {/* <Link to="/disabled" className="nav-link" disabled>

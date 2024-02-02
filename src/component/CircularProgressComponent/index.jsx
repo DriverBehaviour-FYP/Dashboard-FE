@@ -16,6 +16,12 @@ const CircularProgressComponent = ({ summaryStatics, topicName }) => {
       acceleration: "Acceleration",
     },
   };
+  const unitList = {
+    "trip-time": { unit: "min", sup: "" },
+    speed: { unit: "ms", sup: "-1" },
+    "de-acceleration": { unit: "ms", sup: "-2" },
+    acceleration: { unit: "ms", sup: "-2" },
+  };
   const dataSet = [];
   Object.entries(topic[topicName]).forEach(([key, value]) => {
     dataSet.push({
@@ -23,6 +29,8 @@ const CircularProgressComponent = ({ summaryStatics, topicName }) => {
       avg: summaryStatics[key]["avg"],
       max: summaryStatics[key]["max"],
       min: summaryStatics[key]["min"],
+      unit: unitList[key]["unit"],
+      sup: unitList[key]["sup"],
     });
   });
 
@@ -32,9 +40,9 @@ const CircularProgressComponent = ({ summaryStatics, topicName }) => {
         <div className="col-md-2"></div>
         <div className="col-md-8">
           <h3 className="text-center">Summary Statics</h3>
-          <h6 className="text-center" style={{ color: "#800080" }}>
+          {/* <h6 className="text-center" style={{ color: "#800080" }}>
             {topicName === "driver" ? "Driver 116" : "All Drivers"}
-          </h6>
+          </h6> */}
         </div>
         <div className="col-md-2"></div>
       </div>
@@ -42,7 +50,13 @@ const CircularProgressComponent = ({ summaryStatics, topicName }) => {
         {dataSet &&
           dataSet.map((ele, index) => (
             <div className="col-xl-3" key={index}>
-              <CircularProgressBar avg={ele.avg} min={ele.min} max={ele.max} />
+              <CircularProgressBar
+                avg={ele.avg}
+                min={ele.min}
+                max={ele.max}
+                unit={ele.unit}
+                sup={ele.sup}
+              />
               <h6 className="text-center">{ele.topic}</h6>
             </div>
           ))}

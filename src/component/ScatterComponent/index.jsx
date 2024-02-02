@@ -63,7 +63,8 @@ const ScatterComponent = ({ driverData, xAxisName, xAxisLabel }) => {
   const data = {
     datasets: [
       {
-        label: "A dataset",
+        label:
+          xAxisName === "deviceid" ? "All Drivers" : "All Trips Of Driver 116",
         data: driverData[xAxisName].map((deviceId, index) => ({
           x: index,
           y: driverData.scaledScores[index],

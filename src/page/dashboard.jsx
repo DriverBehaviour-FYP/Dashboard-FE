@@ -12,6 +12,9 @@ import driversMetaData from "../data/all-driver-meta-data.json";
 const dashboard = () => {
   return (
     <div className="container light-purpal-box">
+      <h1 className="text-center" style={{ color: "#800080" }}>
+        All Drivers
+      </h1>
       <div className="row mt-3">
         <div className="col-md-6 d-flex align-items-stretch">
           <CircularProgressComponent
@@ -31,7 +34,7 @@ const dashboard = () => {
         <div className="col-md-8 ">
           <ScatterComponent
             driverData={driversData}
-            xAxisLabel={"Device Id"}
+            xAxisLabel={"Drivers"}
             xAxisName={"deviceid"}
           />
         </div>

@@ -42,7 +42,7 @@ const MetaDataComponent = ({ metaData, topicName }) => {
             <div className="box rounded-2 p-2 card h-100">
               <div className="card-body p-2">
                 <h3 className="card-text text-center">{meta.value}</h3>
-                <h6 className="card-title text-center">{meta.title}</h6>
+                <p className="card-title text-center">{meta.title}</p>
               </div>
             </div>
           </div>
