@@ -105,7 +105,6 @@ const MapComponent = () => {
     center[1] / filterDataPoint.length,
   ];
 
-  console.log(averageCenter);
   const createCustomIcon = (color) => {
     const markerHtmlStyles = `
       background-color: ${color};

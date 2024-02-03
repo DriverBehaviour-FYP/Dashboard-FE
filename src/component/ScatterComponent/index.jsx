@@ -54,9 +54,14 @@ const ScatterComponent = ({ driverData, xAxisName, xAxisLabel, driverId }) => {
     onClick: (event, elements) => {
       if (elements.length > 0) {
         const index = elements[0].index;
-        // const dataPoint = chart.data.datasets[0].data[index];
-        const url = `https://example.com/${index + 1}`;
-        window.location.href = url;
+        const dataPoint = driverData[xAxisName][index];
+        if (xAxisName === "deviceid") {
+          const url = `http://localhost:5173/driver/${dataPoint}`;
+          window.location.href = url;
+        } else {
+          const url = `http://localhost:5173/trip/${dataPoint}`;
+          window.location.href = url;
+        }
       }
     },
   };

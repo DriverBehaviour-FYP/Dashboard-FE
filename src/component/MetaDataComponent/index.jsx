@@ -18,6 +18,13 @@ const MetaDataComponent = ({ metaData, topicName }) => {
       driver_id: "Driver Id",
       no_of_trips: "No Of Trips",
     },
+    trip: {
+      "data-collection-end-date": "End Date",
+      "data-collection-start-date": "Start Date",
+      "data-collection-period": "Period",
+      driver_id: "Driver Id",
+      no_of_trips: "No Of Trips",
+    },
   };
   const metaDataDict = [];
   Object.entries(topic[topicName]).forEach(([key, value]) => {

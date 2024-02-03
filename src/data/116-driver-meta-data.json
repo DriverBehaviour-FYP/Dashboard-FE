@@ -2,8 +2,8 @@
   "data-collection-end-date": "2022-11-01",
   "data-collection-period": 381,
   "data-collection-start-date": "2021-10-16",
-  "driver-id": 116,
-  "no-of-trips": 1001,
+  "driver_id": 116,
+  "no_of_trips": 1001,
   "routes": [
     {
       "terminal-1": "Kandy",
