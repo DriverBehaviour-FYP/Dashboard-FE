@@ -7,16 +7,16 @@ const MetaDataComponent = ({ metaData, topicName }) => {
       "data-collection-start-date": "Start Date",
       "data-collection-end-date": "End Date",
       "data-collection-period": "Period",
-      "no-of-bus-stops": "No Of Bus Stops",
-      "no-of-drivers": "No Of Bus Drivers",
-      "no-of-trips": "No Of Trips",
+      no_of_bus_stops: "No Of Bus Stops",
+      no_of_drivers: "No Of Bus Drivers",
+      no_of_trips: "No Of Trips",
     },
     driver: {
       "data-collection-end-date": "End Date",
       "data-collection-start-date": "Start Date",
       "data-collection-period": "Period",
-      "driver-id": "Driver Id",
-      "no-of-trips": "No Of Trips",
+      driver_id: "Driver Id",
+      no_of_trips: "No Of Trips",
     },
   };
   const metaDataDict = [];
@@ -55,9 +55,9 @@ const FirstDataType = PropTypes.shape({
   "data-collection-start-date": PropTypes.string.isRequired,
   "data-collection-end-date": PropTypes.string.isRequired,
   "data-collection-period": PropTypes.number.isRequired,
-  "no-of-bus_stops": PropTypes.number.isRequired,
-  "no-of-drivers": PropTypes.number.isRequired,
-  "no-of-trips": PropTypes.number.isRequired,
+  no_of_bus_stops: PropTypes.number.isRequired,
+  no_of_drivers: PropTypes.number.isRequired,
+  no_of_trips: PropTypes.number.isRequired,
   routes: PropTypes.arrayOf(
     PropTypes.shape({
       "terminal-1": PropTypes.string.isRequired,
@@ -70,8 +70,8 @@ const SecondDataType = PropTypes.shape({
   "data-collection-start-date": PropTypes.string.isRequired,
   "data-collection-end-date": PropTypes.string.isRequired,
   "data-collection-period": PropTypes.number.isRequired,
-  "driver-id": PropTypes.number.isRequired,
-  "no-of-trips": PropTypes.number.isRequired,
+  driver_id: PropTypes.number.isRequired,
+  no_of_trips: PropTypes.number.isRequired,
   routes: PropTypes.arrayOf(
     PropTypes.shape({
       "terminal-1": PropTypes.string.isRequired,

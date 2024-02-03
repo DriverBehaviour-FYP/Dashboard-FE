@@ -18,7 +18,7 @@ const getRandomColor = () => {
   return rotateColors[index];
 };
 
-const ScatterComponent = ({ driverData, xAxisName, xAxisLabel }) => {
+const ScatterComponent = ({ driverData, xAxisName, xAxisLabel, driverId }) => {
   const options = {
     scales: {
       y: {
@@ -64,7 +64,9 @@ const ScatterComponent = ({ driverData, xAxisName, xAxisLabel }) => {
     datasets: [
       {
         label:
-          xAxisName === "deviceid" ? "All Drivers" : "All Trips Of Driver 116",
+          xAxisName === "deviceid"
+            ? "All Drivers"
+            : `All Trips Of Driver ${driverId}`,
         data: driverData[xAxisName].map((deviceId, index) => ({
           x: index,
           y: driverData.scaledScores[index],
@@ -87,11 +89,11 @@ const ScatterComponent = ({ driverData, xAxisName, xAxisLabel }) => {
 };
 ScatterComponent.propTypes = {
   driverData: PropTypes.shape({
-    deviceid: PropTypes.arrayOf(PropTypes.number).isRequired,
     score: PropTypes.arrayOf(PropTypes.number).isRequired,
     scaledScores: PropTypes.arrayOf(PropTypes.number).isRequired,
   }).isRequired,
   xAxisName: PropTypes.string.isRequired,
   xAxisLabel: PropTypes.string.isRequired,
+  driverId: PropTypes.number,
 };
 export default ScatterComponent;

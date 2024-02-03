@@ -28,7 +28,8 @@ const CircularProgressComponent = ({ summaryStatics, topicName }) => {
       topic: value,
       avg: summaryStatics[key]["avg"],
       max: summaryStatics[key]["max"],
-      min: summaryStatics[key]["min"],
+      // min: summaryStatics[key]["min"],
+      min: 0,
       unit: unitList[key]["unit"],
       sup: unitList[key]["sup"],
     });
@@ -68,18 +69,18 @@ const FirstDataType = PropTypes.shape({
   acceleration: PropTypes.shape({
     avg: PropTypes.number.isRequired,
     max: PropTypes.number.isRequired,
-    min: PropTypes.number.isRequired,
+    // min: PropTypes.number.isRequired,
   }).isRequired,
   "de-acceleration": PropTypes.shape({
     avg: PropTypes.number.isRequired,
     max: PropTypes.number.isRequired,
-    min: PropTypes.number.isRequired,
+    // min: PropTypes.number.isRequired,
   }).isRequired,
   "driver-id": PropTypes.number.isRequired,
   speed: PropTypes.shape({
     avg: PropTypes.number.isRequired,
     max: PropTypes.number.isRequired,
-    min: PropTypes.number.isRequired,
+    // min: PropTypes.number.isRequired,
   }).isRequired,
   success: PropTypes.bool.isRequired,
   "trip-time": PropTypes.shape({
@@ -97,18 +98,18 @@ const SecondDataType = PropTypes.shape({
   "de-acceleration": PropTypes.shape({
     avg: PropTypes.number.isRequired,
     max: PropTypes.number.isRequired,
-    min: PropTypes.number.isRequired,
+    // min: PropTypes.number.isRequired,
   }).isRequired,
   speed: PropTypes.shape({
     avg: PropTypes.number.isRequired,
     max: PropTypes.number.isRequired,
-    min: PropTypes.number.isRequired,
+    // min: PropTypes.number.isRequired,
   }).isRequired,
   success: PropTypes.bool.isRequired,
   "trip-time": PropTypes.shape({
     avg: PropTypes.number.isRequired,
     max: PropTypes.number.isRequired,
-    min: PropTypes.number.isRequired,
+    // min: PropTypes.number.isRequired,
   }).isRequired,
 });
 

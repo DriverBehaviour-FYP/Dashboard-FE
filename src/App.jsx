@@ -4,7 +4,7 @@ import DriverDashboard from "./page/driverDashboard";
 import NavBarComponent from "./component/NavBarComponent";
 import FooterComponent from "./component/FooterComponent";
 import TripDashboard from "./page/tripDashboard";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 function App() {
   return (
     <div className="App light-purpal-box">
@@ -14,11 +14,10 @@ function App() {
         <main>
           <Routes>
             <Route path="/driver/all" element={<Dashboard />} />
-            <Route path="/driver/116" element={<DriverDashboard />} />
-            <Route path="/trip/1145" element={<TripDashboard />} />
-            {/*<Route path="/about" element={<Dashboard />} />
-            <Route path="/contact" element={<Dashboard />} /> */}
-            <Route path="*" element={<Dashboard />} />
+            <Route path="/driver/:driverId" element={<DriverDashboard />} />
+            <Route path="/trip/:tripId" element={<TripDashboard />} />
+            <Route path="*" element={<Navigate to="/driver/all" />} />{" "}
+            {/* Redirect to "/driver/all" as default route */}
           </Routes>
         </main>
         <FooterComponent />
