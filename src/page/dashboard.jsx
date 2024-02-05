@@ -57,22 +57,20 @@ const Dashboard = () => {
         </div>
       ) : (
         <>
-          <h1 className="text-center" style={{ color: "#800080" }}>
+          <h1 className="text-center" style={{ color: "blue" }}>
             All Drivers
           </h1>
           <div className="row mt-3">
-            <div className="col-md-6 d-flex align-items-stretch">
-              <CircularProgressComponent
-                summaryStatics={summaryData}
-                topicName={"allDriver"}
-              />
-            </div>
-            <div className="col-md-6 d-flex align-items-stretch">
-              <MetaDataComponent metaData={metadata} topicName={"allDriver"} />
-            </div>
+            <MetaDataComponent metaData={metadata} topicName={"allDriver"} />
           </div>
-          <div className="row pt-5  mb-3">
-            <div className="col-md-2"></div>
+          <div className="row mt-3">
+            <CircularProgressComponent
+              summaryStatics={summaryData}
+              topicName={"allDriver"}
+            />
+          </div>
+          <div className="row mt-4 p-2 mb-2">
+            <h3>Driver Analysis</h3>
             <div className="col-md-8 ">
               <ScatterComponent
                 driverData={scores}
@@ -80,7 +78,6 @@ const Dashboard = () => {
                 xAxisName={"deviceid"}
               />
             </div>
-            <div className="col-md-2"></div>
             {/* <div className="col-md-4">
           <SummaryComponent />
         </div> */}

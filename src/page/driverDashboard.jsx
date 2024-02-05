@@ -66,22 +66,21 @@ const DriverDashboard = () => {
         </div>
       ) : (
         <>
-          <h1 className="text-center" style={{ color: "#800080" }}>
+          <h1 className="text-center" style={{ color: "blue" }}>
             Driver Id {driverId}
           </h1>
+
           <div className="row mt-3">
-            <div className="col-md-6 d-flex align-items-stretch">
-              <CircularProgressComponent
-                summaryStatics={summaryData}
-                topicName={"driver"}
-              />
-            </div>
-            <div className="col-md-6 d-flex align-items-stretch">
-              <MetaDataComponent metaData={metadata} topicName={"driver"} />
-            </div>
+            <MetaDataComponent metaData={metadata} topicName={"driver"} />
           </div>
-          <div className="row pt-5  mb-3">
-            <div className="col-md-2"></div>
+          <div className="row mt-3">
+            <CircularProgressComponent
+              summaryStatics={summaryData}
+              topicName={"driver"}
+            />
+          </div>
+          <div className="row mt-4 p-2 mb-2">
+            <h3>Trip Analysis</h3>
             <div className="col-md-8 ">
               <ScatterComponent
                 driverData={scores}
@@ -90,7 +89,6 @@ const DriverDashboard = () => {
                 driverId={parseInt(driverId)}
               />
             </div>
-            <div className="col-md-2"></div>
           </div>
         </>
       )}

@@ -7,7 +7,7 @@ const NavBarComponent = () => {
       <Container>
         <Navbar.Brand
           href="/driver/all"
-          style={{ color: "#800080", fontWeight: "bold" }}
+          style={{ color: "blue", fontWeight: "bold" }}
         >
           Dashboard
         </Navbar.Brand>

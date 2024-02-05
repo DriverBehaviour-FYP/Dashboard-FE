@@ -41,21 +41,22 @@ const CircularProgressComponent = ({ summaryStatics, topicName }) => {
   });
 
   return (
-    <div className="container white-box rounded-2">
+    <div className="container">
       <div className="row">
-        <div className="col-md-2"></div>
-        <div className="col-md-8">
-          <h3 className="text-center">Summary Statics</h3>
-          {/* <h6 className="text-center" style={{ color: "#800080" }}>
-            {topicName === "driver" ? "Driver 116" : "All Drivers"}
-          </h6> */}
+        <div className="col">
+          <h3 className="text-left">Summary Statics</h3>
         </div>
         <div className="col-md-2"></div>
       </div>
       <div className="row">
         {dataSet &&
           dataSet.map((ele, index) => (
-            <div className="col-xl-3" key={index}>
+            <div
+              className="col-xl-2 d-flex flex-column align-items-center box white-box mx-4 my-2 rounded-2"
+              key={index}
+              style={{ borderBottom: "5px solid blue" }}
+            >
+              <h6 className="text-center">{ele.topic}</h6>
               <CircularProgressBar
                 avg={ele.avg}
                 min={ele.min}
@@ -63,7 +64,6 @@ const CircularProgressComponent = ({ summaryStatics, topicName }) => {
                 unit={ele.unit}
                 sup={ele.sup}
               />
-              <h6 className="text-center">{ele.topic}</h6>
             </div>
           ))}
       </div>

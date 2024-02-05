@@ -12,7 +12,7 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 12px solid #cebcd1;
+  border: 12px solid #d1dcf3;
   position: absolute;
   top: 0;
   left: 0;
@@ -72,7 +72,7 @@
   left: 5%;
 }
 .progress.green .progress-bar {
-  border-color: #ce08bd;
+  border-color: #20036e;
 }
 .progress.green {
   background-color: white;

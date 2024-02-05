@@ -36,21 +36,24 @@ const MetaDataComponent = ({ metaData, topicName }) => {
   });
 
   return (
-    <div className="container white-box rounded-2">
+    <div className="container rounded-2">
       <div className="row">
-        <div className="col-md-2"></div>
-        <div className="col-md-8">
-          <h3 className="text-center">Meta Data</h3>
+        <div className="col">
+          <h3 className="text-left">Meta Data</h3>
         </div>
-        <div className="col-md-2"></div>
       </div>
       <div className="row mt-3">
         {metaDataDict.map((meta, index) => (
-          <div key={index} className="col-md-6 col-lg-3 mb-4 pt-2">
-            <div className="box rounded-2 p-2 card h-100">
+          <div key={index} className="col-md-6 col-lg-3 mb-4 ">
+            <div
+              className=" box rounded-2 pb-2 card h-100"
+              style={{ borderBottom: "5px solid blue" }}
+            >
               <div className="card-body p-2">
+                <p className="card-title text-left font-weight-bold">
+                  {meta.title}
+                </p>
                 <h3 className="card-text text-center">{meta.value}</h3>
-                <p className="card-title text-center">{meta.title}</p>
               </div>
             </div>
           </div>

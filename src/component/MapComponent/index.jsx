@@ -131,8 +131,8 @@ const MapComponent = ({ gps }) => {
     });
   };
   return (
-    <div className="container white-box rounded-2">
-      <h3 className="text-center">MAP</h3>
+    <div className="container white-box rounded-2 mt-2 pt-2">
+      {/* <h3 className="text-center">MAP</h3> */}
       <MapContainer
         center={averageCenter}
         zoom={zoom}
