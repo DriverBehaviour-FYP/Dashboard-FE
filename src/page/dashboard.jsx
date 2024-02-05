@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ScatterComponent from "../component/ScatterComponent";
 import CircularProgressComponent from "../component/CircularProgressComponent";
 import MetaDataComponent from "../component/MetaDataComponent";
+import LoaderComponent from "../component/LoaderComponent";
 import {
   fetchAllDriversMetadata,
   fetchAllDriversSummary,
@@ -37,24 +38,7 @@ const Dashboard = () => {
   return (
     <div className="container light-purpal-box">
       {isLoading ? ( // Show loader when isLoading is true
-        <div
-          className="text-center mt-5"
-          style={{
-            height: "70vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <div className="spinner-grow text-primary" role="status"></div>
-          <div className="spinner-grow text-secondary" role="status"></div>
-          <div className="spinner-grow text-success" role="status"></div>
-          <div className="spinner-grow text-danger" role="status"></div>
-          <div className="spinner-grow text-warning" role="status"></div>
-          <div className="spinner-grow text-info" role="status"></div>
-          <div className="spinner-grow text-light" role="status"></div>
-          <div className="spinner-grow text-dark" role="status"></div>
-        </div>
+        <LoaderComponent />
       ) : (
         <>
           <h1 className="text-center" style={{ color: "blue" }}>
