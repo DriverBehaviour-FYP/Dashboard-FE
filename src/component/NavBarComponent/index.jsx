@@ -5,7 +5,10 @@ const NavBarComponent = () => {
   return (
     <Navbar bg="light" expand="lg" className="mb-2">
       <Container>
-        <Navbar.Brand href="/" style={{ color: "#800080", fontWeight: "bold" }}>
+        <Navbar.Brand
+          href="/driver/all"
+          style={{ color: "#800080", fontWeight: "bold" }}
+        >
           Dashboard
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

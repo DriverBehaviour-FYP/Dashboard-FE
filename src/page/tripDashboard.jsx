@@ -3,14 +3,17 @@ import { useParams } from "react-router-dom";
 import CircularProgressComponent from "../component/CircularProgressComponent";
 import MetaDataComponent from "../component/MetaDataComponent";
 import MapComponent from "../component/MapComponent";
-import { fetchTripSummary, fetchGPS } from "../services/tripServices";
-import metadataFill from "../data/116-driver-meta-data.json";
+import {
+  fetchTripSummary,
+  fetchGPS,
+  fetchTripMetadata,
+} from "../services/tripServices";
 
 const TripDashboard = () => {
   const { tripId } = useParams();
   const [summaryData, setSummaryData] = useState({});
-  // const [metadata, setMetadata] = useState(metadataFill);
-  const [gps, setGPS] = useState([]);
+  const [metadata, setMetadata] = useState({});
+  const [gps, setGPS] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -18,22 +21,27 @@ const TripDashboard = () => {
       try {
         const id = parseInt(tripId); // Parse to integer
         if (isNaN(id)) {
-          window.location.href = "/";
+          window.location.href = "/not-found";
           return;
         }
 
         const summaryResponse = await fetchTripSummary(id);
         const gpsResponse = await fetchGPS(id);
-        // const metadataResponse = await fetchTripMetadata(id);
+        const metadataResponse = await fetchTripMetadata(id);
 
         setSummaryData(summaryResponse);
         setGPS(gpsResponse);
-        // setMetadata(metadataResponse);
+        // console.log(gpsResponse);
+        console.log(gpsResponse["gps"]);
+
+        // const keys = Object.keys(gpsResponse);
+        // console.log(keys);
+        setMetadata(metadataResponse);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data: ", error);
         setIsLoading(false);
-        window.location.href = "/";
+        // window.location.href = "/not-found";
       }
     };
 
@@ -43,14 +51,28 @@ const TripDashboard = () => {
   return (
     <div className="container light-purpal-box">
       {isLoading ? (
-        <div className="text-center mt-5">
-          <h1>Loading...</h1>
-          {/* You can add additional loader component or spinner here */}
+        <div
+          className="text-center mt-5"
+          style={{
+            height: "70vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div className="spinner-grow text-primary" role="status"></div>
+          <div className="spinner-grow text-secondary" role="status"></div>
+          <div className="spinner-grow text-success" role="status"></div>
+          <div className="spinner-grow text-danger" role="status"></div>
+          <div className="spinner-grow text-warning" role="status"></div>
+          <div className="spinner-grow text-info" role="status"></div>
+          <div className="spinner-grow text-light" role="status"></div>
+          <div className="spinner-grow text-dark" role="status"></div>
         </div>
       ) : (
         <>
           <h1 className="text-center" style={{ color: "#800080" }}>
-            Trip Id {tripId}
+            TRIP ID {tripId}
           </h1>
           <div className="row mt-3">
             <div className="col-md-6 d-flex align-items-stretch">
@@ -60,12 +82,12 @@ const TripDashboard = () => {
               />
             </div>
             <div className="col-md-6 d-flex align-items-stretch">
-              <MetaDataComponent metaData={metadataFill} topicName={"trip"} />
+              <MetaDataComponent metaData={metadata} topicName={"trip"} />
             </div>
           </div>
           <div className="row pt-5  mb-3">
             <div className="col-md-2"></div>
-            <div className="col-md-8 ">
+            <div className="col-md-8">
               <MapComponent mapData={gps} />
             </div>
             <div className="col-md-2"></div>

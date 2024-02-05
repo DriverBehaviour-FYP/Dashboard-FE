@@ -19,11 +19,12 @@ const MetaDataComponent = ({ metaData, topicName }) => {
       no_of_trips: "No Of Trips",
     },
     trip: {
-      "data-collection-end-date": "End Date",
-      "data-collection-start-date": "Start Date",
-      "data-collection-period": "Period",
-      driver_id: "Driver Id",
-      no_of_trips: "No Of Trips",
+      date: "Date",
+      duration: "Duration",
+      "end-time": "End Time",
+      "no-segments": "No Of Segments",
+      "start-time": "Start Time",
+      trip_id: "Trip Id",
     },
   };
   const metaDataDict = [];
@@ -87,8 +88,25 @@ const SecondDataType = PropTypes.shape({
   ).isRequired,
   success: PropTypes.bool.isRequired,
 });
+const TheadDataType = PropTypes.shape({
+  date: PropTypes.string.isRequired,
+  duration: PropTypes.string.isRequired,
+  "end-time": PropTypes.string.isRequired,
+  "no-segments": PropTypes.number.isRequired,
+  routes: PropTypes.arrayOf(
+    PropTypes.shape({
+      "terminal-1": PropTypes.string.isRequired,
+      "terminal-2": PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  "start-time": PropTypes.string.isRequired,
+  success: PropTypes.bool.isRequired,
+  trip_id: PropTypes.number.isRequired,
+});
+
 MetaDataComponent.propTypes = {
-  metaData: PropTypes.oneOfType([FirstDataType, SecondDataType]).isRequired,
+  metaData: PropTypes.oneOfType([FirstDataType, SecondDataType, TheadDataType])
+    .isRequired,
   topicName: PropTypes.string.isRequired,
 };
 export default MetaDataComponent;

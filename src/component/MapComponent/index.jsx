@@ -2,6 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import dataPoints from "../../data/trip-gps.json";
+import PropTypes from "prop-types";
 
 const rotateColors = ["red", "blue", "green", "black"]; // Add more colors as needed
 
@@ -10,7 +11,7 @@ const getMarkerColor = (segment_id) => {
   return rotateColors[index];
 };
 
-const MapComponent = () => {
+const MapComponent = ({ gps }) => {
   const zoom = 14; // Initial zoom level
 
   // const dataPoints = [
@@ -96,6 +97,9 @@ const MapComponent = () => {
   //   },
   // ];
   const filterDataPoint = dataPoints.filter((point) => point.trip_id === 1);
+  // console.log(gps);
+  // console.log("xxx");
+  // console.log(filterDataPoint);
   const center = filterDataPoint.reduce(
     (acc, point) => [acc[0] + point.latitude, acc[1] + point.longitude],
     [0, 0]
@@ -127,26 +131,47 @@ const MapComponent = () => {
     });
   };
   return (
-    <MapContainer
-      center={averageCenter}
-      zoom={zoom}
-      style={{ height: "500px", width: "100%" }}
-    >
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      />
-      {filterDataPoint.map((point) => (
-        <Marker
-          key={point.id}
-          position={[point.latitude, point.longitude]}
-          icon={createCustomIcon(getMarkerColor(point.segment_id))}
-        >
-          <Popup>{point.id}</Popup>
-        </Marker>
-      ))}
-    </MapContainer>
+    <div className="container white-box rounded-2">
+      <h3 className="text-center">MAP</h3>
+      <MapContainer
+        center={averageCenter}
+        zoom={zoom}
+        style={{ height: "500px", width: "100%" }}
+      >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        />
+        {filterDataPoint.map((point) => (
+          <Marker
+            key={point.id}
+            position={[point.latitude, point.longitude]}
+            icon={createCustomIcon(getMarkerColor(point.segment_id))}
+          >
+            <Popup>{point.id}</Popup>
+          </Marker>
+        ))}
+      </MapContainer>
+    </div>
   );
+};
+const objectPropTypes = {
+  cluster: PropTypes.number,
+  date: PropTypes.string,
+  deviceid: PropTypes.number,
+  devicetime: PropTypes.string,
+  elevation: PropTypes.number,
+  id: PropTypes.number,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+  segment_id: PropTypes.number,
+  speed: PropTypes.number,
+  time: PropTypes.string,
+  trip_id: PropTypes.number,
+};
+
+MapComponent.propTypes = {
+  gps: PropTypes.arrayOf(PropTypes.shape(objectPropTypes)),
 };
 
 export default MapComponent;

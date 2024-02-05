@@ -32,11 +32,11 @@ const fetchTripMetadata = async (tripId) => {
 const fetchGPS = async (tripId) => {
   try {
     const response = await axios.get(`${BASE_URL}/trip/gps/${tripId}`);
-    if (response.data.success) {
-      return response.data.gps;
-    } else {
-      throw new Error();
-    }
+    // if (response.data.success) {
+    return response.data;
+    // } else {
+    //   throw new Error();
+    // }
   } catch (error) {
     console.error("Error fetching data: ", error);
     throw error;
