@@ -19,7 +19,8 @@ function App() {
             <Route path="/driver/:driverId" element={<DriverDashboard />} />
             <Route path="/trip/:tripId" element={<TripDashboard />} />
             <Route path="/not-found" element={<NotFound />} />
-            <Route path="*" element={<Navigate to="/not-found" />} />{" "}
+            <Route path="/" element={<Navigate to="/driver/all" />} />
+            <Route path="*" element={<Navigate to="/not-found" />} />
           </Routes>
         </main>
         <FooterComponent />
