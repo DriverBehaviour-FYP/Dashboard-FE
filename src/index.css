@@ -28,3 +28,22 @@ code {
   -moz-box-shadow: 5px 6px 14px -1px rgba(0, 0, 0, 0.75);
   box-shadow: 5px 6px 14px -1px rgba(0, 0, 0, 0.75);
 }
+.circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.green {
+  background-color: green;
+}

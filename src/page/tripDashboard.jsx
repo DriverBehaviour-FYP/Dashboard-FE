@@ -15,7 +15,7 @@ const TripDashboard = () => {
   const { tripId } = useParams();
   const [summaryData, setSummaryData] = useState({});
   const [metadata, setMetadata] = useState({});
-  const [gps, setGPS] = useState({});
+  const [gps, setGPS] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -33,17 +33,12 @@ const TripDashboard = () => {
 
         setSummaryData(summaryResponse);
         setGPS(gpsResponse);
-        // console.log(gpsResponse);
-        console.log(gpsResponse["gps"]);
-
-        // const keys = Object.keys(gpsResponse);
-        // console.log(keys);
         setMetadata(metadataResponse);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data: ", error);
         setIsLoading(false);
-        // window.location.href = "/not-found";
+        window.location.href = "/not-found";
       }
     };
 

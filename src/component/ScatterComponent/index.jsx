@@ -13,9 +13,10 @@ ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 const rotateColors = ["red", "blue", "green", "black"]; // Add more colors as needed
 
-const getRandomColor = () => {
-  const index = Math.floor(Math.random() * rotateColors.length);
-  return rotateColors[index];
+const getRandomColor = (score) => {
+  if (score > 70) return rotateColors[0];
+  else if (score > 40) return rotateColors[1];
+  else return rotateColors[2];
 };
 
 const ScatterComponent = ({ driverData, xAxisName, xAxisLabel, driverId }) => {
@@ -77,19 +78,45 @@ const ScatterComponent = ({ driverData, xAxisName, xAxisLabel, driverId }) => {
           y: driverData.scaledScores[index],
         })),
         pointLabel: "Driver Behaviour",
-        pointBackgroundColor: Array.from({ length: 100 }, () =>
-          getRandomColor()
+        pointBackgroundColor: driverData[xAxisName].map((deviceId, index) =>
+          getRandomColor(driverData.scaledScores[index])
         ),
       },
     ],
   };
 
   return (
-    <Scatter
-      options={options}
-      data={data}
-      className="white-box rounded-2 p-3"
-    />
+    <div className="white-box mt-2 pt-5">
+      <div className="row pr-3">
+        <div className="col-2"></div>
+        <div className="col-3">
+          <div className="legend-item">
+            <span className="circle red"></span>
+            <span className="legend-text">Element 1</span>
+          </div>
+        </div>
+        <div className="col-3">
+          <div className="legend-item">
+            <span className="circle" style={{ backgroundColor: "blue" }}></span>
+            <span className="legend-text">Element 1</span>
+          </div>
+        </div>
+        <div className="col-3">
+          <div className="legend-item">
+            <span
+              className="circle"
+              style={{ backgroundColor: "green" }}
+            ></span>
+            <span className="legend-text">Element 1</span>
+          </div>
+        </div>
+      </div>
+      <Scatter
+        options={options}
+        data={data}
+        className="white-box rounded-2 p-3"
+      />
+    </div>
   );
 };
 ScatterComponent.propTypes = {
