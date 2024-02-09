@@ -41,18 +41,18 @@ const CircularProgressComponent = ({ summaryStatics, topicName }) => {
   });
 
   return (
-    <div className="container">
+    <div className="">
       <div className="row">
         <div className="col">
-          <h3 className="text-left">Summary Statics</h3>
+          {/* <h3 className="text-left">Summary Statics</h3> */}
         </div>
-        <div className="col-md-2"></div>
+        {/* <div className="col-md-2"></div> */}
       </div>
-      <div className="row">
+      <div className="col">
         {dataSet &&
           dataSet.map((ele, index) => (
             <div
-              className="col-xl-2 d-flex flex-column align-items-center box white-box mx-4 my-2 rounded-2"
+              className="d-flex flex-column align-items-center mb-4 box rounded-2 pb-2 card h-100"
               key={index}
               style={{ borderBottom: "5px solid blue" }}
             >

@@ -20,11 +20,12 @@ const MetaDataComponent = ({ metaData, topicName }) => {
     },
     trip: {
       date: "Date",
-      duration: "Duration",
-      "end-time": "End Time",
-      "no-segments": "No Of Segments",
       "start-time": "Start Time",
-      trip_id: "Trip Id",
+      "end-time": "End Time",
+      duration: "Duration",
+      "no-segments": "No Of Segments",
+      
+      // trip_id: "Trip Id",
     },
   };
   const metaDataDict = [];
@@ -39,14 +40,14 @@ const MetaDataComponent = ({ metaData, topicName }) => {
     <div className="container rounded-2">
       <div className="row">
         <div className="col">
-          <h3 className="text-left">Meta Data</h3>
+          {/* <h3 className="text-left">Meta Data</h3> */}
         </div>
       </div>
-      <div className="row mt-3">
+      <div className="row">
         {metaDataDict.map((meta, index) => (
-          <div key={index} className="col-md-6 col-lg-3 mb-4 ">
+          <div key={index} className="col-lg mb-4 ">
             <div
-              className=" box rounded-2 pb-2 card h-100"
+              className=" box rounded-2 pb-2 card"
               style={{ borderBottom: "5px solid blue" }}
             >
               <div className="card-body p-2">

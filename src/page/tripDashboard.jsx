@@ -51,24 +51,31 @@ const TripDashboard = () => {
         <LoaderComponent />
       ) : (
         <>
-          <h1 className="text-center" style={{ color: "blue" }}>
-            TRIP ID {tripId}
-          </h1>
-          <div className="row mt-3">
-            <CircularProgressComponent
-              summaryStatics={summaryData}
-              topicName={"trip"}
-            />
-          </div>
+          <h1 style={{ color: "blue" }}>TRIP ID {tripId}</h1>
           <div className="row mt-3">
             <MetaDataComponent metaData={metadata} topicName={"trip"} />
           </div>
-          <div className="row mt-4 p-2 mb-5">
+          <div className="row">
+            {/* Column for CircularProgressComponent */}
+            <div className="col-md-2">
+              <CircularProgressComponent
+                summaryStatics={summaryData}
+                topicName={"trip"}
+              />
+            </div>
+
+            {/* Column for MapComponent */}
+            <div className="col-md-10">
+              <MapComponent mapData={gps} />
+            </div>
+          </div>
+
+          {/* <div className="row mt-4 p-2 mb-5">
             <h3>Segment Analysis</h3>
             <div className="col-md-8 ">
               <MapComponent mapData={gps} />
             </div>
-          </div>
+          </div> */}
         </>
       )}
     </div>
