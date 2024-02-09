@@ -1,7 +1,9 @@
 import CircularProgressBar from "./CircularProgress";
 import PropTypes from "prop-types";
+import { useMediaQuery } from "react-responsive";
 
 const CircularProgressComponent = ({ summaryStatics, topicName }) => {
+  const isSmallScreen = useMediaQuery({ maxWidth: 775 });
   const topic = {
     allDriver: {
       "trip-time": "Trip Time",
@@ -41,21 +43,20 @@ const CircularProgressComponent = ({ summaryStatics, topicName }) => {
   });
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col">
-          <h3 className="text-left">Summary Statics</h3>
-        </div>
-        <div className="col-md-2"></div>
-      </div>
-      <div className="row">
-        {dataSet &&
-          dataSet.map((ele, index) => (
-            <div
-              className="col-xl-2 d-flex flex-column align-items-center box white-box mx-4 my-2 rounded-2"
-              key={index}
-              style={{ borderBottom: "5px solid blue" }}
-            >
+    <div className="row justify-content-between">
+      {dataSet &&
+        dataSet.map((ele, index) => (
+          <div
+            key={index}
+            className={`${
+              isSmallScreen ? "col-5" : ""
+            } box white-box my-3 mx-3 p-10`} // Show 2 circles per row on small screens, and 3 circles per row otherwise
+            style={{
+              borderBottom: "5px solid blue",
+              margin: "20px",
+            }}
+          >
+            <div className="d-flex flex-column align-items-center rounded-2">
               <h6 className="text-center">{ele.topic}</h6>
               <CircularProgressBar
                 avg={ele.avg}
@@ -65,8 +66,8 @@ const CircularProgressComponent = ({ summaryStatics, topicName }) => {
                 sup={ele.sup}
               />
             </div>
-          ))}
-      </div>
+          </div>
+        ))}
     </div>
   );
 };

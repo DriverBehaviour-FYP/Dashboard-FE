@@ -13,7 +13,7 @@ function App() {
       {/* <MapComponent /> */}
       <BrowserRouter>
         <NavBarComponent />
-        <main>
+        <main className="container">
           <Routes>
             <Route path="/driver/all" element={<Dashboard />} />
             <Route path="/driver/:driverId" element={<DriverDashboard />} />

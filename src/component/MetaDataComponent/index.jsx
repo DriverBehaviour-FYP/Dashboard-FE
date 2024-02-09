@@ -1,30 +1,33 @@
 import PropTypes from "prop-types";
+import { useMediaQuery } from "react-responsive";
 
 const MetaDataComponent = ({ metaData, topicName }) => {
+  const isSmallScreen = useMediaQuery({ maxWidth: 775 });
+
   // Sample metadata
   const topic = {
     allDriver: {
-      "data-collection-start-date": "Start Date",
-      "data-collection-end-date": "End Date",
-      "data-collection-period": "Period",
+      "data-collection-start-date": "Start Date (Data Collection)",
+      "data-collection-end-date": "End Date (Data Collection)",
+      "data-collection-period": "Period (Data Collection)",
       no_of_bus_stops: "No Of Bus Stops",
       no_of_drivers: "No Of Bus Drivers",
       no_of_trips: "No Of Trips",
     },
     driver: {
-      "data-collection-end-date": "End Date",
-      "data-collection-start-date": "Start Date",
-      "data-collection-period": "Period",
-      driver_id: "Driver Id",
+      "data-collection-start-date": "Start Date (Data Collection)",
+      "data-collection-end-date": "End Date (Data Collection)",
+      "data-collection-period": "Period (Data Collection)",
+      // driver_id: "Driver Id",
       no_of_trips: "No Of Trips",
     },
     trip: {
       date: "Date",
-      duration: "Duration",
-      "end-time": "End Time",
-      "no-segments": "No Of Segments",
       "start-time": "Start Time",
-      trip_id: "Trip Id",
+      "end-time": "End Time",
+      duration: "Duration",
+      "no-segments": "No Of Segments",
+      // trip_id: "Trip Id",
     },
   };
   const metaDataDict = [];
@@ -36,24 +39,31 @@ const MetaDataComponent = ({ metaData, topicName }) => {
   });
 
   return (
-    <div className="container rounded-2">
-      <div className="row">
-        <div className="col">
-          <h3 className="text-left">Meta Data</h3>
-        </div>
-      </div>
-      <div className="row mt-3">
+    <div className="rounded-2">
+      <div className="row mt-3 justify-content-between">
         {metaDataDict.map((meta, index) => (
-          <div key={index} className="col-md-6 col-lg-3 mb-4 ">
+          <div
+            key={index}
+            className={`${isSmallScreen ? "col-6" : "col"}  mb-4`}
+          >
             <div
-              className=" box rounded-2 pb-2 card h-100"
+              className="box rounded-2 pb-2 card h-100"
               style={{ borderBottom: "5px solid blue" }}
             >
               <div className="card-body p-2">
                 <p className="card-title text-left font-weight-bold">
                   {meta.title}
                 </p>
-                <h3 className="card-text text-center">{meta.value}</h3>
+                <div className="row">
+                  <div className="col">
+                    <h3 className="card-text text-center">{meta.value}</h3>
+                  </div>
+                  {meta.title === "Period (Data Collection)" && (
+                    <div className="col pt-2">
+                      <p>Days</p>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>

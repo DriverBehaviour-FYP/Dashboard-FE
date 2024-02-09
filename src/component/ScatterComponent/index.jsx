@@ -43,7 +43,9 @@ const ScatterComponent = ({ driverData, xAxisName, xAxisLabel, driverId }) => {
         callbacks: {
           label: (context) => {
             const dataPoint = context.parsed;
-            return `X: ${dataPoint.x}, Y: ${dataPoint.y}`;
+            return `${xAxisLabel == "Drivers" ? "Driver Id" : "Trip Id"}: ${
+              dataPoint.x
+            }, Score: ${dataPoint.y}`;
           },
           title: (tooltipItem) => {
             const index = tooltipItem[0].dataIndex;
@@ -92,13 +94,13 @@ const ScatterComponent = ({ driverData, xAxisName, xAxisLabel, driverId }) => {
         <div className="col-3">
           <div className="legend-item">
             <span className="circle red"></span>
-            <span className="legend-text">Element 1</span>
+            <span className="legend-text">Agressive</span>
           </div>
         </div>
         <div className="col-3">
           <div className="legend-item">
             <span className="circle" style={{ backgroundColor: "blue" }}></span>
-            <span className="legend-text">Element 1</span>
+            <span className="legend-text">Normal</span>
           </div>
         </div>
         <div className="col-3">
@@ -107,7 +109,7 @@ const ScatterComponent = ({ driverData, xAxisName, xAxisLabel, driverId }) => {
               className="circle"
               style={{ backgroundColor: "green" }}
             ></span>
-            <span className="legend-text">Element 1</span>
+            <span className="legend-text">Safe</span>
           </div>
         </div>
       </div>

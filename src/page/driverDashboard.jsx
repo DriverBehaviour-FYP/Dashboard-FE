@@ -58,15 +58,17 @@ const DriverDashboard = () => {
           <div className="row mt-3">
             <MetaDataComponent metaData={metadata} topicName={"driver"} />
           </div>
-          <div className="row mt-3">
-            <CircularProgressComponent
-              summaryStatics={summaryData}
-              topicName={"driver"}
-            />
-          </div>
-          <div className="row mt-4 p-2 mb-2">
-            <h3>Trip Analysis</h3>
-            <div className="col-md-8 ">
+          <div className="row">
+            {/* Column for CircularProgressComponent */}
+            <div className="col-md-2">
+              <CircularProgressComponent
+                summaryStatics={summaryData}
+                topicName={"driver"}
+              />
+            </div>
+            <div className="col-md-1"></div>
+            {/* Column for MapComponent */}
+            <div className="col-md-9">
               <ScatterComponent
                 driverData={scores}
                 xAxisLabel={"Trips"}
@@ -75,6 +77,7 @@ const DriverDashboard = () => {
               />
             </div>
           </div>
+          <br />
         </>
       )}
     </div>
