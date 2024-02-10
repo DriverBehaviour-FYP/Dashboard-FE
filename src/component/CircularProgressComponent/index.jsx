@@ -54,6 +54,7 @@ const CircularProgressComponent = ({ summaryStatics, topicName }) => {
             style={{
               borderBottom: "5px solid blue",
               margin: "20px",
+              width: "200px",
             }}
           >
             <div className="d-flex flex-column align-items-center rounded-2">
