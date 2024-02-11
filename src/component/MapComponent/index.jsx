@@ -2,17 +2,16 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import PropTypes from "prop-types";
-
-const rotateColors = ["red", "blue", "green"]; // Add more colors as needed
-
-const getMarkerColor = (segment_id) => {
-  const index = segment_id % rotateColors.length;
+const rotateColors = ["red", "blue", "green", "black"]; // Add more colors as needed
+const clusterLabels = ["Agressive", "Normal", "safe"];
+const getMarkerColor = (cluster_id) => {
+  const index = Number(cluster_id);
   return rotateColors[index];
 };
 
 const MapComponent = ({ mapData }) => {
   // console.log(gps);
-  const zoom = 14; // Initial zoom level
+  const zoom = 13.2; // Initial zoom level
   // const filterDataPoint = dataPoints.filter((point) => point.trip_id === 1);
   const center = mapData.reduce(
     (acc, point) => [acc[0] + point.latitude, acc[1] + point.longitude],
@@ -22,12 +21,38 @@ const MapComponent = ({ mapData }) => {
     center[0] / mapData.length,
     center[1] / mapData.length,
   ];
+  const segmentCenters = {};
+  mapData.forEach((point) => {
+    if (
+      !Object.prototype.hasOwnProperty.call(segmentCenters, point.segment_id)
+    ) {
+      segmentCenters[point.segment_id] = {
+        latitudeSum: 0,
+        longitudeSum: 0,
+        count: 0,
+        cluster_id: point.cluster,
+      };
+    }
 
+    segmentCenters[point.segment_id].latitudeSum += point.latitude;
+    segmentCenters[point.segment_id].longitudeSum += point.longitude;
+    segmentCenters[point.segment_id].count++;
+  });
+
+  // Calculate average center for each segment
+  for (const segmentId in segmentCenters) {
+    const { latitudeSum, longitudeSum, count } = segmentCenters[segmentId];
+    segmentCenters[segmentId].averageCenter = [
+      latitudeSum / count,
+      longitudeSum / count - 0.001,
+    ];
+  }
+  console.log(segmentCenters);
   const createCustomIcon = (color) => {
     const markerHtmlStyles = `
       background-color: ${color};
-      width: 3rem;
-      height: 3rem;
+      width: 1rem;
+      height: 1rem;
       display: block;
       left: -1.5rem;
       top: -1.5rem;
@@ -44,9 +69,42 @@ const MapComponent = ({ mapData }) => {
       html: `<span style="${markerHtmlStyles}" />`,
     });
   };
+
+  const createTextIcon = (cluster_id) =>
+    L.divIcon({
+      html: `<div class="text-marker"><p>${
+        clusterLabels[Number(cluster_id)]
+      }</p></div>`,
+      className: "text-marker",
+      labelAnchor: [-6, 0],
+      iconAnchor: [0, 0],
+    });
   return (
     <div className="container white-box rounded-2 mt-2 pt-2">
-      {/* <h3 className="text-center">MAP</h3> */}
+      <div className="row pr-3 pb-2 pt-1">
+        <div className="col-2"></div>
+        <div className="col-3">
+          <div className="legend-item">
+            <span className="circle red"></span>
+            <span className="legend-text">Agressive</span>
+          </div>
+        </div>
+        <div className="col-3">
+          <div className="legend-item">
+            <span className="circle" style={{ backgroundColor: "blue" }}></span>
+            <span className="legend-text">Normal</span>
+          </div>
+        </div>
+        <div className="col-3">
+          <div className="legend-item">
+            <span
+              className="circle"
+              style={{ backgroundColor: "green" }}
+            ></span>
+            <span className="legend-text">Safe</span>
+          </div>
+        </div>
+      </div>
       <MapContainer
         center={averageCenter}
         zoom={zoom}
@@ -56,13 +114,30 @@ const MapComponent = ({ mapData }) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
+        {Object.keys(segmentCenters).map((segmentId) => (
+          <Marker
+            key={segmentId}
+            position={segmentCenters[segmentId].averageCenter}
+            icon={createTextIcon(segmentCenters[segmentId].cluster_id)}
+          />
+        ))}
         {mapData.map((point) => (
           <Marker
             key={point.id}
             position={[point.latitude, point.longitude]}
-            icon={createCustomIcon(getMarkerColor(point.segment_id))}
+            icon={createCustomIcon(getMarkerColor(point.cluster))}
           >
-            <Popup>{point.id}</Popup>
+            <Popup>
+              <p>
+                {"("}
+                {point.latitude}
+                {" , "}
+                {point.latitude}
+                {")"}
+              </p>
+              <p>Speed : {point.speed}</p>
+              <p>Time : {point.time}</p>
+            </Popup>
           </Marker>
         ))}
       </MapContainer>

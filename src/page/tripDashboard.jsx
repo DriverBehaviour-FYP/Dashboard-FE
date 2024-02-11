@@ -51,6 +51,7 @@ const TripDashboard = () => {
         <LoaderComponent />
       ) : (
         <>
+          <br />
           <h1 style={{ color: "blue" }}>Trip Id {tripId}</h1>
           <div className="row mt-3">
             <MetaDataComponent metaData={metadata} topicName={"trip"} />

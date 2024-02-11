@@ -42,9 +42,8 @@ const Dashboard = () => {
         <LoaderComponent />
       ) : (
         <>
-          <h1 className="text-center" style={{ color: "blue" }}>
-            All Drivers
-          </h1>
+          <br />
+          <h1 style={{ color: "blue" }}>All Drivers</h1>
           <div className="row mt-3">
             <MetaDataComponent metaData={metadata} topicName={"allDriver"} />
           </div>

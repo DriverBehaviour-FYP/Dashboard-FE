@@ -47,3 +47,9 @@ code {
 .green {
   background-color: green;
 }
+.text-marker {
+  color: white; /* Set the text color */
+  background-color: black; /* Set the background color */
+  width: 500%;
+  text-align: center;
+}
