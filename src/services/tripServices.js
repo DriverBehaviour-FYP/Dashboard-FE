@@ -33,7 +33,7 @@ const fetchGPS = async (tripId) => {
   try {
     const response = await axios.get(`${BASE_URL}/trip/gps/${tripId}`);
     if (response.data.success) {
-      return response.data.gps;
+      return response.data;
     } else {
       throw new Error();
     }

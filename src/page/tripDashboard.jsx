@@ -15,7 +15,8 @@ const TripDashboard = () => {
   const { tripId } = useParams();
   const [summaryData, setSummaryData] = useState({});
   const [metadata, setMetadata] = useState({});
-  const [gps, setGPS] = useState([]);
+  const [gps, setGPS] = useState({});
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -33,6 +34,9 @@ const TripDashboard = () => {
 
         setSummaryData(summaryResponse);
         setGPS(gpsResponse);
+        // console.log(gpsResponse.gps);
+        // console.log(gpsResponse["split_points"]);
+
         setMetadata(metadataResponse);
         setIsLoading(false);
       } catch (error) {
@@ -67,7 +71,10 @@ const TripDashboard = () => {
             <div className="col-md-1"></div>
             {/* Column for MapComponent */}
             <div className="col-md-9">
-              <MapComponent mapData={gps} />
+              <MapComponent
+                mapData={gps.gps}
+                splitPoint={gps["split_points"]}
+              />
             </div>
           </div>
           <br />

@@ -8,6 +8,7 @@ import {
   fetchAllDriversSummary,
   fetchAllDriversScore,
 } from "../services/allDriverServices";
+import PieChartComponent from "../component/PieChartComponent";
 
 const Dashboard = () => {
   const [summaryData, setSummaryData] = useState({});
@@ -64,6 +65,20 @@ const Dashboard = () => {
                 xAxisLabel={"Drivers"}
                 xAxisName={"deviceid"}
               />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-3">
+              <PieChartComponent />
+            </div>
+            <div className="col-md-3">
+              <PieChartComponent />
+            </div>
+            <div className="col-md-3">
+              <PieChartComponent />
+            </div>
+            <div className="col-md-3">
+              <PieChartComponent />
             </div>
           </div>
           <br />

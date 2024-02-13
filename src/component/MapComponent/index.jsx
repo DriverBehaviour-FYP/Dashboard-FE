@@ -9,7 +9,7 @@ const getMarkerColor = (cluster_id) => {
   return rotateColors[index];
 };
 
-const MapComponent = ({ mapData }) => {
+const MapComponent = ({ mapData, splitPoint }) => {
   // console.log(gps);
   const zoom = 13.2; // Initial zoom level
   // const filterDataPoint = dataPoints.filter((point) => point.trip_id === 1);
@@ -47,7 +47,7 @@ const MapComponent = ({ mapData }) => {
       longitudeSum / count - 0.001,
     ];
   }
-  console.log(segmentCenters);
+  console.log(splitPoint);
   const createCustomIcon = (color) => {
     const markerHtmlStyles = `
       background-color: ${color};
@@ -140,11 +140,28 @@ const MapComponent = ({ mapData }) => {
             </Popup>
           </Marker>
         ))}
+        {splitPoint.map((point) => (
+          <Marker
+            key={point.id}
+            position={[point.latitude, point.longitude]}
+            icon={createCustomIcon("black")}
+          >
+            <Popup>
+              <p>
+                {"("}
+                {point.latitude}
+                {" , "}
+                {point.latitude}
+                {")"}
+              </p>
+            </Popup>
+          </Marker>
+        ))}
       </MapContainer>
     </div>
   );
 };
-const objectPropTypes = {
+const objectPropTypes1 = {
   cluster: PropTypes.number,
   date: PropTypes.string,
   deviceid: PropTypes.number,
@@ -159,9 +176,14 @@ const objectPropTypes = {
   trip_id: PropTypes.number,
   index: PropTypes.number,
 };
+const objectPropTypes2 = {
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+};
 
 MapComponent.propTypes = {
-  mapData: PropTypes.arrayOf(PropTypes.shape(objectPropTypes)),
+  mapData: PropTypes.arrayOf(PropTypes.shape(objectPropTypes1)),
+  splitPoint: PropTypes.arrayOf(PropTypes.shape(objectPropTypes2)),
 };
 
 export default MapComponent;
