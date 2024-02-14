@@ -47,7 +47,6 @@ const MapComponent = ({ mapData, splitPoint }) => {
       longitudeSum / count - 0.001,
     ];
   }
-  console.log(splitPoint);
   const createCustomIcon = (color) => {
     const markerHtmlStyles = `
       background-color: ${color};
@@ -140,9 +139,9 @@ const MapComponent = ({ mapData, splitPoint }) => {
             </Popup>
           </Marker>
         ))}
-        {splitPoint.map((point) => (
+        {splitPoint.map((point, index) => (
           <Marker
-            key={point.id}
+            key={index}
             position={[point.latitude, point.longitude]}
             icon={createCustomIcon("black")}
           >
