@@ -4,6 +4,7 @@ import CircularProgressComponent from "../component/CircularProgressComponent";
 import MetaDataComponent from "../component/MetaDataComponent";
 import MapComponent from "../component/MapComponent";
 import LoaderComponent from "../component/LoaderComponent";
+import PieChartComponent from "../component/PieChartComponent";
 
 import {
   fetchTripSummary,
@@ -16,6 +17,7 @@ const TripDashboard = () => {
   const [summaryData, setSummaryData] = useState({});
   const [metadata, setMetadata] = useState({});
   const [gps, setGPS] = useState({});
+  const [clusterSummary, setClusterSummary] = useState({});
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -34,8 +36,11 @@ const TripDashboard = () => {
 
         setSummaryData(summaryResponse);
         setGPS(gpsResponse);
-        // console.log(gpsResponse.gps);
-        // console.log(gpsResponse["split_points"]);
+        setClusterSummary({
+          aggressive: 15,
+          normal: 5,
+          safe: 8,
+        });
 
         setMetadata(metadataResponse);
         setIsLoading(false);
@@ -76,6 +81,23 @@ const TripDashboard = () => {
                 splitPoint={gps["split_points"]}
               />
             </div>
+          </div>
+          <br />
+          <div className="row">
+            <div className="col-md-4">
+              <PieChartComponent
+                values={[
+                  clusterSummary["aggressive"],
+                  clusterSummary["normal"],
+                  clusterSummary["safe"],
+                ]}
+                title={`Behavior Of Trip ${tripId}`}
+                labels={["Aggressive", "Normal", "Safe"]}
+                colors={["red", "blue", "green"]}
+              />
+            </div>
+            <div className="col-md-4"></div>
+            <div className="col-md-4"></div>
           </div>
           <br />
         </>

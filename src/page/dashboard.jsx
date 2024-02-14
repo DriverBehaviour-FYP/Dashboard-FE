@@ -3,9 +3,13 @@ import ScatterComponent from "../component/ScatterComponent";
 import CircularProgressComponent from "../component/CircularProgressComponent";
 import MetaDataComponent from "../component/MetaDataComponent";
 import LoaderComponent from "../component/LoaderComponent";
+import DateFilterComponent from "../component/DateFilterComponent";
+import summaryJson from "../data/all-driver-summary-statics.json";
+import metaDataJson from "../data/all-driver-meta-data.json";
+
 import {
-  fetchAllDriversMetadata,
-  fetchAllDriversSummary,
+  // fetchAllDriversMetadata,
+  // fetchAllDriversSummary,
   fetchAllDriversScore,
 } from "../services/allDriverServices";
 import PieChartComponent from "../component/PieChartComponent";
@@ -15,16 +19,53 @@ const Dashboard = () => {
   const [metadata, setMetadata] = useState({});
   const [scores, setScores] = useState({});
   const [isLoading, setIsLoading] = useState(true); // Initially set to true to show loader
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [selectedStartDate, setSelectedStartDate] = useState("");
+  const [selectedEndDate, setSelectedEndDate] = useState("");
+  const [clusterSummary, setClusterSummary] = useState({});
+
+  const handleDate = (_selectedStartDate, _selectedEndDate) => {
+    setSelectedStartDate(_selectedStartDate);
+    setSelectedEndDate(_selectedEndDate);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const summaryResponse = await fetchAllDriversSummary();
-        const metadataResponse = await fetchAllDriversMetadata();
+        // const summaryResponse = await fetchAllDriversSummary(selectedStartDate, selectedEndDate);
+        // const metadataResponse = await fetchAllDriversMetadata(selectedStartDate, selectedEndDate);
+        const summaryResponse = summaryJson;
+        const metadataResponse = metaDataJson;
+
         const scoreResponse = await fetchAllDriversScore();
 
-        setSummaryData(summaryResponse);
-        setMetadata(metadataResponse);
+        setStartDate(summaryResponse["start-date"]);
+        setEndDate(summaryResponse["end-date"]);
+
+        setClusterSummary(summaryResponse["cluster-summary"]);
+
+        const newSummaryResponse = {};
+        const newMetadataResponse = {};
+        // Iterate over properties of the original object and copy desired properties to the new object
+        for (const key in summaryResponse) {
+          if (
+            key !== "cluster-summary" &&
+            key !== "selected-start-date" &&
+            key !== "selected-end-date" &&
+            key !== "start-date" &&
+            key !== "end-date"
+          ) {
+            newSummaryResponse[key] = summaryResponse[key];
+          }
+        }
+        for (const key in metadataResponse) {
+          if (key !== "selected-start-date" && key !== "selected-end-date") {
+            newMetadataResponse[key] = metaDataJson[key];
+          }
+        }
+        setSummaryData(newSummaryResponse);
+        setMetadata(newMetadataResponse);
         setScores(scoreResponse);
         setIsLoading(false); // Set to false when data fetching is completed
       } catch (error) {
@@ -35,7 +76,7 @@ const Dashboard = () => {
     };
 
     fetchData();
-  }, []);
+  }, [selectedStartDate, selectedEndDate]);
 
   return (
     <div className="container light-purpal-box">
@@ -45,6 +86,11 @@ const Dashboard = () => {
         <>
           <br />
           <h1 style={{ color: "blue" }}>All Drivers</h1>
+          <DateFilterComponent
+            startDate={startDate}
+            endDate={endDate}
+            handleDate={handleDate}
+          />
           <div className="row mt-3">
             <MetaDataComponent metaData={metadata} topicName={"allDriver"} />
           </div>
@@ -65,22 +111,26 @@ const Dashboard = () => {
                 xAxisLabel={"Drivers"}
                 xAxisName={"deviceid"}
               />
+              <br />
+              <div className="row">
+                <div className="col-md-4"></div>
+                <div className="col-md-4 ">
+                  <PieChartComponent
+                    values={[
+                      clusterSummary["aggressive"],
+                      clusterSummary["normal"],
+                      clusterSummary["safe"],
+                    ]}
+                    title={"Behavior Of All Drivers"}
+                    labels={["Aggressive", "Normal", "Safe"]}
+                    colors={["red", "blue", "green"]}
+                  />
+                </div>
+                <div className="col-md-4"></div>
+              </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-3">
-              <PieChartComponent />
-            </div>
-            <div className="col-md-3">
-              <PieChartComponent />
-            </div>
-            <div className="col-md-3">
-              <PieChartComponent />
-            </div>
-            <div className="col-md-3">
-              <PieChartComponent />
-            </div>
-          </div>
+
           <br />
         </>
       )}

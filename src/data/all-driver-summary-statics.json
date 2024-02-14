@@ -14,10 +14,19 @@
     "max": 85.3132,
     "min": 0
   },
-  "success": true,
+  "start-date": "2021-10-01",
+  "end-date": "2024-02-14",
+  "selected-start-date": "2021-10-01",
+  "selected-end-date": "2024-02-14",
+  "cluster-summary": {
+    "aggressive": 8215,
+    "normal": 3565,
+    "safe": 7698
+  },
   "trip-time": {
     "avg": 54.93485209738699,
     "max": 1039.9833333333331,
     "min": 0
-  }
+  },
+  "success": true
 }

@@ -1,24 +1,38 @@
 {
   "acceleration": {
-    "avg": 0.41568111908251776,
-    "max": 9.17927,
+    "avg": 0.5468331840365291,
+    "max": 4.262066666666667,
     "min": 0
+  },
+  "all-cluster-summary": {
+    "aggressive": 8215,
+    "normal": 3565,
+    "safe": 7698
+  },
+  "cluster-summary": {
+    "aggressive": 8215,
+    "normal": 3565,
+    "safe": 7698
   },
   "de-acceleration": {
-    "avg": 0.6206729524295849,
-    "max": 9.17925,
+    "avg": 1.2967287209717913,
+    "max": 7.424415,
     "min": 0
   },
-  "driver-id": 116,
+  "driver_id": 505,
+  "start-date": "2021-10-01",
+  "end-date": "2024-02-14",
+  "selected-start-date": "2021-10-01",
+  "selected-end-date": "2024-02-14",
   "speed": {
-    "avg": 9.296246707086087,
-    "max": 43.7365,
+    "avg": 9.055558348908269,
+    "max": 41.0367,
     "min": 0
   },
   "success": true,
   "trip-time": {
-    "avg": 52.712187812187814,
-    "max": 136.75,
-    "min": 29.916666666666668
+    "avg": 51.02872769142199,
+    "max": 386.5,
+    "min": 25.366666666666667
   }
 }

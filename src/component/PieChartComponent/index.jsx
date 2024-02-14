@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
+import PropTypes from "prop-types";
 
-const PieChartComponent = () => {
+const PieChartComponent = ({ values, title, labels, colors }) => {
   const chartRef = useRef(null); // Initialize with null
 
   useEffect(() => {
@@ -19,13 +20,13 @@ const PieChartComponent = () => {
       myChart = new Chart(ctx, {
         type: "pie",
         data: {
-          labels: ["Red", "Blue", "Green"],
+          labels: labels,
           datasets: [
             {
               label: "Driver Behavior",
-              data: [12, 19, 3],
-              backgroundColor: ["red", "blue", "green"],
-              borderColor: ["black", "black", "black"],
+              data: values,
+              backgroundColor: colors,
+              // borderColor: ["black", "black", "black"],
               borderWidth: 1,
             },
           ],
@@ -35,6 +36,12 @@ const PieChartComponent = () => {
             // Configure animation properties
             duration: 4000, // Animation duration in milliseconds
             easing: "easeInOutQuad", // Easing function
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: title, // Add your title here
+            },
           },
           // Add other chart options here if needed
         },
@@ -47,9 +54,14 @@ const PieChartComponent = () => {
         myChart.destroy();
       }
     };
-  }, []);
+  }, [values, colors, labels, title]);
 
-  return <canvas ref={chartRef} />;
+  return <canvas ref={chartRef} className="box white-box" />;
 };
-
+PieChartComponent.propTypes = {
+  values: PropTypes.arrayOf(PropTypes.number).isRequired,
+  title: PropTypes.string.isRequired,
+  labels: PropTypes.arrayOf(PropTypes.string).isRequired,
+  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 export default PieChartComponent;

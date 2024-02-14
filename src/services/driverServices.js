@@ -2,9 +2,15 @@ import axios from "axios";
 
 const BASE_URL = "http://127.0.0.1:5000/api";
 
-const fetchDriverSummary = async (driverId) => {
+const fetchDriverSummary = async (driverId, startDate, endDate) => {
   try {
-    const response = await axios.get(`${BASE_URL}/driver/summary/${driverId}`);
+    const response = await axios.post(
+      `${BASE_URL}/driver/summary/${driverId}`,
+      {
+        "start-date": startDate,
+        "end-date": endDate,
+      }
+    );
     if (response.data.success) {
       return response.data;
     } else {
@@ -15,9 +21,15 @@ const fetchDriverSummary = async (driverId) => {
     throw error;
   }
 };
-const fetchDriverMetadata = async (driverId) => {
+const fetchDriverMetadata = async (driverId, startDate, endDate) => {
   try {
-    const response = await axios.get(`${BASE_URL}/driver/metadata/${driverId}`);
+    const response = await axios.get(
+      `${BASE_URL}/driver/metadata/${driverId}`,
+      {
+        "start-date": startDate,
+        "end-date": endDate,
+      }
+    );
     if (response.data.success) {
       return response.data;
     } else {
