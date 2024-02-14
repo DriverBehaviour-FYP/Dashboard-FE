@@ -23,7 +23,7 @@ const fetchDriverSummary = async (driverId, startDate, endDate) => {
 };
 const fetchDriverMetadata = async (driverId, startDate, endDate) => {
   try {
-    const response = await axios.get(
+    const response = await axios.post(
       `${BASE_URL}/driver/metadata/${driverId}`,
       {
         "start-date": startDate,

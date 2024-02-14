@@ -19,7 +19,7 @@ const getRandomColor = (score) => {
   else return rotateColors[2];
 };
 
-const ScatterComponent = ({ driverData, xAxisName, xAxisLabel, driverId }) => {
+const ScatterComponent = ({ driverData, xAxisName, xAxisLabel }) => {
   const options = {
     scales: {
       y: {
@@ -54,6 +54,9 @@ const ScatterComponent = ({ driverData, xAxisName, xAxisLabel, driverId }) => {
         },
       },
     },
+    legend: {
+      display: false, // Remove legend
+    },
     onClick: (event, elements) => {
       if (elements.length > 0) {
         const index = elements[0].index;
@@ -71,10 +74,7 @@ const ScatterComponent = ({ driverData, xAxisName, xAxisLabel, driverId }) => {
   const data = {
     datasets: [
       {
-        label:
-          xAxisName === "deviceid"
-            ? "All Drivers"
-            : `All Trips Of Driver ${driverId}`,
+        label: "",
         data: driverData[xAxisName].map((deviceId, index) => ({
           x: index,
           y: driverData.scaledScores[index],
@@ -83,13 +83,15 @@ const ScatterComponent = ({ driverData, xAxisName, xAxisLabel, driverId }) => {
         pointBackgroundColor: driverData[xAxisName].map((deviceId, index) =>
           getRandomColor(driverData.scaledScores[index])
         ),
+        pointBorderColor: "transparent",
+        pointRadius: 4,
       },
     ],
   };
 
   return (
-    <div className="white-box mt-2 pt-5">
-      <div className="row pr-3">
+    <div className="white-box pt-2">
+      <div className="row">
         <div className="col-2"></div>
         <div className="col-3">
           <div className="legend-item">
@@ -113,11 +115,7 @@ const ScatterComponent = ({ driverData, xAxisName, xAxisLabel, driverId }) => {
           </div>
         </div>
       </div>
-      <Scatter
-        options={options}
-        data={data}
-        className="white-box rounded-2 p-3"
-      />
+      <Scatter options={options} data={data} className="white-box rounded-2" />
     </div>
   );
 };
@@ -128,6 +126,5 @@ ScatterComponent.propTypes = {
   }).isRequired,
   xAxisName: PropTypes.string.isRequired,
   xAxisLabel: PropTypes.string.isRequired,
-  driverId: PropTypes.number,
 };
 export default ScatterComponent;

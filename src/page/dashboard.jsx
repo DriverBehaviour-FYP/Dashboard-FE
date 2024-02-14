@@ -96,38 +96,31 @@ const Dashboard = () => {
           </div>
           <div className="row">
             {/* Column for CircularProgressComponent */}
-            <div className="col-md-2">
+            <div className="col-md-2 ">
               <CircularProgressComponent
                 summaryStatics={summaryData}
                 topicName={"allDriver"}
               />
             </div>
-            <div className="col-md-1"></div>
 
-            {/* Column for MapComponent */}
-            <div className="col-md-9">
+            <div className="col-md-7">
               <ScatterComponent
                 driverData={scores}
                 xAxisLabel={"Drivers"}
                 xAxisName={"deviceid"}
               />
-              <br />
-              <div className="row">
-                <div className="col-md-4"></div>
-                <div className="col-md-4 ">
-                  <PieChartComponent
-                    values={[
-                      clusterSummary["aggressive"],
-                      clusterSummary["normal"],
-                      clusterSummary["safe"],
-                    ]}
-                    title={"Behavior Of All Drivers"}
-                    labels={["Aggressive", "Normal", "Safe"]}
-                    colors={["red", "blue", "green"]}
-                  />
-                </div>
-                <div className="col-md-4"></div>
-              </div>
+            </div>
+            <div className="col-md-3">
+              <PieChartComponent
+                values={[
+                  clusterSummary["aggressive"],
+                  clusterSummary["normal"],
+                  clusterSummary["safe"],
+                ]}
+                title={"Behavior Of All Drivers"}
+                labels={["Aggressive", "Normal", "Safe"]}
+                colors={["red", "blue", "green"]}
+              />
             </div>
           </div>
 

@@ -42,6 +42,9 @@ const PieChartComponent = ({ values, title, labels, colors }) => {
               display: true,
               text: title, // Add your title here
             },
+            legend: {
+              display: false, // Hide the default legend
+            },
           },
           // Add other chart options here if needed
         },
@@ -56,12 +59,36 @@ const PieChartComponent = ({ values, title, labels, colors }) => {
     };
   }, [values, colors, labels, title]);
 
-  return <canvas ref={chartRef} className="box white-box" />;
+  // Render legend manually with circles
+  const renderLegend = () => {
+    return (
+      <div className="legend">
+        {labels.map((label, index) => (
+          <div key={index} className="legend-item">
+            <span
+              className="circle mx-2"
+              style={{ backgroundColor: colors[index] }}
+            ></span>
+            <span className="legend-text">{label}</span>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  return (
+    <div className="chart-container box white-box pb-3">
+      <canvas ref={chartRef} className="chart" />
+      {renderLegend()}
+    </div>
+  );
 };
+
 PieChartComponent.propTypes = {
   values: PropTypes.arrayOf(PropTypes.number).isRequired,
   title: PropTypes.string.isRequired,
   labels: PropTypes.arrayOf(PropTypes.string).isRequired,
   colors: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
+
 export default PieChartComponent;

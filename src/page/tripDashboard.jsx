@@ -73,18 +73,15 @@ const TripDashboard = () => {
                 topicName={"trip"}
               />
             </div>
-            <div className="col-md-1"></div>
+
             {/* Column for MapComponent */}
-            <div className="col-md-9">
+            <div className="col-md-7">
               <MapComponent
                 mapData={gps.gps}
                 splitPoint={gps["split_points"]}
               />
             </div>
-          </div>
-          <br />
-          <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-3">
               <PieChartComponent
                 values={[
                   clusterSummary["aggressive"],
@@ -96,8 +93,6 @@ const TripDashboard = () => {
                 colors={["red", "blue", "green"]}
               />
             </div>
-            <div className="col-md-4"></div>
-            <div className="col-md-4"></div>
           </div>
           <br />
         </>

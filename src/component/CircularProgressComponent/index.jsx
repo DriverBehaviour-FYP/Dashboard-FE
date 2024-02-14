@@ -43,21 +43,19 @@ const CircularProgressComponent = ({ summaryStatics, topicName }) => {
   });
 
   return (
-    <div className="row justify-content-between">
+    <div className="row justify-content-between mx-1">
       {dataSet &&
         dataSet.map((ele, index) => (
           <div
             key={index}
-            className={`${
-              isSmallScreen ? "col-5" : ""
-            } box white-box my-3 mx-3 p-10`} // Show 2 circles per row on small screens, and 3 circles per row otherwise
+            className={`${isSmallScreen ? "col-5" : ""} box white-box mb-3`} // Show 2 circles per row on small screens, and 3 circles per row otherwise
             style={{
               borderBottom: "5px solid blue",
-              margin: "20px",
+              // margin: "20px",
               width: "200px",
             }}
           >
-            <div className="d-flex flex-column align-items-center rounded-2">
+            <div className="d-flex flex-column align-items-center rounded-2 ">
               <h6 className="text-center">{ele.topic}</h6>
               <CircularProgressBar
                 avg={ele.avg}

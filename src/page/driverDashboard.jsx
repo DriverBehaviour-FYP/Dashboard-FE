@@ -120,60 +120,57 @@ const DriverDashboard = () => {
                 topicName={"driver"}
               />
             </div>
-            <div className="col-md-1"></div>
-            {/* Column for MapComponent */}
-            <div className="col-md-9">
+
+            <div className="col-md-7">
               <ScatterComponent
                 driverData={scores}
                 xAxisLabel={"Trips"}
                 xAxisName={"trip_id"}
-                driverId={parseInt(driverId)}
               />
-              <br />
               <div className="row">
-                <div className="col-md-3 mt-5">
+                <div className="col-md-4 mt-3">
                   <PieChartComponent
                     values={[
                       allClusterSummary["aggressive"],
                       clusterSummary["aggressive"],
                     ]}
                     title={"Aggressive"}
-                    labels={["All", `${driverId}`]}
+                    labels={["All", `Driver ${driverId}`]}
                     colors={["red", "blue"]}
                   />
                 </div>
-                <div className="col-md-3 mt-5">
+                <div className="col-md-4 mt-3">
                   <PieChartComponent
                     values={[
                       allClusterSummary["normal"],
                       clusterSummary["normal"],
                     ]}
                     title={"Normal"}
-                    labels={["All", `${driverId}`]}
+                    labels={["All", `Driver ${driverId}`]}
                     colors={["red", "blue"]}
                   />
                 </div>
-                <div className="col-md-3 mt-5">
+                <div className="col-md-4 mt-3">
                   <PieChartComponent
                     values={[allClusterSummary["safe"], clusterSummary["safe"]]}
                     title={"Safe"}
-                    labels={["All", `${driverId}`]}
+                    labels={["All", `Driver ${driverId}`]}
                     colors={["red", "blue"]}
                   />
                 </div>
-                <div className="col-md-3 mt-5">
-                  <PieChartComponent
-                    values={[
-                      clusterSummary["aggressive"],
-                      clusterSummary["normal"],
-                      clusterSummary["safe"],
-                    ]}
-                    title={`Behavior Of Driver ${driverId}`}
-                    labels={["Aggressive", "Normal", "Safe"]}
-                    colors={["red", "blue", "green"]}
-                  />
-                </div>
               </div>
+            </div>
+            <div className="col-md-3">
+              <PieChartComponent
+                values={[
+                  clusterSummary["aggressive"],
+                  clusterSummary["normal"],
+                  clusterSummary["safe"],
+                ]}
+                title={`Behavior Of Driver ${driverId}`}
+                labels={["Aggressive", "Normal", "Safe"]}
+                colors={["red", "blue", "green"]}
+              />
             </div>
           </div>
           <br />

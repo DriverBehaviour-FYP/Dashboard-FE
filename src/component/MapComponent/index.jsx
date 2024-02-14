@@ -80,7 +80,7 @@ const MapComponent = ({ mapData, splitPoint }) => {
       iconAnchor: [0, 0],
     });
   return (
-    <div className="container white-box rounded-2 mt-2 pt-2">
+    <div className="container white-box rounded-2">
       <div className="row pr-3 pb-2 pt-1">
         <div className="col-2"></div>
         <div className="col-3">

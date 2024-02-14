@@ -7,8 +7,8 @@ const MetaDataComponent = ({ metaData, topicName }) => {
   // Sample metadata
   const topic = {
     allDriver: {
-      "data-collection-start-date": "Start Date (Data Collection)",
-      "data-collection-end-date": "End Date (Data Collection)",
+      // "data-collection-start-date": "Start Date (Data Collection)",
+      // "data-collection-end-date": "End Date (Data Collection)",
       "data-collection-period": "Period (Data Collection)",
       no_of_bus_stops: "No Of Bus Stops",
       no_of_drivers: "No Of Bus Drivers",
