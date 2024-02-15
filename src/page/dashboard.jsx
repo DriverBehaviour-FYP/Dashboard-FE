@@ -4,12 +4,12 @@ import CircularProgressComponent from "../component/CircularProgressComponent";
 import MetaDataComponent from "../component/MetaDataComponent";
 import LoaderComponent from "../component/LoaderComponent";
 import DateFilterComponent from "../component/DateFilterComponent";
-import summaryJson from "../data/all-driver-summary-statics.json";
-import metaDataJson from "../data/all-driver-meta-data.json";
+// import summaryJson from "../data/all-driver-summary-statics.json";
+// import metaDataJson from "../data/all-driver-meta-data.json";
 
 import {
-  // fetchAllDriversMetadata,
-  // fetchAllDriversSummary,
+  fetchAllDriversMetadata,
+  fetchAllDriversSummary,
   fetchAllDriversScore,
 } from "../services/allDriverServices";
 import PieChartComponent from "../component/PieChartComponent";
@@ -33,17 +33,23 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const summaryResponse = await fetchAllDriversSummary(selectedStartDate, selectedEndDate);
-        // const metadataResponse = await fetchAllDriversMetadata(selectedStartDate, selectedEndDate);
-        const summaryResponse = summaryJson;
-        const metadataResponse = metaDataJson;
+        const summaryResponse = await fetchAllDriversSummary(
+          selectedStartDate,
+          selectedEndDate
+        );
+        const metadataResponse = await fetchAllDriversMetadata(
+          selectedStartDate,
+          selectedEndDate
+        );
+        // const summaryResponse = summaryJson;
+        // const metadataResponse = metaDataJson;
 
         const scoreResponse = await fetchAllDriversScore();
 
-        setStartDate(summaryResponse["start-date"]);
-        setEndDate(summaryResponse["end-date"]);
+        setStartDate(metadataResponse["data-collection-start-date"]);
+        setEndDate(metadataResponse["data-collection-end-date"]);
 
-        setClusterSummary(summaryResponse["cluster-summary"]);
+        setClusterSummary(summaryResponse["all-cluster-summary"]);
 
         const newSummaryResponse = {};
         const newMetadataResponse = {};
@@ -61,7 +67,7 @@ const Dashboard = () => {
         }
         for (const key in metadataResponse) {
           if (key !== "selected-start-date" && key !== "selected-end-date") {
-            newMetadataResponse[key] = metaDataJson[key];
+            newMetadataResponse[key] = metadataResponse[key];
           }
         }
         setSummaryData(newSummaryResponse);

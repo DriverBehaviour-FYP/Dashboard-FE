@@ -6,14 +6,15 @@ import MetaDataComponent from "../component/MetaDataComponent";
 import LoaderComponent from "../component/LoaderComponent";
 import DateFilterComponent from "../component/DateFilterComponent";
 import PieChartComponent from "../component/PieChartComponent";
-import summaryJson from "../data/116-driver-summary-statics.json";
-import metaDataJson from "../data/116-driver-meta-data.json";
+// import summaryJson from "../data/116-driver-summary-statics.json";
+// import metaDataJson from "../data/116-driver-meta-data.json";
 
 import {
-  // fetchDriverSummary,
-  // fetchDriverMetadata,
+  fetchDriverSummary,
+  fetchDriverMetadata,
   fetchTripScore,
 } from "../services/driverServices";
+import { fetchAllDriversSummary } from "../services/allDriverServices";
 
 const DriverDashboard = () => {
   const { driverId } = useParams();
@@ -41,26 +42,31 @@ const DriverDashboard = () => {
           return;
         }
 
-        // const summaryResponse = await fetchDriverSummary(
-        //   id,
-        //   selectedStartDate,
-        //   selectedEndDate
-        // );
-        // const metadataResponse = await fetchDriverMetadata(
-        //   id,
-        //   selectedStartDate,
-        //   selectedEndDate
-        // );
-        const summaryResponse = summaryJson;
-        const metadataResponse = metaDataJson;
+        const summaryResponse = await fetchDriverSummary(
+          id,
+          selectedStartDate,
+          selectedEndDate
+        );
+        const allSummaryResponse = await fetchAllDriversSummary(
+          selectedStartDate,
+          selectedEndDate
+        );
+        const metadataResponse = await fetchDriverMetadata(
+          id,
+          selectedStartDate,
+          selectedEndDate
+        );
+        // const summaryResponse = summaryJson;
+        // const metadataResponse = metaDataJson;
 
         const scoreResponse = await fetchTripScore(id);
 
-        setStartDate(summaryResponse["start-date"]);
-        setEndDate(summaryResponse["end-date"]);
+        setStartDate(metadataResponse["data-collection-start-date"]);
+        setEndDate(metadataResponse["data-collection-end-date"]);
 
         setClusterSummary(summaryResponse["cluster-summary"]);
-        setAllClusterSummary(summaryResponse["all-cluster-summary"]);
+        setAllClusterSummary(allSummaryResponse["all-cluster-summary"]);
+
         const newSummaryResponse = {};
         const newMetadataResponse = {};
         // Iterate over properties of the original object and copy desired properties to the new object
@@ -78,7 +84,7 @@ const DriverDashboard = () => {
         }
         for (const key in metadataResponse) {
           if (key !== "selected-start-date" && key !== "selected-end-date") {
-            newMetadataResponse[key] = metaDataJson[key];
+            newMetadataResponse[key] = metadataResponse[key];
           }
         }
         setSummaryData(newSummaryResponse);
