@@ -41,9 +41,12 @@ const fetchDriverMetadata = async (driverId, startDate, endDate) => {
   }
 };
 
-const fetchTripScore = async (driverId) => {
+const fetchTripScore = async (driverId, startDate, endDate) => {
   try {
-    const response = await axios.get(`${BASE_URL}/trip/score/${driverId}`);
+    const response = await axios.post(`${BASE_URL}/trip/score/${driverId}`, {
+      "start-date": startDate,
+      "end-date": endDate,
+    });
     // if (response.data.success) {
     return response.data;
     // } else {

@@ -44,7 +44,10 @@ const Dashboard = () => {
         // const summaryResponse = summaryJson;
         // const metadataResponse = metaDataJson;
 
-        const scoreResponse = await fetchAllDriversScore();
+        const scoreResponse = await fetchAllDriversScore(
+          selectedStartDate,
+          selectedEndDate
+        );
 
         setStartDate(metadataResponse["data-collection-start-date"]);
         setEndDate(metadataResponse["data-collection-end-date"]);

@@ -35,9 +35,12 @@ const fetchAllDriversMetadata = async (startDate, endDate) => {
   }
 };
 
-const fetchAllDriversScore = async () => {
+const fetchAllDriversScore = async (startDate, endDate) => {
   try {
-    const response = await axios.get(`${BASE_URL}/driver/score`);
+    const response = await axios.post(`${BASE_URL}/driver/score`, {
+      "start-date": startDate,
+      "end-date": endDate,
+    });
     return response.data;
   } catch (error) {
     console.error("Error fetching data: ", error);

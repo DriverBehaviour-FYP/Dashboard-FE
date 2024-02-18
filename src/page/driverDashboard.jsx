@@ -59,7 +59,11 @@ const DriverDashboard = () => {
         // const summaryResponse = summaryJson;
         // const metadataResponse = metaDataJson;
 
-        const scoreResponse = await fetchTripScore(id);
+        const scoreResponse = await fetchTripScore(
+          id,
+          selectedStartDate,
+          selectedEndDate
+        );
 
         setStartDate(metadataResponse["data-collection-start-date"]);
         setEndDate(metadataResponse["data-collection-end-date"]);
