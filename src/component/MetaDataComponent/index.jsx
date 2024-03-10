@@ -114,7 +114,7 @@ const TheadDataType = PropTypes.shape({
   ).isRequired,
   "start-time": PropTypes.string.isRequired,
   success: PropTypes.bool.isRequired,
-  trip_id: PropTypes.number.isRequired,
+  "trip-id": PropTypes.number.isRequired,
 });
 
 MetaDataComponent.propTypes = {

@@ -59,14 +59,14 @@ const fetchTripScore = async (driverId, startDate, endDate) => {
 };
 const fetchDriverDwellTime = async (driverId, startDate, endDate) => {
   try {
-    const response = await axios.post(`${BASE_URL}/alldrivers/dwelltime`, {
+    const response = await axios.post(`${BASE_URL}/alldrivers/dwelltime/`, {
       "start-date": startDate,
       "end-date": endDate,
     });
     if (response.data.success) {
       const filteredData = {};
-      for (const direction in response.data) {
-        filteredData[direction] = response.data[direction].filter(
+      for (const direction in response.data.data) {
+        filteredData[direction] = response.data.data[direction].filter(
           (item) => item.driverId === driverId || item.driverId === "all"
         );
       }
@@ -80,9 +80,32 @@ const fetchDriverDwellTime = async (driverId, startDate, endDate) => {
   }
 };
 
+const fetchDriverZoneWiseSpeed = async (driverId, startDate, endDate) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/alldrivers/dwelltime/`, {
+      "start-date": startDate,
+      "end-date": endDate,
+    });
+    if (response.data.success) {
+      const filteredData = {};
+      for (const direction in response.data.data) {
+        filteredData[direction] = response.data.data[direction].filter(
+          (item) => item.driverId === driverId || item.driverId === "all"
+        );
+      }
+      return filteredData;
+    } else {
+      throw new Error();
+    }
+  } catch (error) {
+    console.error("Error fetching data: ", error);
+    throw error;
+  }
+};
 export {
   fetchDriverSummary,
   fetchDriverMetadata,
   fetchTripScore,
   fetchDriverDwellTime,
+  fetchDriverZoneWiseSpeed,
 };

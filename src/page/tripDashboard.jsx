@@ -5,13 +5,13 @@ import MetaDataComponent from "../component/MetaDataComponent";
 import MapComponent from "../component/MapComponent";
 import LoaderComponent from "../component/LoaderComponent";
 import PieChartComponent from "../component/PieChartComponent";
-import dwellTimes from "../data/dwell-time.json";
 import LineGraphComponent from "../component/LineGraphComponent";
 
 import {
   fetchTripSummary,
   fetchGPS,
   fetchTripMetadata,
+  fetchTripDwellTime,
 } from "../services/tripServices";
 
 const TripDashboard = () => {
@@ -20,6 +20,7 @@ const TripDashboard = () => {
   const [metadata, setMetadata] = useState({});
   const [gps, setGPS] = useState({});
   const [clusterSummary, setClusterSummary] = useState({});
+  const [dwellTimeTripData, setDwellTimeTripData] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -35,21 +36,20 @@ const TripDashboard = () => {
         const summaryResponse = await fetchTripSummary(id);
         const gpsResponse = await fetchGPS(id);
         const metadataResponse = await fetchTripMetadata(id);
-
+        const dwellTimeResponse = await fetchTripDwellTime(
+          id,
+          metadataResponse["date"]
+        );
+        setDwellTimeTripData(dwellTimeResponse);
         setSummaryData(summaryResponse);
         setGPS(gpsResponse);
-        setClusterSummary({
-          aggressive: 15,
-          normal: 5,
-          safe: 8,
-        });
-
+        setClusterSummary(summaryResponse["cluster-summary"]);
         setMetadata(metadataResponse);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data: ", error);
         setIsLoading(false);
-        window.location.href = "/not-found";
+        // window.location.href = "/not-found";
       }
     };
 
@@ -96,17 +96,18 @@ const TripDashboard = () => {
               />
             </div>
           </div>
+          <br />
           <div className="row">
             <div className="col-6">
               <LineGraphComponent
-                graphData={dwellTimes.data["direction-1"]}
-                label={"Segment"}
+                graphData={dwellTimeTripData}
+                label={"Trip"}
               />
             </div>
             <div className="col-6">
               <LineGraphComponent
-                graphData={dwellTimes.data["direction-2"]}
-                label={"Segment"}
+                graphData={dwellTimeTripData}
+                label={"Trip"}
               />
             </div>
           </div>

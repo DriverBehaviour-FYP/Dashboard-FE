@@ -39,7 +39,9 @@ const LineGraphComponent = ({ graphData, label }) => {
           },
           title: function (tooltipItem) {
             return `${label} ID: ${
-              graphData[tooltipItem[0].datasetIndex].driverId
+              label == "Driver"
+                ? graphData[tooltipItem[0].datasetIndex].driverId
+                : graphData[tooltipItem[0].datasetIndex].tripId
             }`;
           },
         },
@@ -52,7 +54,9 @@ const LineGraphComponent = ({ graphData, label }) => {
       labels: {
         generateLabels: function (chart) {
           return chart.data.datasets.map((dataset, i) => ({
-            text: `${label} ID: ${dataset.driverId}`,
+            text: `${label} ID: ${
+              label == "Driver" ? dataset.driverId : dataset.tripId
+            }`,
             fillStyle: dataset.backgroundColor || "rgba(0,0,0,0)",
             strokeStyle: dataset.borderColor || "rgba(0,0,0,0)",
             lineWidth: dataset.borderWidth || 0,
@@ -66,7 +70,9 @@ const LineGraphComponent = ({ graphData, label }) => {
 
   const data = {
     datasets: graphData.map((driverData, index) => ({
-      label: `${label} ${driverData.driverId}`,
+      label: `${label} ${
+        label == "Driver" ? driverData.driverId : driverData.tripId
+      }`,
       data: driverData.dwellTimes.map(
         ({ bus_stop_no, average_dwell_time }) => ({
           x: bus_stop_no,
@@ -89,18 +95,29 @@ const LineGraphComponent = ({ graphData, label }) => {
   );
 };
 
+const FirstDataType = PropTypes.shape({
+  driverId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
+  dwellTimes: PropTypes.arrayOf(
+    PropTypes.shape({
+      average_dwell_time: PropTypes.number.isRequired,
+      bus_stop_no: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+});
+
+const SecondDataType = PropTypes.shape({
+  tripId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  dwellTimes: PropTypes.arrayOf(
+    PropTypes.shape({
+      average_dwell_time: PropTypes.number.isRequired,
+      bus_stop_no: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+});
 LineGraphComponent.propTypes = {
   graphData: PropTypes.arrayOf(
-    PropTypes.shape({
-      driverId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-      dwellTimes: PropTypes.arrayOf(
-        PropTypes.shape({
-          average_dwell_time: PropTypes.number.isRequired,
-          bus_stop_no: PropTypes.number.isRequired,
-        })
-      ).isRequired,
-    })
+    PropTypes.oneOfType([FirstDataType, SecondDataType])
   ).isRequired,
   label: PropTypes.string.isRequired,
 };

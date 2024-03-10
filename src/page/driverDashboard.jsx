@@ -7,14 +7,12 @@ import LoaderComponent from "../component/LoaderComponent";
 import DateFilterComponent from "../component/DateFilterComponent";
 import PieChartComponent from "../component/PieChartComponent";
 import TabsComponent from "../component/TabsComponent";
-import dwellTimes from "../data/dwell-time.json";
-// import summaryJson from "../data/116-driver-summary-statics.json";
-// import metaDataJson from "../data/116-driver-meta-data.json";
 
 import {
   fetchDriverSummary,
   fetchDriverMetadata,
   fetchTripScore,
+  fetchDriverDwellTime,
 } from "../services/driverServices";
 import { fetchAllDriversSummary } from "../services/allDriverServices";
 
@@ -30,6 +28,7 @@ const DriverDashboard = () => {
   const [selectedEndDate, setSelectedEndDate] = useState("");
   const [clusterSummary, setClusterSummary] = useState({});
   const [allClusterSummary, setAllClusterSummary] = useState({});
+  const [driverDwellTimeData, setDriverDwellTimeData] = useState({});
 
   const handleDate = (_selectedStartDate, _selectedEndDate) => {
     setSelectedStartDate(_selectedStartDate);
@@ -58,6 +57,13 @@ const DriverDashboard = () => {
           selectedStartDate,
           selectedEndDate
         );
+        const dwellTimeResponse = await fetchDriverDwellTime(
+          id,
+          selectedStartDate,
+          selectedEndDate
+        );
+        setDriverDwellTimeData(dwellTimeResponse);
+
         // const summaryResponse = summaryJson;
         // const metadataResponse = metaDataJson;
 
@@ -100,7 +106,7 @@ const DriverDashboard = () => {
       } catch (error) {
         console.error("Error fetching data: ", error);
         setIsLoading(false);
-        window.location.href = "/";
+        // window.location.href = "/";
       }
     };
 
@@ -202,17 +208,17 @@ const DriverDashboard = () => {
               tabs={[
                 {
                   label: "Direction 1",
-                  driverZoneData: dwellTimes.data["direction-1"],
-                  driverDwellTimeData: dwellTimes.data["direction-1"],
+                  driverZoneData: driverDwellTimeData["direction-1"],
+                  driverDwellTimeData: driverDwellTimeData["direction-1"],
                 },
                 {
                   label: "Direction 2",
-                  driverZoneData: dwellTimes.data["direction-2"],
-                  driverDwellTimeData: dwellTimes.data["direction-2"],
+                  driverZoneData: driverDwellTimeData["direction-2"],
+                  driverDwellTimeData: driverDwellTimeData["direction-2"],
                 },
               ]}
               type="row"
-              label="Trip"
+              label="Driver"
             />
           </div>
         </>

@@ -5,7 +5,6 @@ import { Tab, Nav } from "react-bootstrap";
 import LineGraphComponent from "../LineGraphComponent";
 
 const TabsComponent = ({ tabs, type, label }) => {
-  console.log(label);
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabSelect = (index) => {
