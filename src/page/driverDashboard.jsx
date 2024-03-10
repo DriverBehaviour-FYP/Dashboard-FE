@@ -6,6 +6,8 @@ import MetaDataComponent from "../component/MetaDataComponent";
 import LoaderComponent from "../component/LoaderComponent";
 import DateFilterComponent from "../component/DateFilterComponent";
 import PieChartComponent from "../component/PieChartComponent";
+import TabsComponent from "../component/TabsComponent";
+import dwellTimes from "../data/dwell-time.json";
 // import summaryJson from "../data/116-driver-summary-statics.json";
 // import metaDataJson from "../data/116-driver-meta-data.json";
 
@@ -181,9 +183,38 @@ const DriverDashboard = () => {
                 labels={["Aggressive", "Normal", "Safe"]}
                 colors={["red", "blue", "green"]}
               />
+              <br />
+              <PieChartComponent
+                values={[
+                  clusterSummary["aggressive"],
+                  clusterSummary["normal"],
+                  clusterSummary["safe"],
+                ]}
+                title={`Behavior Of Driver ${driverId}`}
+                labels={["Aggressive", "Normal", "Safe"]}
+                colors={["red", "blue", "green"]}
+              />
             </div>
           </div>
           <br />
+          <div className="row">
+            <TabsComponent
+              tabs={[
+                {
+                  label: "Direction 1",
+                  driverZoneData: dwellTimes.data["direction-1"],
+                  driverDwellTimeData: dwellTimes.data["direction-1"],
+                },
+                {
+                  label: "Direction 2",
+                  driverZoneData: dwellTimes.data["direction-2"],
+                  driverDwellTimeData: dwellTimes.data["direction-2"],
+                },
+              ]}
+              type="row"
+              label="Trip"
+            />
+          </div>
         </>
       )}
     </div>

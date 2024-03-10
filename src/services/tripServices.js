@@ -43,4 +43,18 @@ const fetchGPS = async (tripId) => {
   }
 };
 
-export { fetchTripSummary, fetchTripMetadata, fetchGPS };
+const fetchTripDwellTime = async (tripId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/trip/dwelltime/${tripId}`);
+    if (response.data.success) {
+      return response.data;
+    } else {
+      throw new Error();
+    }
+  } catch (error) {
+    console.error("Error fetching data: ", error);
+    throw error;
+  }
+};
+
+export { fetchTripSummary, fetchTripMetadata, fetchGPS, fetchTripDwellTime };

@@ -4,13 +4,13 @@ import CircularProgressComponent from "../component/CircularProgressComponent";
 import MetaDataComponent from "../component/MetaDataComponent";
 import LoaderComponent from "../component/LoaderComponent";
 import DateFilterComponent from "../component/DateFilterComponent";
-// import summaryJson from "../data/all-driver-summary-statics.json";
-// import metaDataJson from "../data/all-driver-meta-data.json";
+import TabsComponent from "../component/TabsComponent";
 
 import {
   fetchAllDriversMetadata,
   fetchAllDriversSummary,
   fetchAllDriversScore,
+  fetchAllDriversDwellTime,
 } from "../services/allDriverServices";
 import PieChartComponent from "../component/PieChartComponent";
 
@@ -24,12 +24,12 @@ const Dashboard = () => {
   const [selectedStartDate, setSelectedStartDate] = useState("");
   const [selectedEndDate, setSelectedEndDate] = useState("");
   const [clusterSummary, setClusterSummary] = useState({});
+  const [allDriverDwellTimeData, setAllDriverDwellTimeData] = useState({});
 
   const handleDate = (_selectedStartDate, _selectedEndDate) => {
     setSelectedStartDate(_selectedStartDate);
     setSelectedEndDate(_selectedEndDate);
   };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,6 +41,10 @@ const Dashboard = () => {
           selectedStartDate,
           selectedEndDate
         );
+        const dwellTimeResponse = await fetchAllDriversDwellTime(
+          selectedStartDate,
+          selectedEndDate
+        );
         // const summaryResponse = summaryJson;
         // const metadataResponse = metaDataJson;
 
@@ -48,7 +52,7 @@ const Dashboard = () => {
           selectedStartDate,
           selectedEndDate
         );
-
+        setAllDriverDwellTimeData(dwellTimeResponse);
         setStartDate(metadataResponse["data-collection-start-date"]);
         setEndDate(metadataResponse["data-collection-end-date"]);
 
@@ -80,7 +84,7 @@ const Dashboard = () => {
       } catch (error) {
         console.error("Error fetching data: ", error);
         setIsLoading(false);
-        window.location.href = "/not-found";
+        // window.location.href = "/not-found";
       }
     };
 
@@ -118,8 +122,35 @@ const Dashboard = () => {
                 xAxisLabel={"Drivers"}
                 xAxisName={"deviceid"}
               />
+              <TabsComponent
+                tabs={[
+                  {
+                    label: "Direction 1",
+                    driverZoneData: allDriverDwellTimeData["direction-1"],
+                    driverDwellTimeData: allDriverDwellTimeData["direction-1"],
+                  },
+                  {
+                    label: "Direction 2",
+                    driverZoneData: allDriverDwellTimeData["direction-2"],
+                    driverDwellTimeData: allDriverDwellTimeData["direction-2"],
+                  },
+                ]}
+                type="col"
+                label="Driver"
+              />
             </div>
             <div className="col-md-3">
+              <PieChartComponent
+                values={[
+                  clusterSummary["aggressive"],
+                  clusterSummary["normal"],
+                  clusterSummary["safe"],
+                ]}
+                title={"Behavior Of All Drivers"}
+                labels={["Aggressive", "Normal", "Safe"]}
+                colors={["red", "blue", "green"]}
+              />
+              <br />
               <PieChartComponent
                 values={[
                   clusterSummary["aggressive"],

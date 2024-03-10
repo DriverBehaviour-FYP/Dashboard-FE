@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 const NavBarComponent = () => {
   return (
     <div style={{ paddingTop: "56px" }}>
-      {" "}
-      {/* Adjust the value based on the height of your navbar */}
       <Navbar bg="light" expand="lg" className="fixed-top">
         <Container>
           <Navbar.Brand
@@ -20,7 +18,7 @@ const NavBarComponent = () => {
               <Link to="/driver/all" className="nav-link">
                 Home
               </Link>
-              <Link to="/driver/116" className="nav-link">
+              <Link to="/trip/real-time/116" className="nav-link">
                 Real Time Analysis
               </Link>
               {/* <Link to="/disabled" className="nav-link" disabled>

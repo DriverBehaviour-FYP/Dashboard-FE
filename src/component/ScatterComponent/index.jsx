@@ -8,11 +8,12 @@ import {
 } from "chart.js";
 import { Scatter } from "react-chartjs-2";
 import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
 
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-const rotateColors = ["red", "blue", "green", "black"]; // Add more colors as needed
-
+const rotateColors = ["red", "blue", "green"]; // Add more colors as needed
+const behaviourMap = { red: "Agressive", blue: "Normal", green: "Safe" };
 const getRandomColor = (score) => {
   if (score > 70) return rotateColors[0];
   else if (score > 40) return rotateColors[1];
@@ -20,6 +21,22 @@ const getRandomColor = (score) => {
 };
 
 const ScatterComponent = ({ driverData, xAxisName, xAxisLabel }) => {
+  const [colorMap, setColorMap] = useState({});
+  useEffect(() => {
+    const generateColorMap = () => {
+      const tesmColorMap = { red: [], blue: [], green: [] };
+      driverData[xAxisName].forEach((deviceId, index) => {
+        const color = getRandomColor(driverData.scaledScores[index]);
+        tesmColorMap[color].push({
+          x: index,
+          y: driverData.scaledScores[index],
+        });
+      });
+      setColorMap(tesmColorMap);
+    };
+    generateColorMap();
+  }, [driverData, xAxisName]);
+
   const options = {
     scales: {
       y: {
@@ -72,26 +89,34 @@ const ScatterComponent = ({ driverData, xAxisName, xAxisLabel }) => {
     },
   };
   const data = {
-    datasets: [
-      {
-        label: "",
-        data: driverData[xAxisName].map((deviceId, index) => ({
-          x: index,
-          y: driverData.scaledScores[index],
-        })),
-        pointLabel: "Driver Behaviour",
-        pointBackgroundColor: driverData[xAxisName].map((deviceId, index) =>
-          getRandomColor(driverData.scaledScores[index])
-        ),
+    datasets:
+      // [
+      //   {
+      //     label: "",
+      //     data: driverData[xAxisName].map((deviceId, index) => ({
+      //       x: index,
+      //       y: driverData.scaledScores[index],
+      //     })),
+      //     pointLabel: "Driver Behaviour",
+      //     pointBackgroundColor: driverData[xAxisName].map((deviceId, index) =>
+      //       getRandomColor(driverData.scaledScores[index])
+      //     ),
+      //     pointBorderColor: "transparent",
+      //     pointRadius: 4,
+      //   },
+      // ],
+      Object.entries(colorMap).map(([color, data]) => ({
+        label: behaviourMap[color],
+        data: data,
+        pointBackgroundColor: color,
         pointBorderColor: "transparent",
         pointRadius: 4,
-      },
-    ],
+      })),
   };
 
   return (
     <div className="white-box pt-2">
-      <div className="row">
+      {/* <div className="row">
         <div className="col-2"></div>
         <div className="col-3">
           <div className="legend-item">
@@ -114,7 +139,7 @@ const ScatterComponent = ({ driverData, xAxisName, xAxisLabel }) => {
             <span className="legend-text">Safe</span>
           </div>
         </div>
-      </div>
+      </div> */}
       <Scatter options={options} data={data} className="white-box rounded-2" />
     </div>
   );

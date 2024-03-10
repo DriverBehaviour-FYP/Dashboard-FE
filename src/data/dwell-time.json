@@ -1,0 +1,90 @@
+{
+  "data": {
+    "direction-1": [
+      {
+        "driverId": 1,
+        "dwellTimes": [
+          { "average_dwell_time": 47.53846153846154, "bus_stop_no": 101 },
+          { "average_dwell_time": 55.25, "bus_stop_no": 102 },
+          { "average_dwell_time": 60.75, "bus_stop_no": 103 },
+          { "average_dwell_time": 40.0, "bus_stop_no": 104 },
+          { "average_dwell_time": 35.5, "bus_stop_no": 105 },
+          { "average_dwell_time": 42.25, "bus_stop_no": 106 },
+          { "average_dwell_time": 48.0, "bus_stop_no": 107 },
+          { "average_dwell_time": 50.75, "bus_stop_no": 108 }
+        ]
+      },
+      {
+        "driverId": 5,
+        "dwellTimes": [
+          { "average_dwell_time": 45.0, "bus_stop_no": 101 },
+          { "average_dwell_time": 53.0, "bus_stop_no": 102 },
+          { "average_dwell_time": 58.5, "bus_stop_no": 103 },
+          { "average_dwell_time": 38.5, "bus_stop_no": 104 },
+          { "average_dwell_time": 33.0, "bus_stop_no": 105 },
+          { "average_dwell_time": 41.0, "bus_stop_no": 106 },
+          { "average_dwell_time": 46.5, "bus_stop_no": 107 },
+          { "average_dwell_time": 49.5, "bus_stop_no": 108 }
+        ]
+      },
+      {
+        "driverId": "all",
+        "dwellTimes": [
+          { "average_dwell_time": 46.26923076923077, "bus_stop_no": 101 },
+          { "average_dwell_time": 54.125, "bus_stop_no": 102 },
+          { "average_dwell_time": 59.625, "bus_stop_no": 103 },
+          { "average_dwell_time": 39.25, "bus_stop_no": 104 },
+          { "average_dwell_time": 34.25, "bus_stop_no": 105 },
+          { "average_dwell_time": 41.625, "bus_stop_no": 106 },
+          { "average_dwell_time": 47.25, "bus_stop_no": 107 },
+          { "average_dwell_time": 50.125, "bus_stop_no": 108 }
+        ]
+      }
+    ],
+    "direction-2": [
+      {
+        "driverId": 1,
+        "dwellTimes": [
+          { "average_dwell_time": 47.53846153846154, "bus_stop_no": 200 },
+          { "average_dwell_time": 55.25, "bus_stop_no": 201 },
+          { "average_dwell_time": 60.75, "bus_stop_no": 202 },
+          { "average_dwell_time": 40.0, "bus_stop_no": 203 },
+          { "average_dwell_time": 35.5, "bus_stop_no": 204 },
+          { "average_dwell_time": 42.25, "bus_stop_no": 205 },
+          { "average_dwell_time": 48.0, "bus_stop_no": 206 },
+          { "average_dwell_time": 50.75, "bus_stop_no": 207 },
+          { "average_dwell_time": 45.5, "bus_stop_no": 208 }
+        ]
+      },
+      {
+        "driverId": 5,
+        "dwellTimes": [
+          { "average_dwell_time": 46.5, "bus_stop_no": 200 },
+          { "average_dwell_time": 54.0, "bus_stop_no": 201 },
+          { "average_dwell_time": 59.5, "bus_stop_no": 202 },
+          { "average_dwell_time": 39.0, "bus_stop_no": 203 },
+          { "average_dwell_time": 34.0, "bus_stop_no": 204 },
+          { "average_dwell_time": 40.5, "bus_stop_no": 205 },
+          { "average_dwell_time": 47.0, "bus_stop_no": 206 },
+          { "average_dwell_time": 50.0, "bus_stop_no": 207 },
+          { "average_dwell_time": 43.5, "bus_stop_no": 208 }
+        ]
+      },
+      {
+        "driverId": "all",
+        "dwellTimes": [
+          { "average_dwell_time": 47.0, "bus_stop_no": 200 },
+          { "average_dwell_time": 54.625, "bus_stop_no": 201 },
+          { "average_dwell_time": 60.125, "bus_stop_no": 202 },
+          { "average_dwell_time": 39.5, "bus_stop_no": 203 },
+          { "average_dwell_time": 34.75, "bus_stop_no": 204 },
+          { "average_dwell_time": 41.375, "bus_stop_no": 205 },
+          { "average_dwell_time": 47.5, "bus_stop_no": 206 },
+          { "average_dwell_time": 50.375, "bus_stop_no": 207 },
+          { "average_dwell_time": 44.5, "bus_stop_no": 208 }
+        ]
+      }
+    ]
+  },
+  "success": true
+}

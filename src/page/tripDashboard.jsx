@@ -5,6 +5,8 @@ import MetaDataComponent from "../component/MetaDataComponent";
 import MapComponent from "../component/MapComponent";
 import LoaderComponent from "../component/LoaderComponent";
 import PieChartComponent from "../component/PieChartComponent";
+import dwellTimes from "../data/dwell-time.json";
+import LineGraphComponent from "../component/LineGraphComponent";
 
 import {
   fetchTripSummary,
@@ -91,6 +93,20 @@ const TripDashboard = () => {
                 title={`Behavior Of Trip ${tripId}`}
                 labels={["Aggressive", "Normal", "Safe"]}
                 colors={["red", "blue", "green"]}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6">
+              <LineGraphComponent
+                graphData={dwellTimes.data["direction-1"]}
+                label={"Segment"}
+              />
+            </div>
+            <div className="col-6">
+              <LineGraphComponent
+                graphData={dwellTimes.data["direction-2"]}
+                label={"Segment"}
               />
             </div>
           </div>
