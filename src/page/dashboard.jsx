@@ -11,6 +11,7 @@ import {
   fetchAllDriversSummary,
   fetchAllDriversScore,
   fetchAllDriversDwellTime,
+  fetchAllDriverZoneWiseSpeed,
 } from "../services/allDriverServices";
 import PieChartComponent from "../component/PieChartComponent";
 
@@ -25,6 +26,7 @@ const Dashboard = () => {
   const [selectedEndDate, setSelectedEndDate] = useState("");
   const [clusterSummary, setClusterSummary] = useState({});
   const [allDriverDwellTimeData, setAllDriverDwellTimeData] = useState({});
+  const [allDriverSpeedAtZone, setAllDriverSpeedAtZone] = useState({});
 
   const handleDate = (_selectedStartDate, _selectedEndDate) => {
     setSelectedStartDate(_selectedStartDate);
@@ -45,14 +47,16 @@ const Dashboard = () => {
           selectedStartDate,
           selectedEndDate
         );
-        // const summaryResponse = summaryJson;
-        // const metadataResponse = metaDataJson;
-
+        const speedAtZoneResponse = await fetchAllDriverZoneWiseSpeed(
+          selectedStartDate,
+          selectedEndDate
+        );
         const scoreResponse = await fetchAllDriversScore(
           selectedStartDate,
           selectedEndDate
         );
         setAllDriverDwellTimeData(dwellTimeResponse);
+        setAllDriverSpeedAtZone(speedAtZoneResponse);
         setStartDate(metadataResponse["data-collection-start-date"]);
         setEndDate(metadataResponse["data-collection-end-date"]);
 
@@ -126,12 +130,12 @@ const Dashboard = () => {
                 tabs={[
                   {
                     label: "Direction 1",
-                    driverZoneData: allDriverDwellTimeData["direction-1"],
+                    driverZoneData: allDriverSpeedAtZone["direction-1"],
                     driverDwellTimeData: allDriverDwellTimeData["direction-1"],
                   },
                   {
                     label: "Direction 2",
-                    driverZoneData: allDriverDwellTimeData["direction-2"],
+                    driverZoneData: allDriverSpeedAtZone["direction-2"],
                     driverDwellTimeData: allDriverDwellTimeData["direction-2"],
                   },
                 ]}

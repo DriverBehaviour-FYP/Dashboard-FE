@@ -13,6 +13,7 @@ import {
   fetchDriverMetadata,
   fetchTripScore,
   fetchDriverDwellTime,
+  fetchDriverZoneWiseSpeed,
 } from "../services/driverServices";
 import { fetchAllDriversSummary } from "../services/allDriverServices";
 
@@ -29,6 +30,7 @@ const DriverDashboard = () => {
   const [clusterSummary, setClusterSummary] = useState({});
   const [allClusterSummary, setAllClusterSummary] = useState({});
   const [driverDwellTimeData, setDriverDwellTimeData] = useState({});
+  const [driverSpeedAtZone, setDriverSpeedAtZone] = useState({});
 
   const handleDate = (_selectedStartDate, _selectedEndDate) => {
     setSelectedStartDate(_selectedStartDate);
@@ -62,8 +64,14 @@ const DriverDashboard = () => {
           selectedStartDate,
           selectedEndDate
         );
-        setDriverDwellTimeData(dwellTimeResponse);
+        const speedAtZoneResponse = await fetchDriverZoneWiseSpeed(
+          id,
+          selectedStartDate,
+          selectedEndDate
+        );
 
+        setDriverDwellTimeData(dwellTimeResponse);
+        setDriverSpeedAtZone(speedAtZoneResponse);
         // const summaryResponse = summaryJson;
         // const metadataResponse = metaDataJson;
 
@@ -208,12 +216,12 @@ const DriverDashboard = () => {
               tabs={[
                 {
                   label: "Direction 1",
-                  driverZoneData: driverDwellTimeData["direction-1"],
+                  driverZoneData: driverSpeedAtZone["direction-1"],
                   driverDwellTimeData: driverDwellTimeData["direction-1"],
                 },
                 {
                   label: "Direction 2",
-                  driverZoneData: driverDwellTimeData["direction-2"],
+                  driverZoneData: driverSpeedAtZone["direction-2"],
                   driverDwellTimeData: driverDwellTimeData["direction-2"],
                 },
               ]}

@@ -11,14 +11,14 @@ import PropTypes from "prop-types";
 
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-const LineGraphComponent = ({ graphData, label }) => {
+const LineGraphComponent = ({ graphData, label, type }) => {
   const options = {
     scales: {
       y: {
         beginAtZero: true,
         title: {
           display: true,
-          text: "Average Dwell Time",
+          text: type == "dwellTime" ? "Average Dwell Time" : "Average Speed",
         },
       },
       x: {
@@ -26,7 +26,7 @@ const LineGraphComponent = ({ graphData, label }) => {
         position: "bottom",
         title: {
           display: true,
-          text: "Bus Zones",
+          text: type == "dwellTime" ? "Bus Stop" : "Zone",
         },
       },
     },
@@ -34,7 +34,11 @@ const LineGraphComponent = ({ graphData, label }) => {
       tooltip: {
         callbacks: {
           label: function (tooltipItem) {
-            const label = `Bus Stop: ${tooltipItem.label}, Dwell Time: ${tooltipItem.formattedValue}`;
+            const label = `${type == "dwellTime" ? "Bus Stop" : "Zone"}: ${
+              tooltipItem.label
+            }, ${type == "dwellTime" ? "Dwell Time" : "Speed"}: ${
+              tooltipItem.formattedValue
+            }`;
             return label;
           },
           title: function (tooltipItem) {
@@ -73,14 +77,22 @@ const LineGraphComponent = ({ graphData, label }) => {
       label: `${label} ${
         label == "Driver" ? driverData.driverId : driverData.tripId
       }`,
-      data: driverData.dwellTimes.map(
-        ({ bus_stop_no, average_dwell_time }) => ({
-          x: bus_stop_no,
-          y: average_dwell_time,
-          label: bus_stop_no,
-          formattedValue: average_dwell_time,
-        })
-      ),
+      data:
+        type == "dwellTime"
+          ? driverData.dwellTimes.map(
+              ({ bus_stop_no, average_dwell_time }) => ({
+                x: bus_stop_no,
+                y: average_dwell_time,
+                label: bus_stop_no,
+                formattedValue: average_dwell_time,
+              })
+            )
+          : driverData.speeds.map(({ zone, average_speed }) => ({
+              x: zone,
+              y: average_speed,
+              label: zone,
+              formattedValue: average_speed,
+            })),
       borderColor: `hsl(${(index * 40) % 360}, 100%, 50%)`, // Adjust color
       backgroundColor: "rgba(0, 0, 255, 0.1)", // Area under line color (optional)
       pointRadius: 0, // Hide points
@@ -115,11 +127,38 @@ const SecondDataType = PropTypes.shape({
     })
   ).isRequired,
 });
+const TheadDataType = PropTypes.shape({
+  driverId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
+  speeds: PropTypes.arrayOf(
+    PropTypes.shape({
+      average_speed: PropTypes.number.isRequired,
+      zone: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+});
+
+const FourthDataType = PropTypes.shape({
+  tripId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  speeds: PropTypes.arrayOf(
+    PropTypes.shape({
+      average_speed: PropTypes.number.isRequired,
+      zone: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+});
+
 LineGraphComponent.propTypes = {
   graphData: PropTypes.arrayOf(
-    PropTypes.oneOfType([FirstDataType, SecondDataType])
+    PropTypes.oneOfType([
+      FirstDataType,
+      SecondDataType,
+      TheadDataType,
+      FourthDataType,
+    ])
   ).isRequired,
   label: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default LineGraphComponent;

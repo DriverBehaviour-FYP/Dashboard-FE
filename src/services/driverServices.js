@@ -82,7 +82,7 @@ const fetchDriverDwellTime = async (driverId, startDate, endDate) => {
 
 const fetchDriverZoneWiseSpeed = async (driverId, startDate, endDate) => {
   try {
-    const response = await axios.post(`${BASE_URL}/alldrivers/dwelltime/`, {
+    const response = await axios.post(`${BASE_URL}/alldrivers/speedatzones/`, {
       "start-date": startDate,
       "end-date": endDate,
     });

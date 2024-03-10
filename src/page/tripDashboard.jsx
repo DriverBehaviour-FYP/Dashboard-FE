@@ -12,6 +12,7 @@ import {
   fetchGPS,
   fetchTripMetadata,
   fetchTripDwellTime,
+  fetchTripZoneWiseSpeed,
 } from "../services/tripServices";
 
 const TripDashboard = () => {
@@ -21,6 +22,7 @@ const TripDashboard = () => {
   const [gps, setGPS] = useState({});
   const [clusterSummary, setClusterSummary] = useState({});
   const [dwellTimeTripData, setDwellTimeTripData] = useState([]);
+  const [tripSpeedAtZone, setTripSpeedAtZone] = useState({});
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -40,7 +42,12 @@ const TripDashboard = () => {
           id,
           metadataResponse["date"]
         );
+        const speedAtZoneResponse = await fetchTripZoneWiseSpeed(
+          id,
+          metadataResponse["date"]
+        );
         setDwellTimeTripData(dwellTimeResponse);
+        setTripSpeedAtZone(speedAtZoneResponse);
         setSummaryData(summaryResponse);
         setGPS(gpsResponse);
         setClusterSummary(summaryResponse["cluster-summary"]);
@@ -49,7 +56,7 @@ const TripDashboard = () => {
       } catch (error) {
         console.error("Error fetching data: ", error);
         setIsLoading(false);
-        // window.location.href = "/not-found";
+        window.location.href = "/not-found";
       }
     };
 
@@ -102,12 +109,14 @@ const TripDashboard = () => {
               <LineGraphComponent
                 graphData={dwellTimeTripData}
                 label={"Trip"}
+                type={"dwellTime"}
               />
             </div>
             <div className="col-6">
               <LineGraphComponent
-                graphData={dwellTimeTripData}
+                graphData={tripSpeedAtZone}
                 label={"Trip"}
+                type={"speed"}
               />
             </div>
           </div>

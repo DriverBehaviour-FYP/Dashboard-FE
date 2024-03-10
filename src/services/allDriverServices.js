@@ -50,13 +50,10 @@ const fetchAllDriversScore = async (startDate, endDate) => {
 
 const fetchAllDriversDwellTime = async (startDate, endDate) => {
   try {
-    const response = await axios.post(
-      `http://127.0.0.1:5000/api/alldrivers/dwelltime/`,
-      {
-        "start-date": startDate,
-        "end-date": endDate,
-      }
-    );
+    const response = await axios.post(`${BASE_URL}/alldrivers/dwelltime/`, {
+      "start-date": startDate,
+      "end-date": endDate,
+    });
     if (response.data.success) {
       return response.data.data;
     } else {
@@ -70,13 +67,10 @@ const fetchAllDriversDwellTime = async (startDate, endDate) => {
 
 const fetchAllDriverZoneWiseSpeed = async (startDate, endDate) => {
   try {
-    const response = await axios.post(
-      `http://127.0.0.1:5000/api/alldrivers/dwelltime/`,
-      {
-        "start-date": startDate,
-        "end-date": endDate,
-      }
-    );
+    const response = await axios.post(`${BASE_URL}/alldrivers/speedatzones/`, {
+      "start-date": startDate,
+      "end-date": endDate,
+    });
     if (response.data.success) {
       return response.data.data;
     } else {

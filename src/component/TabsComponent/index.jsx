@@ -40,12 +40,14 @@ const TabsComponent = ({ tabs, type, label }) => {
                   <LineGraphComponent
                     graphData={tab.driverDwellTimeData}
                     label={label}
+                    type={"dwellTime"}
                   />
                 </div>
                 <div className="col-6">
                   <LineGraphComponent
-                    graphData={tab.driverDwellTimeData}
+                    graphData={tab.driverZoneData}
                     label={label}
+                    type={"speed"}
                   />
                 </div>
               </div>
@@ -55,11 +57,13 @@ const TabsComponent = ({ tabs, type, label }) => {
                 <LineGraphComponent
                   graphData={tab.driverDwellTimeData}
                   label={label}
+                  type={"dwellTime"}
                 />
                 <br />
                 <LineGraphComponent
-                  graphData={tab.driverDwellTimeData}
+                  graphData={tab.driverZoneData}
                   label={label}
+                  type={"speed"}
                 />
               </div>
             )}
@@ -90,10 +94,10 @@ TabsComponent.propTypes = {
         PropTypes.shape({
           driverId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
             .isRequired,
-          dwellTimes: PropTypes.arrayOf(
+          speeds: PropTypes.arrayOf(
             PropTypes.shape({
-              average_dwell_time: PropTypes.number.isRequired,
-              bus_stop_no: PropTypes.number.isRequired,
+              average_speed: PropTypes.number.isRequired,
+              zone: PropTypes.number.isRequired,
             })
           ).isRequired,
         })

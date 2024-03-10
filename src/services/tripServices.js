@@ -90,18 +90,18 @@ const fetchTripDwellTime = async (tripId, startDate) => {
 };
 const fetchTripZoneWiseSpeed = async (tripId, startDate) => {
   try {
-    const response1 = await axios.get(`${BASE_URL}/trip/dwelltime/${tripId}`);
-    const response2 = await axios.post(`${BASE_URL}/alldrivers/dwelltime/`, {
+    const response1 = await axios.get(
+      `${BASE_URL}/trip/speedatzones/${tripId}`
+    );
+    const response2 = await axios.post(`${BASE_URL}/alldrivers/speedatzones/`, {
       "start-date": startDate,
       "end-date": startDate,
     });
     if (response1.data.success && response1.data.success) {
-      const filteredData = [
-        { tripId: tripId, dwellTimes: response1.data.data },
-      ];
+      const filteredData = [{ tripId: tripId, speeds: response1.data.data }];
       let exists = false;
       for (const busStop of response1.data.data) {
-        if (busStop.bus_stop_no === 201) {
+        if (busStop.zone === 201.5) {
           exists = true;
           break;
         }
@@ -112,7 +112,7 @@ const fetchTripZoneWiseSpeed = async (tripId, startDate) => {
         );
         filteredData.push({
           tripId: "all",
-          dwellTimes: output[0]["dwellTimes"],
+          speeds: output[0]["speeds"],
         });
       } else {
         const output = response2.data.data["direction-1"].filter(
@@ -120,7 +120,7 @@ const fetchTripZoneWiseSpeed = async (tripId, startDate) => {
         );
         filteredData.push({
           tripId: "all",
-          dwellTimes: output[0]["dwellTimes"],
+          speeds: output[0]["speeds"],
         });
       }
 
