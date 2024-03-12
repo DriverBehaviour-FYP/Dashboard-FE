@@ -153,18 +153,9 @@ const Dashboard = () => {
                 title={"Behavior Of All Drivers"}
                 labels={["Aggressive", "Normal", "Safe"]}
                 colors={["red", "blue", "green"]}
+                type={"Driver Behavior"}
               />
               <br />
-              <PieChartComponent
-                values={[
-                  clusterSummary["aggressive"],
-                  clusterSummary["normal"],
-                  clusterSummary["safe"],
-                ]}
-                title={"Behavior Of All Drivers"}
-                labels={["Aggressive", "Normal", "Safe"]}
-                colors={["red", "blue", "green"]}
-              />
             </div>
           </div>
 

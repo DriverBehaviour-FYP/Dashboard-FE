@@ -13,6 +13,7 @@ import {
   fetchTripMetadata,
   fetchTripDwellTime,
   fetchTripZoneWiseSpeed,
+  fetchDriverSpeedPercentages,
 } from "../services/tripServices";
 
 const TripDashboard = () => {
@@ -23,6 +24,7 @@ const TripDashboard = () => {
   const [clusterSummary, setClusterSummary] = useState({});
   const [dwellTimeTripData, setDwellTimeTripData] = useState([]);
   const [tripSpeedAtZone, setTripSpeedAtZone] = useState({});
+  const [speedPercentages, setSpeedPercentages] = useState({});
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -38,6 +40,8 @@ const TripDashboard = () => {
         const summaryResponse = await fetchTripSummary(id);
         const gpsResponse = await fetchGPS(id);
         const metadataResponse = await fetchTripMetadata(id);
+        const speedPercentagesResponse = await fetchDriverSpeedPercentages(id);
+
         const dwellTimeResponse = await fetchTripDwellTime(
           id,
           metadataResponse["date"]
@@ -48,6 +52,7 @@ const TripDashboard = () => {
         );
         setDwellTimeTripData(dwellTimeResponse);
         setTripSpeedAtZone(speedAtZoneResponse);
+        setSpeedPercentages(speedPercentagesResponse);
         setSummaryData(summaryResponse);
         setGPS(gpsResponse);
         setClusterSummary(summaryResponse["cluster-summary"]);
@@ -100,6 +105,23 @@ const TripDashboard = () => {
                 title={`Behavior Of Trip ${tripId}`}
                 labels={["Aggressive", "Normal", "Safe"]}
                 colors={["red", "blue", "green"]}
+                type={"Driver Behavior"}
+              />
+              <br />
+              <PieChartComponent
+                values={[
+                  speedPercentages["higher-than-3rd-quantile"],
+                  speedPercentages["between"],
+                  speedPercentages["lower-than-1st-quantile"],
+                ]}
+                title={`Speed Percentages Of Trip ${tripId}`}
+                labels={[
+                  "Higher Than 3rd Quantile",
+                  "Between 1st and 3rd Quantiles",
+                  "Lower Than 1st Quantile",
+                ]}
+                colors={["red", "blue", "green"]}
+                type={"Percentage"}
               />
             </div>
           </div>

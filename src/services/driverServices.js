@@ -12,7 +12,7 @@ const fetchDriverSummary = async (driverId, startDate, endDate) => {
       }
     );
     if (response.data.success) {
-      return response.data;
+      return response.data.data;
     } else {
       throw new Error();
     }
@@ -31,7 +31,7 @@ const fetchDriverMetadata = async (driverId, startDate, endDate) => {
       }
     );
     if (response.data.success) {
-      return response.data;
+      return response.data.data;
     } else {
       throw new Error();
     }
@@ -47,11 +47,11 @@ const fetchTripScore = async (driverId, startDate, endDate) => {
       "start-date": startDate,
       "end-date": endDate,
     });
-    // if (response.data.success) {
-    return response.data;
-    // } else {
-    // throw new Error();
-    // }
+    if (response.data.success) {
+      return response.data.data;
+    } else {
+      throw new Error();
+    }
   } catch (error) {
     console.error("Error fetching data: ", error);
     throw error;
@@ -102,10 +102,31 @@ const fetchDriverZoneWiseSpeed = async (driverId, startDate, endDate) => {
     throw error;
   }
 };
+
+const fetchDriverSpeedPercentages = async (driverId, startDate, endDate) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/driver/speedpercentages/${driverId}`,
+      {
+        "start-date": startDate,
+        "end-date": endDate,
+      }
+    );
+    if (response.data.success) {
+      return response.data.data;
+    } else {
+      throw new Error();
+    }
+  } catch (error) {
+    console.error("Error fetching data: ", error);
+    throw error;
+  }
+};
 export {
   fetchDriverSummary,
   fetchDriverMetadata,
   fetchTripScore,
   fetchDriverDwellTime,
   fetchDriverZoneWiseSpeed,
+  fetchDriverSpeedPercentages,
 };

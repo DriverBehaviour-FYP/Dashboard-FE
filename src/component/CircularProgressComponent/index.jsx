@@ -87,7 +87,6 @@ const FirstDataType = PropTypes.shape({
     max: PropTypes.number.isRequired,
     // min: PropTypes.number.isRequired,
   }).isRequired,
-  success: PropTypes.bool.isRequired,
   "trip-time": PropTypes.shape({
     avg: PropTypes.number.isRequired,
     max: PropTypes.number.isRequired,
@@ -110,7 +109,6 @@ const SecondDataType = PropTypes.shape({
     max: PropTypes.number.isRequired,
     // min: PropTypes.number.isRequired,
   }).isRequired,
-  success: PropTypes.bool.isRequired,
   "trip-time": PropTypes.shape({
     avg: PropTypes.number.isRequired,
     max: PropTypes.number.isRequired,
@@ -133,7 +131,6 @@ const TheadDataType = PropTypes.shape({
     max: PropTypes.number.isRequired,
     min: PropTypes.number.isRequired,
   }).isRequired,
-  success: PropTypes.bool.isRequired,
 });
 CircularProgressComponent.propTypes = {
   summaryStatics: PropTypes.oneOfType([

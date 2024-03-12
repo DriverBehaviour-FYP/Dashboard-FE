@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 import PropTypes from "prop-types";
 
-const PieChartComponent = ({ values, title, labels, colors }) => {
+const PieChartComponent = ({ values, title, labels, colors, type }) => {
   const chartRef = useRef(null); // Initialize with null
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const PieChartComponent = ({ values, title, labels, colors }) => {
           labels: labels,
           datasets: [
             {
-              label: "Driver Behavior",
+              label: type,
               data: values,
               backgroundColor: colors,
               // borderColor: ["black", "black", "black"],
@@ -57,7 +57,7 @@ const PieChartComponent = ({ values, title, labels, colors }) => {
         myChart.destroy();
       }
     };
-  }, [values, colors, labels, title]);
+  }, [values, colors, labels, title, type]);
 
   // Render legend manually with circles
   const renderLegend = () => {
@@ -89,6 +89,7 @@ PieChartComponent.propTypes = {
   title: PropTypes.string.isRequired,
   labels: PropTypes.arrayOf(PropTypes.string).isRequired,
   colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default PieChartComponent;

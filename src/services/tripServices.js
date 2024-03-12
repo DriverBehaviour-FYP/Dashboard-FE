@@ -6,7 +6,7 @@ const fetchTripSummary = async (tripId) => {
   try {
     const response = await axios.get(`${BASE_URL}/trip/summary/${tripId}`);
     if (response.data.success) {
-      return response.data;
+      return response.data.data;
     } else {
       throw new Error();
     }
@@ -19,7 +19,7 @@ const fetchTripMetadata = async (tripId) => {
   try {
     const response = await axios.get(`${BASE_URL}/trip/metadata/${tripId}`);
     if (response.data.success) {
-      return response.data;
+      return response.data.data;
     } else {
       throw new Error();
     }
@@ -33,7 +33,7 @@ const fetchGPS = async (tripId) => {
   try {
     const response = await axios.get(`${BASE_URL}/trip/gps/${tripId}`);
     if (response.data.success) {
-      return response.data;
+      return response.data.data;
     } else {
       throw new Error();
     }
@@ -134,10 +134,26 @@ const fetchTripZoneWiseSpeed = async (tripId, startDate) => {
   }
 };
 
+const fetchDriverSpeedPercentages = async (tripId) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/trip/speedpercentages/${tripId}`
+    );
+    if (response.data.success) {
+      return response.data.data;
+    } else {
+      throw new Error();
+    }
+  } catch (error) {
+    console.error("Error fetching data: ", error);
+    throw error;
+  }
+};
 export {
   fetchTripSummary,
   fetchTripMetadata,
   fetchGPS,
   fetchTripDwellTime,
   fetchTripZoneWiseSpeed,
+  fetchDriverSpeedPercentages,
 };

@@ -9,7 +9,7 @@ const fetchAllDriversSummary = async (startDate, endDate) => {
       "end-date": endDate,
     });
     if (response.data.success) {
-      return response.data;
+      return response.data.data;
     } else {
       throw new Error();
     }
@@ -25,7 +25,7 @@ const fetchAllDriversMetadata = async (startDate, endDate) => {
       "end-date": endDate,
     });
     if (response.data.success) {
-      return response.data;
+      return response.data.data;
     } else {
       throw new Error();
     }
@@ -41,7 +41,7 @@ const fetchAllDriversScore = async (startDate, endDate) => {
       "start-date": startDate,
       "end-date": endDate,
     });
-    return response.data;
+    return response.data.data;
   } catch (error) {
     console.error("Error fetching data: ", error);
     throw error;

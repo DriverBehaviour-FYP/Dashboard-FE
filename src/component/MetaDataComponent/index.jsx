@@ -85,7 +85,6 @@ const FirstDataType = PropTypes.shape({
       "terminal-2": PropTypes.string.isRequired,
     })
   ).isRequired,
-  success: PropTypes.bool.isRequired,
 });
 const SecondDataType = PropTypes.shape({
   "data-collection-start-date": PropTypes.string.isRequired,
@@ -99,7 +98,6 @@ const SecondDataType = PropTypes.shape({
       "terminal-2": PropTypes.string.isRequired,
     })
   ).isRequired,
-  success: PropTypes.bool.isRequired,
 });
 const TheadDataType = PropTypes.shape({
   date: PropTypes.string.isRequired,
@@ -113,7 +111,6 @@ const TheadDataType = PropTypes.shape({
     })
   ).isRequired,
   "start-time": PropTypes.string.isRequired,
-  success: PropTypes.bool.isRequired,
   "trip-id": PropTypes.number.isRequired,
 });
 

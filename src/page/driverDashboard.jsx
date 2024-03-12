@@ -14,6 +14,7 @@ import {
   fetchTripScore,
   fetchDriverDwellTime,
   fetchDriverZoneWiseSpeed,
+  fetchDriverSpeedPercentages,
 } from "../services/driverServices";
 import { fetchAllDriversSummary } from "../services/allDriverServices";
 
@@ -31,6 +32,7 @@ const DriverDashboard = () => {
   const [allClusterSummary, setAllClusterSummary] = useState({});
   const [driverDwellTimeData, setDriverDwellTimeData] = useState({});
   const [driverSpeedAtZone, setDriverSpeedAtZone] = useState({});
+  const [speedPercentages, setSpeedPercentages] = useState({});
 
   const handleDate = (_selectedStartDate, _selectedEndDate) => {
     setSelectedStartDate(_selectedStartDate);
@@ -69,11 +71,15 @@ const DriverDashboard = () => {
           selectedStartDate,
           selectedEndDate
         );
+        const speedPercentagesResponse = await fetchDriverSpeedPercentages(
+          id,
+          selectedStartDate,
+          selectedEndDate
+        );
 
         setDriverDwellTimeData(dwellTimeResponse);
         setDriverSpeedAtZone(speedAtZoneResponse);
-        // const summaryResponse = summaryJson;
-        // const metadataResponse = metaDataJson;
+        setSpeedPercentages(speedPercentagesResponse);
 
         const scoreResponse = await fetchTripScore(
           id,
@@ -163,6 +169,7 @@ const DriverDashboard = () => {
                     title={"Aggressive"}
                     labels={["All", `Driver ${driverId}`]}
                     colors={["red", "blue"]}
+                    type={"Driver Behavior"}
                   />
                 </div>
                 <div className="col-md-4 mt-3">
@@ -174,6 +181,7 @@ const DriverDashboard = () => {
                     title={"Normal"}
                     labels={["All", `Driver ${driverId}`]}
                     colors={["red", "blue"]}
+                    type={"Driver Behavior"}
                   />
                 </div>
                 <div className="col-md-4 mt-3">
@@ -182,6 +190,7 @@ const DriverDashboard = () => {
                     title={"Safe"}
                     labels={["All", `Driver ${driverId}`]}
                     colors={["red", "blue"]}
+                    type={"Driver Behavior"}
                   />
                 </div>
               </div>
@@ -196,17 +205,23 @@ const DriverDashboard = () => {
                 title={`Behavior Of Driver ${driverId}`}
                 labels={["Aggressive", "Normal", "Safe"]}
                 colors={["red", "blue", "green"]}
+                type={"Driver Behavior"}
               />
               <br />
               <PieChartComponent
                 values={[
-                  clusterSummary["aggressive"],
-                  clusterSummary["normal"],
-                  clusterSummary["safe"],
+                  speedPercentages["higher-than-3rd-quantile"],
+                  speedPercentages["between"],
+                  speedPercentages["lower-than-1st-quantile"],
                 ]}
-                title={`Behavior Of Driver ${driverId}`}
-                labels={["Aggressive", "Normal", "Safe"]}
+                title={`Speed Percentages Of Driver ${driverId}`}
+                labels={[
+                  "Higher Than 3rd Quantile",
+                  "Between 1st and 3rd Quantiles",
+                  "Lower Than 1st Quantile",
+                ]}
                 colors={["red", "blue", "green"]}
+                type={"Percentage"}
               />
             </div>
           </div>
