@@ -115,32 +115,12 @@ const ScatterComponent = ({ driverData, xAxisName, xAxisLabel }) => {
   };
 
   return (
-    <div className="white-box pt-2">
-      {/* <div className="row">
-        <div className="col-2"></div>
-        <div className="col-3">
-          <div className="legend-item">
-            <span className="circle red"></span>
-            <span className="legend-text">Agressive</span>
-          </div>
+    <div className="container">
+      <div className="row justify-content-center white-box">
+        <div className=" pt-2 text-center">
+          <Scatter options={options} data={data} className="rounded-2" />
         </div>
-        <div className="col-3">
-          <div className="legend-item">
-            <span className="circle" style={{ backgroundColor: "blue" }}></span>
-            <span className="legend-text">Normal</span>
-          </div>
-        </div>
-        <div className="col-3">
-          <div className="legend-item">
-            <span
-              className="circle"
-              style={{ backgroundColor: "green" }}
-            ></span>
-            <span className="legend-text">Safe</span>
-          </div>
-        </div>
-      </div> */}
-      <Scatter options={options} data={data} className="white-box rounded-2" />
+      </div>
     </div>
   );
 };

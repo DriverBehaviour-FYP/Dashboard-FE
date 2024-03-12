@@ -18,7 +18,7 @@ const NavBarComponent = () => {
               <Link to="/driver/all" className="nav-link">
                 Home
               </Link>
-              <Link to="/trip/real-time/116" className="nav-link">
+              <Link to="/trip/real-time/4105" className="nav-link">
                 Real Time Analysis
               </Link>
               {/* <Link to="/disabled" className="nav-link" disabled>

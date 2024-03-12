@@ -118,9 +118,20 @@ const Dashboard = () => {
                 summaryStatics={summaryData}
                 topicName={"allDriver"}
               />
+              <PieChartComponent
+                values={[
+                  clusterSummary["aggressive"],
+                  clusterSummary["normal"],
+                  clusterSummary["safe"],
+                ]}
+                title={"Behavior Of All Drivers"}
+                labels={["Aggressive", "Normal", "Safe"]}
+                colors={["red", "blue", "green"]}
+                type={"Driver Behavior"}
+              />
             </div>
 
-            <div className="col-md-7">
+            <div className="col-md-10">
               <ScatterComponent
                 driverData={scores}
                 xAxisLabel={"Drivers"}
@@ -142,20 +153,6 @@ const Dashboard = () => {
                 type="col"
                 label="Driver"
               />
-            </div>
-            <div className="col-md-3">
-              <PieChartComponent
-                values={[
-                  clusterSummary["aggressive"],
-                  clusterSummary["normal"],
-                  clusterSummary["safe"],
-                ]}
-                title={"Behavior Of All Drivers"}
-                labels={["Aggressive", "Normal", "Safe"]}
-                colors={["red", "blue", "green"]}
-                type={"Driver Behavior"}
-              />
-              <br />
             </div>
           </div>
 

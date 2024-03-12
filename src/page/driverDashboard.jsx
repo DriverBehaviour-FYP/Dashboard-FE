@@ -202,7 +202,7 @@ const DriverDashboard = () => {
                   clusterSummary["normal"],
                   clusterSummary["safe"],
                 ]}
-                title={`Behavior Of Driver ${driverId}`}
+                title={`Behavior`}
                 labels={["Aggressive", "Normal", "Safe"]}
                 colors={["red", "blue", "green"]}
                 type={"Driver Behavior"}
@@ -214,11 +214,11 @@ const DriverDashboard = () => {
                   speedPercentages["between"],
                   speedPercentages["lower-than-1st-quantile"],
                 ]}
-                title={`Speed Percentages Of Driver ${driverId}`}
+                title={`Speed Percentages`}
                 labels={[
-                  "Higher Than 3rd Quantile",
-                  "Between 1st and 3rd Quantiles",
-                  "Lower Than 1st Quantile",
+                  "Higher Than 3Q",
+                  "Between 1Q and 3Q",
+                  "Lower Than 1Q",
                 ]}
                 colors={["red", "blue", "green"]}
                 type={"Percentage"}

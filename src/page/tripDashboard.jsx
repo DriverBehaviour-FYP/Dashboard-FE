@@ -86,23 +86,13 @@ const TripDashboard = () => {
                 summaryStatics={summaryData}
                 topicName={"trip"}
               />
-            </div>
-
-            {/* Column for MapComponent */}
-            <div className="col-md-7">
-              <MapComponent
-                mapData={gps.gps}
-                splitPoint={gps["split_points"]}
-              />
-            </div>
-            <div className="col-md-3">
               <PieChartComponent
                 values={[
                   clusterSummary["aggressive"],
                   clusterSummary["normal"],
                   clusterSummary["safe"],
                 ]}
-                title={`Behavior Of Trip ${tripId}`}
+                title={`Behavior`}
                 labels={["Aggressive", "Normal", "Safe"]}
                 colors={["red", "blue", "green"]}
                 type={"Driver Behavior"}
@@ -114,32 +104,40 @@ const TripDashboard = () => {
                   speedPercentages["between"],
                   speedPercentages["lower-than-1st-quantile"],
                 ]}
-                title={`Speed Percentages Of Trip ${tripId}`}
+                title={`Speed Percentages`}
                 labels={[
-                  "Higher Than 3rd Quantile",
-                  "Between 1st and 3rd Quantiles",
-                  "Lower Than 1st Quantile",
+                  "Higher Than 3Q",
+                  "Between 1Q and 3Q",
+                  "Lower Than 1Q",
                 ]}
                 colors={["red", "blue", "green"]}
                 type={"Percentage"}
               />
             </div>
-          </div>
-          <br />
-          <div className="row">
-            <div className="col-6">
-              <LineGraphComponent
-                graphData={dwellTimeTripData}
-                label={"Trip"}
-                type={"dwellTime"}
+
+            {/* Column for MapComponent */}
+            <div className="col-md-10">
+              <MapComponent
+                mapData={gps.gps}
+                splitPoint={gps["split_points"]}
               />
-            </div>
-            <div className="col-6">
-              <LineGraphComponent
-                graphData={tripSpeedAtZone}
-                label={"Trip"}
-                type={"speed"}
-              />
+              <br />
+              <div className="row">
+                <div className="col-md-6">
+                  <LineGraphComponent
+                    graphData={dwellTimeTripData}
+                    label={"Trip"}
+                    type={"dwellTime"}
+                  />
+                </div>
+                <div className="col-md-6">
+                  <LineGraphComponent
+                    graphData={tripSpeedAtZone}
+                    label={"Trip"}
+                    type={"speed"}
+                  />
+                </div>
+              </div>
             </div>
           </div>
           <br />

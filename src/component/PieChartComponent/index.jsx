@@ -69,7 +69,7 @@ const PieChartComponent = ({ values, title, labels, colors, type }) => {
               className="circle mx-2"
               style={{ backgroundColor: colors[index] }}
             ></span>
-            <span className="legend-text">{label}</span>
+            <span className="legend-text small">{label}</span>
           </div>
         ))}
       </div>
