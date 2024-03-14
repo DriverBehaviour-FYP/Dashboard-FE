@@ -6,11 +6,6 @@ import LineGraphComponent from "../LineGraphComponent";
 
 const TabsComponent = ({ tabs, label }) => {
   const [activeTab, setActiveTab] = useState(0);
-  // tabs.map((tab, index) => {
-  //   console.log(tab.data);
-  //   console.log(tab.type);
-  //   console.log(index);
-  // });
   const handleTabSelect = (index) => {
     setActiveTab(index);
   };

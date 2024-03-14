@@ -10,7 +10,6 @@ const getMarkerColor = (cluster_id) => {
 };
 
 const MapComponent = ({ mapData, splitPoint }) => {
-  // console.log(gps);
   const zoom = 13.2; // Initial zoom level
   // const filterDataPoint = dataPoints.filter((point) => point.trip_id === 1);
   const center = mapData.reduce(

@@ -142,8 +142,6 @@ const DriverDashboard = () => {
           },
         ]);
         setIsLoading(false); // Set to false when data fetching is completed
-
-        console.log(summaryResponse);
       } catch (error) {
         console.error("Error fetching data: ", error);
         setIsLoading(false);
@@ -171,21 +169,23 @@ const DriverDashboard = () => {
           <div className="container-fluid my-2">
             <Nav
               variant="tabs"
-              className="justify-content-center"
-              activeKey={activeTab.toString()} // activeKey should be string
+              className="nav nav-tabs justify-content-center"
+              activeKey={activeTab.toString()}
             >
               {tabs.map((tab, index) => (
-                <Nav.Item key={index} className="w-25 text-center">
+                <Nav.Item key={index} className="nav-item w-25  text-center">
                   <Nav.Link
-                    eventKey={index.toString()} // eventKey should be string
-                    active={activeTab === index}
+                    eventKey={index.toString()}
+                    className={`nav-link ${
+                      activeTab === index ? "active" : ""
+                    }`}
                     onClick={() => handleTabSelect(index)}
                   >
                     {tab.label}
                   </Nav.Link>
                 </Nav.Item>
               ))}
-            </Nav>
+            </Nav>{" "}
             <Tab.Content>
               {tabs.map((tab, index) => (
                 <Tab.Pane

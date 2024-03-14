@@ -119,14 +119,16 @@ const Dashboard = () => {
           <div className="container-fluid my-2">
             <Nav
               variant="tabs"
-              className="justify-content-center"
-              activeKey={activeTab.toString()} // activeKey should be string
+              className="nav nav-tabs justify-content-center"
+              activeKey={activeTab.toString()}
             >
               {tabs.map((tab, index) => (
-                <Nav.Item key={index} className="w-25 text-center">
+                <Nav.Item key={index} className="nav-item w-25  text-center">
                   <Nav.Link
-                    eventKey={index.toString()} // eventKey should be string
-                    active={activeTab === index}
+                    eventKey={index.toString()}
+                    className={`nav-link ${
+                      activeTab === index ? "active" : ""
+                    }`}
                     onClick={() => handleTabSelect(index)}
                   >
                     {tab.label}
@@ -141,7 +143,6 @@ const Dashboard = () => {
                   eventKey={index.toString()} // eventKey should be string
                   active={activeTab === index}
                 >
-                  <br />
                   <div className="row mt-3">
                     <MetaDataComponent
                       metaData={tab.metadata}
