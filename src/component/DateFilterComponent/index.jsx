@@ -1,13 +1,34 @@
 import { useState } from "react";
 import { Button } from "@mui/material";
 import PropTypes from "prop-types";
+import { Form } from "react-bootstrap";
 
-const DateFilterComponent = ({ startDate, endDate, handleDate }) => {
+const DateFilterComponent = ({
+  startDate,
+  endDate,
+  handleDate,
+  handleDrivers,
+  list,
+}) => {
+  console.log(list);
   const [selectedStartDate, setSelectedStartDate] = useState(startDate);
   const [selectedEndDate, setSelectedEndDate] = useState(endDate);
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const handleApplyClick = () => {
     handleDate(selectedStartDate, selectedEndDate);
+    handleDrivers(selectedItems);
+  };
+
+  const handleSelectionChange = (e) => {
+    const selectedOption = e.target.value;
+    if (!selectedItems.includes(selectedOption)) {
+      setSelectedItems([...selectedItems, selectedOption]);
+    }
+  };
+
+  const handleRemoveItem = (itemToRemove) => {
+    setSelectedItems(selectedItems.filter((item) => item !== itemToRemove));
   };
 
   return (
@@ -52,12 +73,51 @@ const DateFilterComponent = ({ startDate, endDate, handleDate }) => {
           Apply
         </Button>
       </div>
+      <div className="row">
+        <div className="col-md-4 pt-2">
+          <Form.Label>Select multiple items:</Form.Label>
+          <Form.Select multiple onChange={handleSelectionChange}>
+            {list.map((element, index) => (
+              <option value={element} key={index}>
+                {element}
+              </option>
+            ))}
+          </Form.Select>
+        </div>
+        <div className="col-md-4 pt-2">
+          <h2>Selected Items:</h2>
+          <ul className="list-group">
+            {selectedItems.map((item) => (
+              <li
+                key={item}
+                className="list-group-item d-flex justify-content-between align-items-center"
+                onClick={() => handleRemoveItem(item)}
+              >
+                {item}
+                <button
+                  className="btn btn-danger btn-sm"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleRemoveItem(item);
+                  }}
+                >
+                  Remove
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };
+
 DateFilterComponent.propTypes = {
   startDate: PropTypes.string.isRequired,
   endDate: PropTypes.string.isRequired,
+  list: PropTypes.arrayOf(PropTypes.number).isRequired,
   handleDate: PropTypes.func.isRequired,
+  handleDrivers: PropTypes.func.isRequired,
 };
+
 export default DateFilterComponent;

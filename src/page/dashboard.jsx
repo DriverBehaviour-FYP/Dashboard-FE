@@ -24,6 +24,8 @@ const Dashboard = () => {
   const [selectedEndDate, setSelectedEndDate] = useState("");
   const [activeTab, setActiveTab] = useState(0); // State to hold active tab index
   const [tabs, setTabs] = useState([]);
+  const [driverList, setDriverList] = useState([]);
+  const [selectedDriverList, setSelecetedDriverList] = useState([]);
 
   const handleTabSelect = (index) => {
     setActiveTab(index);
@@ -33,34 +35,42 @@ const Dashboard = () => {
     setSelectedStartDate(_selectedStartDate);
     setSelectedEndDate(_selectedEndDate);
   };
+  const handleDrivers = (_selectedDriverList) => {
+    setSelecetedDriverList(_selectedDriverList);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const summaryResponse = await fetchAllDriversSummary(
           selectedStartDate,
-          selectedEndDate
+          selectedEndDate,
+          selectedDriverList
         );
         const metadataResponse = await fetchAllDriversMetadata(
           selectedStartDate,
-          selectedEndDate
+          selectedEndDate,
+          selectedDriverList
         );
         const dwellTimeResponse = await fetchAllDriversDwellTime(
           selectedStartDate,
-          selectedEndDate
+          selectedEndDate,
+          selectedDriverList
         );
         const speedAtZoneResponse = await fetchAllDriverZoneWiseSpeed(
           selectedStartDate,
-          selectedEndDate
+          selectedEndDate,
+          selectedDriverList
         );
         const scoreResponse = await fetchAllDriversScore(
           selectedStartDate,
-          selectedEndDate
+          selectedEndDate,
+          selectedDriverList
         );
 
         setStartDate(metadataResponse["data-collection-start-date"]);
         setEndDate(metadataResponse["data-collection-end-date"]);
-
+        setDriverList(scoreResponse["deviceid"]);
         setTabs([
           {
             label: "Overall",
@@ -100,7 +110,7 @@ const Dashboard = () => {
     };
 
     fetchData();
-  }, [selectedStartDate, selectedEndDate]);
+  }, [selectedStartDate, selectedEndDate, selectedDriverList]);
 
   return (
     <div className="container light-purpal-box">
@@ -114,6 +124,8 @@ const Dashboard = () => {
             startDate={startDate}
             endDate={endDate}
             handleDate={handleDate}
+            handleDrivers={handleDrivers}
+            list={driverList}
           />
           <br />
           <div className="container-fluid my-2">

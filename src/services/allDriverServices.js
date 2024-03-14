@@ -2,7 +2,11 @@ import axios from "axios";
 
 const BASE_URL = "http://127.0.0.1:5000/api";
 
-const fetchAllDriversSummary = async (startDate, endDate) => {
+const fetchAllDriversSummary = async (
+  startDate,
+  endDate,
+  selectedDriverList
+) => {
   try {
     const response = await axios.post(`${BASE_URL}/alldrivers/summary/`, {
       "start-date": startDate,
@@ -18,7 +22,11 @@ const fetchAllDriversSummary = async (startDate, endDate) => {
     throw error;
   }
 };
-const fetchAllDriversMetadata = async (startDate, endDate) => {
+const fetchAllDriversMetadata = async (
+  startDate,
+  endDate,
+  selectedDriverList
+) => {
   try {
     const response = await axios.post(`${BASE_URL}/alldrivers/metadata/`, {
       "start-date": startDate,
@@ -35,7 +43,7 @@ const fetchAllDriversMetadata = async (startDate, endDate) => {
   }
 };
 
-const fetchAllDriversScore = async (startDate, endDate) => {
+const fetchAllDriversScore = async (startDate, endDate, selectedDriverList) => {
   try {
     const response = await axios.post(`${BASE_URL}/driver/score`, {
       "start-date": startDate,
@@ -48,7 +56,11 @@ const fetchAllDriversScore = async (startDate, endDate) => {
   }
 };
 
-const fetchAllDriversDwellTime = async (startDate, endDate) => {
+const fetchAllDriversDwellTime = async (
+  startDate,
+  endDate,
+  selectedDriverList
+) => {
   try {
     const response = await axios.post(`${BASE_URL}/alldrivers/dwelltime/`, {
       "start-date": startDate,
@@ -65,7 +77,11 @@ const fetchAllDriversDwellTime = async (startDate, endDate) => {
   }
 };
 
-const fetchAllDriverZoneWiseSpeed = async (startDate, endDate) => {
+const fetchAllDriverZoneWiseSpeed = async (
+  startDate,
+  endDate,
+  selectedDriverList
+) => {
   try {
     const response = await axios.post(`${BASE_URL}/alldrivers/speedatzones/`, {
       "start-date": startDate,
