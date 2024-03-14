@@ -7,6 +7,7 @@ import LoaderComponent from "../component/LoaderComponent";
 import DateFilterComponent from "../component/DateFilterComponent";
 import PieChartComponent from "../component/PieChartComponent";
 import TabsComponent from "../component/TabsComponent";
+import { Tab, Nav } from "react-bootstrap";
 
 import {
   fetchDriverSummary,
@@ -20,19 +21,18 @@ import { fetchAllDriversSummary } from "../services/allDriverServices";
 
 const DriverDashboard = () => {
   const { driverId } = useParams();
-  const [summaryData, setSummaryData] = useState({});
-  const [metadata, setMetadata] = useState({});
-  const [scores, setScores] = useState({});
+
+  const [activeTab, setActiveTab] = useState(0); // State to hold active tab index
+
   const [isLoading, setIsLoading] = useState(true);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [selectedStartDate, setSelectedStartDate] = useState("");
   const [selectedEndDate, setSelectedEndDate] = useState("");
-  const [clusterSummary, setClusterSummary] = useState({});
-  const [allClusterSummary, setAllClusterSummary] = useState({});
-  const [driverDwellTimeData, setDriverDwellTimeData] = useState({});
-  const [driverSpeedAtZone, setDriverSpeedAtZone] = useState({});
-  const [speedPercentages, setSpeedPercentages] = useState({});
+  const [tabs, setTabs] = useState([]);
+  const handleTabSelect = (index) => {
+    setActiveTab(index);
+  };
 
   const handleDate = (_selectedStartDate, _selectedEndDate) => {
     setSelectedStartDate(_selectedStartDate);
@@ -77,21 +77,11 @@ const DriverDashboard = () => {
           selectedEndDate
         );
 
-        setDriverDwellTimeData(dwellTimeResponse);
-        setDriverSpeedAtZone(speedAtZoneResponse);
-        setSpeedPercentages(speedPercentagesResponse);
-
         const scoreResponse = await fetchTripScore(
           id,
           selectedStartDate,
           selectedEndDate
         );
-
-        setStartDate(metadataResponse["data-collection-start-date"]);
-        setEndDate(metadataResponse["data-collection-end-date"]);
-
-        setClusterSummary(summaryResponse["cluster-summary"]);
-        setAllClusterSummary(allSummaryResponse["all-cluster-summary"]);
 
         const newSummaryResponse = {};
         const newMetadataResponse = {};
@@ -113,10 +103,47 @@ const DriverDashboard = () => {
             newMetadataResponse[key] = metadataResponse[key];
           }
         }
-        setSummaryData(newSummaryResponse);
-        setMetadata(newMetadataResponse);
-        setScores(scoreResponse);
+
+        setStartDate(metadataResponse["data-collection-start-date"]);
+        setEndDate(metadataResponse["data-collection-end-date"]);
+        setTabs([
+          {
+            label: "Overall",
+            summaryData: summaryResponse,
+            metadata: metadataResponse,
+            scores: scoreResponse,
+            clusterSummary: summaryResponse["cluster-summary"],
+            driverDwellTimeData: dwellTimeResponse["direction-1"],
+            driverSpeedAtZone: speedAtZoneResponse["direction-1"],
+            speedPercentages: speedPercentagesResponse,
+            allClusterSummary: allSummaryResponse["all-cluster-summary"],
+          },
+          {
+            label: "Direction 1",
+            summaryData: summaryResponse,
+            metadata: metadataResponse,
+            scores: scoreResponse,
+            clusterSummary: summaryResponse["cluster-summary"],
+            driverDwellTimeData: dwellTimeResponse["direction-1"],
+            driverSpeedAtZone: speedAtZoneResponse["direction-1"],
+            speedPercentages: speedPercentagesResponse,
+            allClusterSummary: allSummaryResponse["all-cluster-summary"],
+          },
+          {
+            label: "Direction 2",
+            summaryData: summaryResponse,
+            metadata: metadataResponse,
+            scores: scoreResponse,
+            clusterSummary: summaryResponse["cluster-summary"],
+            driverDwellTimeData: dwellTimeResponse["direction-1"],
+            driverSpeedAtZone: speedAtZoneResponse["direction-1"],
+            speedPercentages: speedPercentagesResponse,
+            allClusterSummary: allSummaryResponse["all-cluster-summary"],
+          },
+        ]);
         setIsLoading(false); // Set to false when data fetching is completed
+
+        console.log(summaryResponse);
       } catch (error) {
         console.error("Error fetching data: ", error);
         setIsLoading(false);
@@ -140,109 +167,145 @@ const DriverDashboard = () => {
             endDate={endDate}
             handleDate={handleDate}
           />
-
-          <div className="row mt-3">
-            <MetaDataComponent metaData={metadata} topicName={"driver"} />
-          </div>
-          <div className="row">
-            {/* Column for CircularProgressComponent */}
-            <div className="col-md-2">
-              <CircularProgressComponent
-                summaryStatics={summaryData}
-                topicName={"driver"}
-              />
-            </div>
-
-            <div className="col-md-7">
-              <ScatterComponent
-                driverData={scores}
-                xAxisLabel={"Trips"}
-                xAxisName={"trip_id"}
-              />
-              <div className="row">
-                <div className="col-md-4 mt-3">
-                  <PieChartComponent
-                    values={[
-                      allClusterSummary["aggressive"],
-                      clusterSummary["aggressive"],
-                    ]}
-                    title={"Aggressive"}
-                    labels={["All", `Driver ${driverId}`]}
-                    colors={["red", "blue"]}
-                    type={"Driver Behavior"}
-                  />
-                </div>
-                <div className="col-md-4 mt-3">
-                  <PieChartComponent
-                    values={[
-                      allClusterSummary["normal"],
-                      clusterSummary["normal"],
-                    ]}
-                    title={"Normal"}
-                    labels={["All", `Driver ${driverId}`]}
-                    colors={["red", "blue"]}
-                    type={"Driver Behavior"}
-                  />
-                </div>
-                <div className="col-md-4 mt-3">
-                  <PieChartComponent
-                    values={[allClusterSummary["safe"], clusterSummary["safe"]]}
-                    title={"Safe"}
-                    labels={["All", `Driver ${driverId}`]}
-                    colors={["red", "blue"]}
-                    type={"Driver Behavior"}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="col-md-3">
-              <PieChartComponent
-                values={[
-                  clusterSummary["aggressive"],
-                  clusterSummary["normal"],
-                  clusterSummary["safe"],
-                ]}
-                title={`Behavior`}
-                labels={["Aggressive", "Normal", "Safe"]}
-                colors={["red", "blue", "green"]}
-                type={"Driver Behavior"}
-              />
-              <br />
-              <PieChartComponent
-                values={[
-                  speedPercentages["higher-than-3rd-quantile"],
-                  speedPercentages["between"],
-                  speedPercentages["lower-than-1st-quantile"],
-                ]}
-                title={`Speed Percentages`}
-                labels={[
-                  "Higher Than 3Q",
-                  "Between 1Q and 3Q",
-                  "Lower Than 1Q",
-                ]}
-                colors={["red", "blue", "green"]}
-                type={"Percentage"}
-              />
-            </div>
-          </div>
           <br />
-          <div className="row">
-            <TabsComponent
-              tabs={[
-                {
-                  label: "Direction 1",
-                  driverZoneData: driverSpeedAtZone["direction-1"],
-                  driverDwellTimeData: driverDwellTimeData["direction-1"],
-                },
-                {
-                  label: "Direction 2",
-                  driverZoneData: driverSpeedAtZone["direction-2"],
-                  driverDwellTimeData: driverDwellTimeData["direction-2"],
-                },
-              ]}
-              type="row"
-              label="Driver"
-            />
+          <div className="container-fluid my-2">
+            <Nav
+              variant="tabs"
+              className="justify-content-center"
+              activeKey={activeTab.toString()} // activeKey should be string
+            >
+              {tabs.map((tab, index) => (
+                <Nav.Item key={index} className="w-25 text-center">
+                  <Nav.Link
+                    eventKey={index.toString()} // eventKey should be string
+                    active={activeTab === index}
+                    onClick={() => handleTabSelect(index)}
+                  >
+                    {tab.label}
+                  </Nav.Link>
+                </Nav.Item>
+              ))}
+            </Nav>
+            <Tab.Content>
+              {tabs.map((tab, index) => (
+                <Tab.Pane
+                  key={index}
+                  eventKey={index.toString()} // eventKey should be string
+                  active={activeTab === index}
+                >
+                  <br />
+                  <div className="row mt-3">
+                    <MetaDataComponent
+                      metaData={tab.metadata}
+                      topicName={"driver"}
+                    />
+                  </div>
+                  <div className="row">
+                    {/* Column for CircularProgressComponent */}
+                    <div className="col-md-2">
+                      <CircularProgressComponent
+                        summaryStatics={tab.summaryData}
+                        topicName={"driver"}
+                      />
+                    </div>
+
+                    <div className="col-md-7">
+                      <ScatterComponent
+                        driverData={tab.scores}
+                        xAxisLabel={"Trips"}
+                        xAxisName={"trip_id"}
+                      />
+                      <div className="row">
+                        <div className="col-md-4 mt-3">
+                          <PieChartComponent
+                            values={[
+                              tab.allClusterSummary["aggressive"],
+                              tab.clusterSummary["aggressive"],
+                            ]}
+                            title={"Aggressive"}
+                            labels={["All", `Driver ${driverId}`]}
+                            colors={["red", "blue"]}
+                            type={"Driver Behavior"}
+                          />
+                        </div>
+                        <div className="col-md-4 mt-3">
+                          <PieChartComponent
+                            values={[
+                              tab.allClusterSummary["normal"],
+                              tab.clusterSummary["normal"],
+                            ]}
+                            title={"Normal"}
+                            labels={["All", `Driver ${driverId}`]}
+                            colors={["red", "blue"]}
+                            type={"Driver Behavior"}
+                          />
+                        </div>
+                        <div className="col-md-4 mt-3">
+                          <PieChartComponent
+                            values={[
+                              tab.allClusterSummary["safe"],
+                              tab.clusterSummary["safe"],
+                            ]}
+                            title={"Safe"}
+                            labels={["All", `Driver ${driverId}`]}
+                            colors={["red", "blue"]}
+                            type={"Driver Behavior"}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-md-3">
+                      <PieChartComponent
+                        values={[
+                          tab.clusterSummary["aggressive"],
+                          tab.clusterSummary["normal"],
+                          tab.clusterSummary["safe"],
+                        ]}
+                        title={`Behavior`}
+                        labels={["Aggressive", "Normal", "Safe"]}
+                        colors={["red", "blue", "green"]}
+                        type={"Driver Behavior"}
+                      />
+                      <br />
+                      <PieChartComponent
+                        values={[
+                          tab.speedPercentages["higher-than-3rd-quantile"],
+                          tab.speedPercentages["between"],
+                          tab.speedPercentages["lower-than-1st-quantile"],
+                        ]}
+                        title={`Speed Percentages`}
+                        labels={[
+                          "Higher Than 3Q",
+                          "Between 1Q and 3Q",
+                          "Lower Than 1Q",
+                        ]}
+                        colors={["red", "blue", "green"]}
+                        type={"Percentage"}
+                      />
+                    </div>
+                  </div>
+                  <br />
+                  <div className="row">
+                    <TabsComponent
+                      tabs={[
+                        {
+                          label: "Driver Speed At Zone",
+                          data: tab.driverSpeedAtZone,
+                          type: "speed",
+                        },
+                        {
+                          label: "Driver DwellTime",
+                          data: tab.driverDwellTimeData,
+                          type: "dwellTime",
+                        },
+                      ]}
+                      label="Driver"
+                    />
+                  </div>
+                  <br />
+                </Tab.Pane>
+              ))}
+            </Tab.Content>
           </div>
         </>
       )}

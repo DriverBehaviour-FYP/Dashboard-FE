@@ -4,9 +4,13 @@ import { Tab, Nav } from "react-bootstrap";
 // import ScatterComponent from "../ScatterComponent";
 import LineGraphComponent from "../LineGraphComponent";
 
-const TabsComponent = ({ tabs, type, label }) => {
+const TabsComponent = ({ tabs, label }) => {
   const [activeTab, setActiveTab] = useState(0);
-
+  // tabs.map((tab, index) => {
+  //   console.log(tab.data);
+  //   console.log(tab.type);
+  //   console.log(index);
+  // });
   const handleTabSelect = (index) => {
     setActiveTab(index);
   };
@@ -34,39 +38,11 @@ const TabsComponent = ({ tabs, type, label }) => {
         {tabs.map((tab, index) => (
           <Tab.Pane key={index} eventKey={index} active={activeTab === index}>
             <br />
-            {type === "row" && (
-              <div className="row">
-                <div className="col-6">
-                  <LineGraphComponent
-                    graphData={tab.driverDwellTimeData}
-                    label={label}
-                    type={"dwellTime"}
-                  />
-                </div>
-                <div className="col-6">
-                  <LineGraphComponent
-                    graphData={tab.driverZoneData}
-                    label={label}
-                    type={"speed"}
-                  />
-                </div>
-              </div>
-            )}
-            {type === "col" && (
-              <div>
-                <LineGraphComponent
-                  graphData={tab.driverDwellTimeData}
-                  label={label}
-                  type={"dwellTime"}
-                />
-                <br />
-                <LineGraphComponent
-                  graphData={tab.driverZoneData}
-                  label={label}
-                  type={"speed"}
-                />
-              </div>
-            )}
+            <LineGraphComponent
+              graphData={tab.data}
+              label={label}
+              type={tab.type}
+            />
           </Tab.Pane>
         ))}
       </Tab.Content>
@@ -78,33 +54,34 @@ TabsComponent.propTypes = {
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
-      driverDwellTimeData: PropTypes.arrayOf(
-        PropTypes.shape({
-          driverId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-            .isRequired,
-          dwellTimes: PropTypes.arrayOf(
-            PropTypes.shape({
-              average_dwell_time: PropTypes.number.isRequired,
-              bus_stop_no: PropTypes.number.isRequired,
-            })
-          ).isRequired,
-        })
-      ).isRequired,
-      driverZoneData: PropTypes.arrayOf(
-        PropTypes.shape({
-          driverId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-            .isRequired,
-          speeds: PropTypes.arrayOf(
-            PropTypes.shape({
-              average_speed: PropTypes.number.isRequired,
-              zone: PropTypes.number.isRequired,
-            })
-          ).isRequired,
-        })
+      type: PropTypes.string.isRequired,
+
+      data: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+          PropTypes.shape({
+            driverId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+              .isRequired,
+            dwellTimes: PropTypes.arrayOf(
+              PropTypes.shape({
+                average_dwell_time: PropTypes.number.isRequired,
+                bus_stop_no: PropTypes.number.isRequired,
+              })
+            ).isRequired,
+          }),
+          PropTypes.shape({
+            driverId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+              .isRequired,
+            speeds: PropTypes.arrayOf(
+              PropTypes.shape({
+                average_speed: PropTypes.number.isRequired,
+                zone: PropTypes.number.isRequired,
+              })
+            ).isRequired,
+          }),
+        ])
       ).isRequired,
     })
   ).isRequired,
-  type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
 };
 

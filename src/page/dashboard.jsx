@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { Tab, Nav } from "react-bootstrap";
 import ScatterComponent from "../component/ScatterComponent";
 import CircularProgressComponent from "../component/CircularProgressComponent";
 import MetaDataComponent from "../component/MetaDataComponent";
 import LoaderComponent from "../component/LoaderComponent";
 import DateFilterComponent from "../component/DateFilterComponent";
 import TabsComponent from "../component/TabsComponent";
+import PieChartComponent from "../component/PieChartComponent";
 
 import {
   fetchAllDriversMetadata,
@@ -13,25 +15,25 @@ import {
   fetchAllDriversDwellTime,
   fetchAllDriverZoneWiseSpeed,
 } from "../services/allDriverServices";
-import PieChartComponent from "../component/PieChartComponent";
 
 const Dashboard = () => {
-  const [summaryData, setSummaryData] = useState({});
-  const [metadata, setMetadata] = useState({});
-  const [scores, setScores] = useState({});
-  const [isLoading, setIsLoading] = useState(true); // Initially set to true to show loader
+  const [isLoading, setIsLoading] = useState(true);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [selectedStartDate, setSelectedStartDate] = useState("");
   const [selectedEndDate, setSelectedEndDate] = useState("");
-  const [clusterSummary, setClusterSummary] = useState({});
-  const [allDriverDwellTimeData, setAllDriverDwellTimeData] = useState({});
-  const [allDriverSpeedAtZone, setAllDriverSpeedAtZone] = useState({});
+  const [activeTab, setActiveTab] = useState(0); // State to hold active tab index
+  const [tabs, setTabs] = useState([]);
+
+  const handleTabSelect = (index) => {
+    setActiveTab(index);
+  };
 
   const handleDate = (_selectedStartDate, _selectedEndDate) => {
     setSelectedStartDate(_selectedStartDate);
     setSelectedEndDate(_selectedEndDate);
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -55,36 +57,41 @@ const Dashboard = () => {
           selectedStartDate,
           selectedEndDate
         );
-        setAllDriverDwellTimeData(dwellTimeResponse);
-        setAllDriverSpeedAtZone(speedAtZoneResponse);
+
         setStartDate(metadataResponse["data-collection-start-date"]);
         setEndDate(metadataResponse["data-collection-end-date"]);
 
-        setClusterSummary(summaryResponse["all-cluster-summary"]);
+        setTabs([
+          {
+            label: "Overall",
+            summaryData: summaryResponse,
+            metadata: metadataResponse,
+            scores: scoreResponse,
+            clusterSummary: summaryResponse["all-cluster-summary"],
+            allDriverDwellTimeData: dwellTimeResponse["direction-1"],
+            allDriverSpeedAtZone: speedAtZoneResponse["direction-1"],
+          },
+          {
+            label: "Direction 1",
+            summaryData: summaryResponse,
+            metadata: metadataResponse,
+            scores: scoreResponse,
+            clusterSummary: summaryResponse["all-cluster-summary"],
+            allDriverDwellTimeData: dwellTimeResponse["direction-1"],
+            allDriverSpeedAtZone: speedAtZoneResponse["direction-1"],
+          },
+          {
+            label: "Direction 2",
+            summaryData: summaryResponse,
+            metadata: metadataResponse,
+            scores: scoreResponse,
+            clusterSummary: summaryResponse["all-cluster-summary"],
+            allDriverDwellTimeData: dwellTimeResponse["direction-2"],
+            allDriverSpeedAtZone: speedAtZoneResponse["direction-2"],
+          },
+        ]);
 
-        const newSummaryResponse = {};
-        const newMetadataResponse = {};
-        // Iterate over properties of the original object and copy desired properties to the new object
-        for (const key in summaryResponse) {
-          if (
-            key !== "cluster-summary" &&
-            key !== "selected-start-date" &&
-            key !== "selected-end-date" &&
-            key !== "start-date" &&
-            key !== "end-date"
-          ) {
-            newSummaryResponse[key] = summaryResponse[key];
-          }
-        }
-        for (const key in metadataResponse) {
-          if (key !== "selected-start-date" && key !== "selected-end-date") {
-            newMetadataResponse[key] = metadataResponse[key];
-          }
-        }
-        setSummaryData(newSummaryResponse);
-        setMetadata(newMetadataResponse);
-        setScores(scoreResponse);
-        setIsLoading(false); // Set to false when data fetching is completed
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data: ", error);
         setIsLoading(false);
@@ -97,7 +104,7 @@ const Dashboard = () => {
 
   return (
     <div className="container light-purpal-box">
-      {isLoading ? ( // Show loader when isLoading is true
+      {isLoading ? (
         <LoaderComponent />
       ) : (
         <>
@@ -108,55 +115,85 @@ const Dashboard = () => {
             endDate={endDate}
             handleDate={handleDate}
           />
-          <div className="row mt-3">
-            <MetaDataComponent metaData={metadata} topicName={"allDriver"} />
-          </div>
-          <div className="row">
-            {/* Column for CircularProgressComponent */}
-            <div className="col-md-2 ">
-              <CircularProgressComponent
-                summaryStatics={summaryData}
-                topicName={"allDriver"}
-              />
-              <PieChartComponent
-                values={[
-                  clusterSummary["aggressive"],
-                  clusterSummary["normal"],
-                  clusterSummary["safe"],
-                ]}
-                title={"Behavior Of All Drivers"}
-                labels={["Aggressive", "Normal", "Safe"]}
-                colors={["red", "blue", "green"]}
-                type={"Driver Behavior"}
-              />
-            </div>
-
-            <div className="col-md-10">
-              <ScatterComponent
-                driverData={scores}
-                xAxisLabel={"Drivers"}
-                xAxisName={"deviceid"}
-              />
-              <TabsComponent
-                tabs={[
-                  {
-                    label: "Direction 1",
-                    driverZoneData: allDriverSpeedAtZone["direction-1"],
-                    driverDwellTimeData: allDriverDwellTimeData["direction-1"],
-                  },
-                  {
-                    label: "Direction 2",
-                    driverZoneData: allDriverSpeedAtZone["direction-2"],
-                    driverDwellTimeData: allDriverDwellTimeData["direction-2"],
-                  },
-                ]}
-                type="col"
-                label="Driver"
-              />
-            </div>
-          </div>
-
           <br />
+          <div className="container-fluid my-2">
+            <Nav
+              variant="tabs"
+              className="justify-content-center"
+              activeKey={activeTab.toString()} // activeKey should be string
+            >
+              {tabs.map((tab, index) => (
+                <Nav.Item key={index} className="w-25 text-center">
+                  <Nav.Link
+                    eventKey={index.toString()} // eventKey should be string
+                    active={activeTab === index}
+                    onClick={() => handleTabSelect(index)}
+                  >
+                    {tab.label}
+                  </Nav.Link>
+                </Nav.Item>
+              ))}
+            </Nav>
+            <Tab.Content>
+              {tabs.map((tab, index) => (
+                <Tab.Pane
+                  key={index}
+                  eventKey={index.toString()} // eventKey should be string
+                  active={activeTab === index}
+                >
+                  <br />
+                  <div className="row mt-3">
+                    <MetaDataComponent
+                      metaData={tab.metadata}
+                      topicName={"allDriver"}
+                    />
+                  </div>
+                  <div className="row">
+                    <div className="col-md-2 ">
+                      <CircularProgressComponent
+                        summaryStatics={tab.summaryData}
+                        topicName={"allDriver"}
+                      />
+                      <PieChartComponent
+                        values={[
+                          tab.clusterSummary["aggressive"],
+                          tab.clusterSummary["normal"],
+                          tab.clusterSummary["safe"],
+                        ]}
+                        title={"Behavior Of All Drivers"}
+                        labels={["Aggressive", "Normal", "Safe"]}
+                        colors={["red", "blue", "green"]}
+                        type={"Driver Behavior"}
+                      />
+                    </div>
+                    <div className="col-md-10">
+                      <ScatterComponent
+                        driverData={tab.scores}
+                        xAxisLabel={"Drivers"}
+                        xAxisName={"deviceid"}
+                      />
+                      <TabsComponent
+                        tabs={[
+                          {
+                            label: "Driver Speed At Zone",
+                            data: tab.allDriverSpeedAtZone,
+                            type: "speed",
+                          },
+                          {
+                            label: "Driver DwellTime",
+                            data: tab.allDriverDwellTimeData,
+                            type: "dwellTime",
+                          },
+                        ]}
+                        label="Driver"
+                      />
+                    </div>
+                  </div>
+                  <br />
+                </Tab.Pane>
+              ))}
+            </Tab.Content>
+          </div>
         </>
       )}
     </div>
