@@ -3,21 +3,14 @@ import { Button } from "@mui/material";
 import PropTypes from "prop-types";
 import { Form } from "react-bootstrap";
 
-const DateFilterComponent = ({
-  startDate,
-  endDate,
-  handleDate,
-  handleDrivers,
-  list,
-}) => {
+const DateFilterComponent = ({ startDate, endDate, handleData, list }) => {
   console.log(list);
   const [selectedStartDate, setSelectedStartDate] = useState(startDate);
   const [selectedEndDate, setSelectedEndDate] = useState(endDate);
   const [selectedItems, setSelectedItems] = useState([]);
 
   const handleApplyClick = () => {
-    handleDate(selectedStartDate, selectedEndDate);
-    handleDrivers(selectedItems);
+    handleData(selectedStartDate, selectedEndDate, selectedItems);
   };
 
   const handleSelectionChange = (e) => {
@@ -84,28 +77,35 @@ const DateFilterComponent = ({
             ))}
           </Form.Select>
         </div>
-        <div className="col-md-4 pt-2">
-          <h2>Selected Items:</h2>
-          <ul className="list-group">
+        <div className="col-md-5 pt-2">
+          <h3>Selected Items:</h3>
+          <div className="d-flex flex-wrap">
             {selectedItems.map((item) => (
-              <li
-                key={item}
-                className="list-group-item d-flex justify-content-between align-items-center"
-                onClick={() => handleRemoveItem(item)}
-              >
-                {item}
-                <button
-                  className="btn btn-danger btn-sm"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleRemoveItem(item);
-                  }}
-                >
-                  Remove
-                </button>
-              </li>
+              <div key={item} className="me-2 mb-2">
+                <span className="badge bg-primary me-2">
+                  {item}{" "}
+                  <button
+                    type="button"
+                    aria-label="Close"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRemoveItem(item);
+                    }}
+                    className="btn-close"
+                    style={{
+                      borderRadius: "50%",
+                      backgroundColor: "white",
+                      padding: "5px",
+                      fontSize: "12px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    &times;
+                  </button>
+                </span>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -116,8 +116,7 @@ DateFilterComponent.propTypes = {
   startDate: PropTypes.string.isRequired,
   endDate: PropTypes.string.isRequired,
   list: PropTypes.arrayOf(PropTypes.number).isRequired,
-  handleDate: PropTypes.func.isRequired,
-  handleDrivers: PropTypes.func.isRequired,
+  handleData: PropTypes.func.isRequired,
 };
 
 export default DateFilterComponent;

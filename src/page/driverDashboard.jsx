@@ -30,13 +30,21 @@ const DriverDashboard = () => {
   const [selectedStartDate, setSelectedStartDate] = useState("");
   const [selectedEndDate, setSelectedEndDate] = useState("");
   const [tabs, setTabs] = useState([]);
+  const [tripList, setTripList] = useState([]);
+  const [selectedTripList, setSelecetedTripList] = useState([]);
+
   const handleTabSelect = (index) => {
     setActiveTab(index);
   };
 
-  const handleDate = (_selectedStartDate, _selectedEndDate) => {
+  const handleData = (
+    _selectedStartDate,
+    _selectedEndDate,
+    _selectedTripList
+  ) => {
     setSelectedStartDate(_selectedStartDate);
     setSelectedEndDate(_selectedEndDate);
+    setSelecetedTripList(_selectedTripList);
   };
   useEffect(() => {
     const fetchData = async () => {
@@ -50,7 +58,8 @@ const DriverDashboard = () => {
         const summaryResponse = await fetchDriverSummary(
           id,
           selectedStartDate,
-          selectedEndDate
+          selectedEndDate,
+          [driverId]
         );
         const allSummaryResponse = await fetchAllDriversSummary(
           selectedStartDate,
@@ -59,28 +68,33 @@ const DriverDashboard = () => {
         const metadataResponse = await fetchDriverMetadata(
           id,
           selectedStartDate,
-          selectedEndDate
+          selectedEndDate,
+          selectedTripList
         );
         const dwellTimeResponse = await fetchDriverDwellTime(
           id,
           selectedStartDate,
-          selectedEndDate
+          selectedEndDate,
+          selectedTripList
         );
         const speedAtZoneResponse = await fetchDriverZoneWiseSpeed(
           id,
           selectedStartDate,
-          selectedEndDate
+          selectedEndDate,
+          selectedTripList
         );
         const speedPercentagesResponse = await fetchDriverSpeedPercentages(
           id,
           selectedStartDate,
-          selectedEndDate
+          selectedEndDate,
+          selectedTripList
         );
 
         const scoreResponse = await fetchTripScore(
           id,
           selectedStartDate,
-          selectedEndDate
+          selectedEndDate,
+          selectedTripList
         );
 
         const newSummaryResponse = {};
@@ -106,6 +120,8 @@ const DriverDashboard = () => {
 
         setStartDate(metadataResponse["data-collection-start-date"]);
         setEndDate(metadataResponse["data-collection-end-date"]);
+        setTripList(scoreResponse["trip_id"]);
+
         setTabs([
           {
             label: "Overall",
@@ -150,7 +166,7 @@ const DriverDashboard = () => {
     };
 
     fetchData();
-  }, [driverId, selectedStartDate, selectedEndDate]);
+  }, [driverId, selectedStartDate, selectedEndDate, selectedTripList]);
 
   return (
     <div className="container light-purpal-box">
@@ -163,7 +179,8 @@ const DriverDashboard = () => {
           <DateFilterComponent
             startDate={startDate}
             endDate={endDate}
-            handleDate={handleDate}
+            handleData={handleData}
+            list={tripList}
           />
           <br />
           <div className="container-fluid my-2">

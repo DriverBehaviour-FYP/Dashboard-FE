@@ -2,7 +2,12 @@ import axios from "axios";
 
 const BASE_URL = "http://127.0.0.1:5000/api";
 
-const fetchDriverSummary = async (driverId, startDate, endDate) => {
+const fetchDriverSummary = async (
+  driverId,
+  startDate,
+  endDate,
+  selectedTripList
+) => {
   try {
     const response = await axios.post(
       `${BASE_URL}/driver/summary/${driverId}`,
@@ -21,7 +26,12 @@ const fetchDriverSummary = async (driverId, startDate, endDate) => {
     throw error;
   }
 };
-const fetchDriverMetadata = async (driverId, startDate, endDate) => {
+const fetchDriverMetadata = async (
+  driverId,
+  startDate,
+  endDate,
+  selectedTripList
+) => {
   try {
     const response = await axios.post(
       `${BASE_URL}/driver/metadata/${driverId}`,
@@ -41,7 +51,12 @@ const fetchDriverMetadata = async (driverId, startDate, endDate) => {
   }
 };
 
-const fetchTripScore = async (driverId, startDate, endDate) => {
+const fetchTripScore = async (
+  driverId,
+  startDate,
+  endDate,
+  selectedTripList
+) => {
   try {
     const response = await axios.post(`${BASE_URL}/trip/score/${driverId}`, {
       "start-date": startDate,
@@ -57,7 +72,12 @@ const fetchTripScore = async (driverId, startDate, endDate) => {
     throw error;
   }
 };
-const fetchDriverDwellTime = async (driverId, startDate, endDate) => {
+const fetchDriverDwellTime = async (
+  driverId,
+  startDate,
+  endDate,
+  selectedTripList
+) => {
   try {
     const response = await axios.post(`${BASE_URL}/alldrivers/dwelltime/`, {
       "start-date": startDate,
@@ -80,7 +100,12 @@ const fetchDriverDwellTime = async (driverId, startDate, endDate) => {
   }
 };
 
-const fetchDriverZoneWiseSpeed = async (driverId, startDate, endDate) => {
+const fetchDriverZoneWiseSpeed = async (
+  driverId,
+  startDate,
+  endDate,
+  selectedTripList
+) => {
   try {
     const response = await axios.post(`${BASE_URL}/alldrivers/speedatzones/`, {
       "start-date": startDate,
@@ -103,7 +128,12 @@ const fetchDriverZoneWiseSpeed = async (driverId, startDate, endDate) => {
   }
 };
 
-const fetchDriverSpeedPercentages = async (driverId, startDate, endDate) => {
+const fetchDriverSpeedPercentages = async (
+  driverId,
+  startDate,
+  endDate,
+  selectedTripList
+) => {
   try {
     const response = await axios.post(
       `${BASE_URL}/driver/speedpercentages/${driverId}`,

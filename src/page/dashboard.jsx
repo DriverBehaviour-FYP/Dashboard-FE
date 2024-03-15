@@ -31,11 +31,13 @@ const Dashboard = () => {
     setActiveTab(index);
   };
 
-  const handleDate = (_selectedStartDate, _selectedEndDate) => {
+  const handleData = (
+    _selectedStartDate,
+    _selectedEndDate,
+    _selectedDriverList
+  ) => {
     setSelectedStartDate(_selectedStartDate);
     setSelectedEndDate(_selectedEndDate);
-  };
-  const handleDrivers = (_selectedDriverList) => {
     setSelecetedDriverList(_selectedDriverList);
   };
 
@@ -123,8 +125,7 @@ const Dashboard = () => {
           <DateFilterComponent
             startDate={startDate}
             endDate={endDate}
-            handleDate={handleDate}
-            handleDrivers={handleDrivers}
+            handleData={handleData}
             list={driverList}
           />
           <br />
