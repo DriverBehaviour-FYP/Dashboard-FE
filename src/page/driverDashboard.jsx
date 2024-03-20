@@ -97,26 +97,26 @@ const DriverDashboard = () => {
           selectedTripList
         );
 
-        const newSummaryResponse = {};
-        const newMetadataResponse = {};
-        // Iterate over properties of the original object and copy desired properties to the new object
-        for (const key in summaryResponse) {
-          if (
-            key !== "cluster-summary" &&
-            key !== "all-cluster-summary" &&
-            key !== "selected-start-date" &&
-            key !== "selected-end-date" &&
-            key !== "start-date" &&
-            key !== "end-date"
-          ) {
-            newSummaryResponse[key] = summaryResponse[key];
-          }
-        }
-        for (const key in metadataResponse) {
-          if (key !== "selected-start-date" && key !== "selected-end-date") {
-            newMetadataResponse[key] = metadataResponse[key];
-          }
-        }
+        // const newSummaryResponse = {};
+        // const newMetadataResponse = {};
+        // // Iterate over properties of the original object and copy desired properties to the new object
+        // for (const key in summaryResponse) {
+        //   if (
+        //     key !== "cluster-summary" &&
+        //     key !== "all-cluster-summary" &&
+        //     key !== "selected-start-date" &&
+        //     key !== "selected-end-date" &&
+        //     key !== "start-date" &&
+        //     key !== "end-date"
+        //   ) {
+        //     newSummaryResponse[key] = summaryResponse[key];
+        //   }
+        // }
+        // for (const key in metadataResponse) {
+        //   if (key !== "selected-start-date" && key !== "selected-end-date") {
+        //     newMetadataResponse[key] = metadataResponse[key];
+        //   }
+        // }
 
         setStartDate(metadataResponse["data-collection-start-date"]);
         setEndDate(metadataResponse["data-collection-end-date"]);
@@ -125,43 +125,107 @@ const DriverDashboard = () => {
         setTabs([
           {
             label: "Overall",
-            summaryData: summaryResponse,
-            metadata: metadataResponse,
-            scores: scoreResponse,
-            clusterSummary: summaryResponse["cluster-summary"],
-            driverDwellTimeData: dwellTimeResponse["direction-1"],
-            driverSpeedAtZone: speedAtZoneResponse["direction-1"],
+            summaryData: {
+              acceleration: summaryResponse["direction-all"]["acceleration"],
+              "de-acceleration":
+                summaryResponse["direction-all"]["de-acceleration"],
+              speed: summaryResponse["direction-all"]["speed"],
+              "trip-time": summaryResponse["direction-all"]["trip-time"],
+              "driver-id": summaryResponse["driver-id"],
+            },
+            metadata: {
+              "data-collection-start-date":
+                metadataResponse["data-collection-start-date"],
+              "data-collection-end-date":
+                metadataResponse["data-collection-end-date"],
+              "data-collection-period":
+                metadataResponse["data-collection-period"],
+              "driver-id": metadataResponse["driver-id"],
+              "no-of-trips": metadataResponse["direction-all"]["no-of-trips"],
+              routes: metadataResponse["routes"],
+            },
+            scores: {
+              scaledScores: scoreResponse["scaledScores"],
+              score: scoreResponse["score"],
+              tripid: scoreResponse["trip_id"],
+            },
+            clusterSummary: summaryResponse["direction-all"]["cluster-summary"],
             speedPercentages: speedPercentagesResponse,
-            allClusterSummary: allSummaryResponse["all-cluster-summary"],
+            allClusterSummary:
+              allSummaryResponse["direction-all"]["all-cluster-summary"],
           },
           {
             label: "Direction 1",
-            summaryData: summaryResponse,
-            metadata: metadataResponse,
-            scores: scoreResponse,
-            clusterSummary: summaryResponse["cluster-summary"],
+            summaryData: {
+              acceleration: summaryResponse["direction-1"]["acceleration"],
+              "de-acceleration":
+                summaryResponse["direction-1"]["de-acceleration"],
+              speed: summaryResponse["direction-1"]["speed"],
+              "trip-time": summaryResponse["direction-1"]["trip-time"],
+              "driver-id": summaryResponse["driver-id"],
+            },
+            metadata: {
+              "data-collection-start-date":
+                metadataResponse["data-collection-start-date"],
+              "data-collection-end-date":
+                metadataResponse["data-collection-end-date"],
+              "data-collection-period":
+                metadataResponse["data-collection-period"],
+              "driver-id": metadataResponse["driver-id"],
+              "no-of-trips": metadataResponse["direction-1"]["no-of-trips"],
+              routes: metadataResponse["routes"],
+            },
+            scores: {
+              scaledScores: scoreResponse["scaledScores"],
+              score: scoreResponse["score"],
+              tripid: scoreResponse["trip_id"],
+            },
+            clusterSummary: summaryResponse["direction-1"]["cluster-summary"],
             driverDwellTimeData: dwellTimeResponse["direction-1"],
             driverSpeedAtZone: speedAtZoneResponse["direction-1"],
             speedPercentages: speedPercentagesResponse,
-            allClusterSummary: allSummaryResponse["all-cluster-summary"],
+            allClusterSummary:
+              allSummaryResponse["direction-1"]["all-cluster-summary"],
           },
           {
             label: "Direction 2",
-            summaryData: summaryResponse,
-            metadata: metadataResponse,
-            scores: scoreResponse,
-            clusterSummary: summaryResponse["cluster-summary"],
-            driverDwellTimeData: dwellTimeResponse["direction-1"],
-            driverSpeedAtZone: speedAtZoneResponse["direction-1"],
+            summaryData: {
+              acceleration: summaryResponse["direction-2"]["acceleration"],
+              "de-acceleration":
+                summaryResponse["direction-2"]["de-acceleration"],
+              speed: summaryResponse["direction-2"]["speed"],
+              "trip-time": summaryResponse["direction-2"]["trip-time"],
+              "driver-id": summaryResponse["driver-id"],
+            },
+            metadata: {
+              "data-collection-start-date":
+                metadataResponse["data-collection-start-date"],
+              "data-collection-end-date":
+                metadataResponse["data-collection-end-date"],
+              "data-collection-period":
+                metadataResponse["data-collection-period"],
+              "driver-id": metadataResponse["driver-id"],
+              "no-of-trips": metadataResponse["direction-2"]["no-of-trips"],
+              routes: metadataResponse["routes"],
+            },
+            scores: {
+              scaledScores: scoreResponse["scaledScores"],
+              score: scoreResponse["score"],
+              tripid: scoreResponse["trip_id"],
+            },
+            clusterSummary: summaryResponse["direction-2"]["cluster-summary"],
+            driverDwellTimeData: dwellTimeResponse["direction-2"],
+            driverSpeedAtZone: speedAtZoneResponse["direction-2"],
             speedPercentages: speedPercentagesResponse,
-            allClusterSummary: allSummaryResponse["all-cluster-summary"],
+            allClusterSummary:
+              allSummaryResponse["direction-2"]["all-cluster-summary"],
           },
         ]);
         setIsLoading(false); // Set to false when data fetching is completed
       } catch (error) {
         console.error("Error fetching data: ", error);
         setIsLoading(false);
-        // window.location.href = "/";
+        window.location.href = "/";
       }
     };
 
@@ -230,7 +294,7 @@ const DriverDashboard = () => {
                       <ScatterComponent
                         driverData={tab.scores}
                         xAxisLabel={"Trips"}
-                        xAxisName={"trip_id"}
+                        xAxisName={"tripid"}
                       />
                       <div className="row">
                         <div className="col-md-4 mt-3">
@@ -302,23 +366,25 @@ const DriverDashboard = () => {
                     </div>
                   </div>
                   <br />
-                  <div className="row">
-                    <TabsComponent
-                      tabs={[
-                        {
-                          label: "Driver Speed At Zone",
-                          data: tab.driverSpeedAtZone,
-                          type: "speed",
-                        },
-                        {
-                          label: "Driver DwellTime",
-                          data: tab.driverDwellTimeData,
-                          type: "dwellTime",
-                        },
-                      ]}
-                      label="Driver"
-                    />
-                  </div>
+                  {tab.label !== "Overall" && (
+                    <div className="row">
+                      <TabsComponent
+                        tabs={[
+                          {
+                            label: "Driver Speed At Zone",
+                            data: tab.driverSpeedAtZone,
+                            type: "speed",
+                          },
+                          {
+                            label: "Driver DwellTime",
+                            data: tab.driverDwellTimeData,
+                            type: "dwellTime",
+                          },
+                        ]}
+                        label="Driver"
+                      />
+                    </div>
+                  )}
                   <br />
                 </Tab.Pane>
               ))}

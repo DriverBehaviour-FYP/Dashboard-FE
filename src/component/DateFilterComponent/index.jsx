@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { Form } from "react-bootstrap";
 
 const DateFilterComponent = ({ startDate, endDate, handleData, list }) => {
-  console.log(list);
   const [selectedStartDate, setSelectedStartDate] = useState(startDate);
   const [selectedEndDate, setSelectedEndDate] = useState(endDate);
   const [selectedItems, setSelectedItems] = useState([]);

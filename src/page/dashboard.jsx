@@ -69,35 +69,98 @@ const Dashboard = () => {
           selectedEndDate,
           selectedDriverList
         );
-
         setStartDate(metadataResponse["data-collection-start-date"]);
         setEndDate(metadataResponse["data-collection-end-date"]);
         setDriverList(scoreResponse["deviceid"]);
         setTabs([
           {
             label: "Overall",
-            summaryData: summaryResponse,
-            metadata: metadataResponse,
-            scores: scoreResponse,
-            clusterSummary: summaryResponse["all-cluster-summary"],
-            allDriverDwellTimeData: dwellTimeResponse["direction-1"],
-            allDriverSpeedAtZone: speedAtZoneResponse["direction-1"],
+            summaryData: {
+              acceleration: summaryResponse["direction-all"]["acceleration"],
+              "de-acceleration":
+                summaryResponse["direction-all"]["de-acceleration"],
+              speed: summaryResponse["direction-all"]["speed"],
+              "trip-time": summaryResponse["direction-all"]["trip-time"],
+            },
+            metadata: {
+              "data-collection-start-date":
+                metadataResponse["data-collection-start-date"],
+              "data-collection-end-date":
+                metadataResponse["data-collection-end-date"],
+              "data-collection-period":
+                metadataResponse["data-collection-period"],
+              "no-of-bus-stops": metadataResponse["no-of-bus-stops"],
+              "no-of-drivers": metadataResponse["no-of-drivers"],
+              "no-of-trips": metadataResponse["direction-all"]["no-of-trips"],
+              routes: metadataResponse["routes"],
+            },
+            scores: {
+              scaledScores: scoreResponse["scaledScores"],
+              score: scoreResponse["score"],
+              deviceid: scoreResponse["deviceid"],
+            },
+            clusterSummary:
+              summaryResponse["direction-all"]["all-cluster-summary"],
           },
           {
             label: "Direction 1",
-            summaryData: summaryResponse,
-            metadata: metadataResponse,
-            scores: scoreResponse,
-            clusterSummary: summaryResponse["all-cluster-summary"],
+            summaryData: {
+              acceleration: summaryResponse["direction-1"]["acceleration"],
+              "de-acceleration":
+                summaryResponse["direction-1"]["de-acceleration"],
+              speed: summaryResponse["direction-1"]["speed"],
+              "trip-time": summaryResponse["direction-1"]["trip-time"],
+            },
+            metadata: {
+              "data-collection-start-date":
+                metadataResponse["data-collection-start-date"],
+              "data-collection-end-date":
+                metadataResponse["data-collection-end-date"],
+              "data-collection-period":
+                metadataResponse["data-collection-period"],
+              "no-of-bus-stops": metadataResponse["no-of-bus-stops"],
+              "no-of-drivers": metadataResponse["no-of-drivers"],
+              "no-of-trips": metadataResponse["direction-1"]["no-of-trips"],
+              routes: metadataResponse["routes"],
+            },
+            scores: {
+              scaledScores: scoreResponse["scaledScores"],
+              score: scoreResponse["score"],
+              deviceid: scoreResponse["deviceid"],
+            },
+            clusterSummary:
+              summaryResponse["direction-1"]["all-cluster-summary"],
             allDriverDwellTimeData: dwellTimeResponse["direction-1"],
             allDriverSpeedAtZone: speedAtZoneResponse["direction-1"],
           },
           {
             label: "Direction 2",
-            summaryData: summaryResponse,
-            metadata: metadataResponse,
-            scores: scoreResponse,
-            clusterSummary: summaryResponse["all-cluster-summary"],
+            summaryData: {
+              acceleration: summaryResponse["direction-2"]["acceleration"],
+              "de-acceleration":
+                summaryResponse["direction-2"]["de-acceleration"],
+              speed: summaryResponse["direction-2"]["speed"],
+              "trip-time": summaryResponse["direction-2"]["trip-time"],
+            },
+            metadata: {
+              "data-collection-start-date":
+                metadataResponse["data-collection-start-date"],
+              "data-collection-end-date":
+                metadataResponse["data-collection-end-date"],
+              "data-collection-period":
+                metadataResponse["data-collection-period"],
+              "no-of-bus-stops": metadataResponse["no-of-bus-stops"],
+              "no-of-drivers": metadataResponse["no-of-drivers"],
+              "no-of-trips": metadataResponse["direction-2"]["no-of-trips"],
+              routes: metadataResponse["routes"],
+            },
+            scores: {
+              scaledScores: scoreResponse["scaledScores"],
+              score: scoreResponse["score"],
+              deviceid: scoreResponse["deviceid"],
+            },
+            clusterSummary:
+              summaryResponse["direction-2"]["all-cluster-summary"],
             allDriverDwellTimeData: dwellTimeResponse["direction-2"],
             allDriverSpeedAtZone: speedAtZoneResponse["direction-2"],
           },
@@ -168,40 +231,69 @@ const Dashboard = () => {
                         summaryStatics={tab.summaryData}
                         topicName={"allDriver"}
                       />
-                      <PieChartComponent
-                        values={[
-                          tab.clusterSummary["aggressive"],
-                          tab.clusterSummary["normal"],
-                          tab.clusterSummary["safe"],
-                        ]}
-                        title={"Behavior Of All Drivers"}
-                        labels={["Aggressive", "Normal", "Safe"]}
-                        colors={["red", "blue", "green"]}
-                        type={"Driver Behavior"}
-                      />
+                      {tab.label !== "Overall" && (
+                        <PieChartComponent
+                          values={[
+                            tab.clusterSummary["aggressive"],
+                            tab.clusterSummary["normal"],
+                            tab.clusterSummary["safe"],
+                          ]}
+                          title={"Behavior Of All Drivers"}
+                          labels={["Aggressive", "Normal", "Safe"]}
+                          colors={["red", "blue", "green"]}
+                          type={"Driver Behavior"}
+                        />
+                      )}
                     </div>
-                    <div className="col-md-10">
-                      <ScatterComponent
-                        driverData={tab.scores}
-                        xAxisLabel={"Drivers"}
-                        xAxisName={"deviceid"}
-                      />
-                      <TabsComponent
-                        tabs={[
-                          {
-                            label: "Driver Speed At Zone",
-                            data: tab.allDriverSpeedAtZone,
-                            type: "speed",
-                          },
-                          {
-                            label: "Driver DwellTime",
-                            data: tab.allDriverDwellTimeData,
-                            type: "dwellTime",
-                          },
-                        ]}
-                        label="Driver"
-                      />
-                    </div>
+
+                    {tab.label !== "Overall" && (
+                      <div className="col-md-10">
+                        <ScatterComponent
+                          driverData={tab.scores}
+                          xAxisLabel={"Drivers"}
+                          xAxisName={"deviceid"}
+                        />
+                        <TabsComponent
+                          tabs={[
+                            {
+                              label: "Driver Speed At Zone",
+                              data: tab.allDriverSpeedAtZone,
+                              type: "speed",
+                            },
+                            {
+                              label: "Driver DwellTime",
+                              data: tab.allDriverDwellTimeData,
+                              type: "dwellTime",
+                            },
+                          ]}
+                          label="Driver"
+                        />
+                      </div>
+                    )}
+                    {tab.label === "Overall" && (
+                      <>
+                        <div className="col-md-7">
+                          <ScatterComponent
+                            driverData={tab.scores}
+                            xAxisLabel={"Drivers"}
+                            xAxisName={"deviceid"}
+                          />
+                        </div>
+                        <div className="col-md-3">
+                          <PieChartComponent
+                            values={[
+                              tab.clusterSummary["aggressive"],
+                              tab.clusterSummary["normal"],
+                              tab.clusterSummary["safe"],
+                            ]}
+                            title={"Behavior Of All Drivers"}
+                            labels={["Aggressive", "Normal", "Safe"]}
+                            colors={["red", "blue", "green"]}
+                            type={"Driver Behavior"}
+                          />
+                        </div>
+                      </>
+                    )}
                   </div>
                   <br />
                 </Tab.Pane>

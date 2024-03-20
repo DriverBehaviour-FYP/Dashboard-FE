@@ -124,11 +124,18 @@ const ScatterComponent = ({ driverData, xAxisName, xAxisLabel }) => {
     </div>
   );
 };
+const FirstDataType = PropTypes.shape({
+  score: PropTypes.arrayOf(PropTypes.number).isRequired,
+  scaledScores: PropTypes.arrayOf(PropTypes.number).isRequired,
+  deviceid: PropTypes.arrayOf(PropTypes.number).isRequired,
+}).isRequired;
+const SecondDataType = PropTypes.shape({
+  score: PropTypes.arrayOf(PropTypes.number).isRequired,
+  scaledScores: PropTypes.arrayOf(PropTypes.number).isRequired,
+  tripid: PropTypes.arrayOf(PropTypes.number).isRequired,
+}).isRequired;
 ScatterComponent.propTypes = {
-  driverData: PropTypes.shape({
-    score: PropTypes.arrayOf(PropTypes.number).isRequired,
-    scaledScores: PropTypes.arrayOf(PropTypes.number).isRequired,
-  }).isRequired,
+  driverData: PropTypes.oneOfType([FirstDataType, SecondDataType]).isRequired,
   xAxisName: PropTypes.string.isRequired,
   xAxisLabel: PropTypes.string.isRequired,
 };
