@@ -14,6 +14,7 @@ import {
   fetchAllDriversScore,
   fetchAllDriversDwellTime,
   fetchAllDriverZoneWiseSpeed,
+  fetchDriverList,
 } from "../services/allDriverServices";
 
 const Dashboard = () => {
@@ -69,9 +70,11 @@ const Dashboard = () => {
           selectedEndDate,
           selectedDriverList
         );
+
+        const driverListResponse = await fetchDriverList();
         setStartDate(metadataResponse["data-collection-start-date"]);
         setEndDate(metadataResponse["data-collection-end-date"]);
-        setDriverList(scoreResponse["deviceid"]);
+        setDriverList(driverListResponse);
         setTabs([
           {
             label: "Overall",
@@ -89,15 +92,16 @@ const Dashboard = () => {
                 metadataResponse["data-collection-end-date"],
               "data-collection-period":
                 metadataResponse["data-collection-period"],
-              "no-of-bus-stops": metadataResponse["no-of-bus-stops"],
+              "no-of-bus-stops":
+                metadataResponse["direction-all"]["no-of-bus-stops"],
               "no-of-drivers": metadataResponse["no-of-drivers"],
               "no-of-trips": metadataResponse["direction-all"]["no-of-trips"],
               routes: metadataResponse["routes"],
             },
             scores: {
-              scaledScores: scoreResponse["scaledScores"],
-              score: scoreResponse["score"],
-              deviceid: scoreResponse["deviceid"],
+              scaledScores: scoreResponse["direction-all"]["scaledScores"],
+              score: scoreResponse["direction-all"]["score"],
+              deviceid: driverListResponse,
             },
             clusterSummary:
               summaryResponse["direction-all"]["all-cluster-summary"],
@@ -118,15 +122,16 @@ const Dashboard = () => {
                 metadataResponse["data-collection-end-date"],
               "data-collection-period":
                 metadataResponse["data-collection-period"],
-              "no-of-bus-stops": metadataResponse["no-of-bus-stops"],
+              "no-of-bus-stops":
+                metadataResponse["direction-1"]["no-of-bus-stops"],
               "no-of-drivers": metadataResponse["no-of-drivers"],
               "no-of-trips": metadataResponse["direction-1"]["no-of-trips"],
               routes: metadataResponse["routes"],
             },
             scores: {
-              scaledScores: scoreResponse["scaledScores"],
-              score: scoreResponse["score"],
-              deviceid: scoreResponse["deviceid"],
+              scaledScores: scoreResponse["direction-1"]["scaledScores"],
+              score: scoreResponse["direction-1"]["score"],
+              deviceid: driverListResponse,
             },
             clusterSummary:
               summaryResponse["direction-1"]["all-cluster-summary"],
@@ -149,15 +154,16 @@ const Dashboard = () => {
                 metadataResponse["data-collection-end-date"],
               "data-collection-period":
                 metadataResponse["data-collection-period"],
-              "no-of-bus-stops": metadataResponse["no-of-bus-stops"],
+              "no-of-bus-stops":
+                metadataResponse["direction-2"]["no-of-bus-stops"],
               "no-of-drivers": metadataResponse["no-of-drivers"],
               "no-of-trips": metadataResponse["direction-2"]["no-of-trips"],
               routes: metadataResponse["routes"],
             },
             scores: {
-              scaledScores: scoreResponse["scaledScores"],
-              score: scoreResponse["score"],
-              deviceid: scoreResponse["deviceid"],
+              scaledScores: scoreResponse["direction-2"]["scaledScores"],
+              score: scoreResponse["direction-2"]["score"],
+              deviceid: driverListResponse,
             },
             clusterSummary:
               summaryResponse["direction-2"]["all-cluster-summary"],

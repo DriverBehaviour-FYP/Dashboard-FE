@@ -14,6 +14,7 @@ const fetchDriverSummary = async (
       {
         "start-date": startDate,
         "end-date": endDate,
+        trips: selectedTripList,
       }
     );
     if (response.data.success) {
@@ -38,6 +39,7 @@ const fetchDriverMetadata = async (
       {
         "start-date": startDate,
         "end-date": endDate,
+        trips: selectedTripList,
       }
     );
     if (response.data.success) {
@@ -61,6 +63,7 @@ const fetchTripScore = async (
     const response = await axios.post(`${BASE_URL}/trip/score/${driverId}`, {
       "start-date": startDate,
       "end-date": endDate,
+      trips: selectedTripList,
     });
     if (response.data.success) {
       return response.data.data;
@@ -82,6 +85,7 @@ const fetchDriverDwellTime = async (
     const response = await axios.post(`${BASE_URL}/alldrivers/dwelltime/`, {
       "start-date": startDate,
       "end-date": endDate,
+      trips: selectedTripList,
     });
     if (response.data.success) {
       const filteredData = {};
@@ -110,6 +114,7 @@ const fetchDriverZoneWiseSpeed = async (
     const response = await axios.post(`${BASE_URL}/alldrivers/speedatzones/`, {
       "start-date": startDate,
       "end-date": endDate,
+      trips: selectedTripList,
     });
     if (response.data.success) {
       const filteredData = {};
@@ -140,10 +145,34 @@ const fetchDriverSpeedPercentages = async (
       {
         "start-date": startDate,
         "end-date": endDate,
+        trips: selectedTripList,
       }
     );
     if (response.data.success) {
       return response.data.data;
+    } else {
+      throw new Error();
+    }
+  } catch (error) {
+    console.error("Error fetching data: ", error);
+    throw error;
+  }
+};
+
+const fetchTripList = async (driverId) => {
+  const startDate = "";
+  const endDate = "";
+
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/driver/tripids/${driverId}`,
+      {
+        "start-date": startDate,
+        "end-date": endDate,
+      }
+    );
+    if (response.data.success) {
+      return response.data.trips;
     } else {
       throw new Error();
     }
@@ -159,4 +188,5 @@ export {
   fetchDriverDwellTime,
   fetchDriverZoneWiseSpeed,
   fetchDriverSpeedPercentages,
+  fetchTripList,
 };

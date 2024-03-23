@@ -16,6 +16,7 @@ import {
   fetchDriverDwellTime,
   fetchDriverZoneWiseSpeed,
   fetchDriverSpeedPercentages,
+  fetchTripList,
 } from "../services/driverServices";
 import { fetchAllDriversSummary } from "../services/allDriverServices";
 
@@ -59,11 +60,12 @@ const DriverDashboard = () => {
           id,
           selectedStartDate,
           selectedEndDate,
-          [driverId]
+          selectedTripList
         );
         const allSummaryResponse = await fetchAllDriversSummary(
           selectedStartDate,
-          selectedEndDate
+          selectedEndDate,
+          []
         );
         const metadataResponse = await fetchDriverMetadata(
           id,
@@ -96,32 +98,11 @@ const DriverDashboard = () => {
           selectedEndDate,
           selectedTripList
         );
-
-        // const newSummaryResponse = {};
-        // const newMetadataResponse = {};
-        // // Iterate over properties of the original object and copy desired properties to the new object
-        // for (const key in summaryResponse) {
-        //   if (
-        //     key !== "cluster-summary" &&
-        //     key !== "all-cluster-summary" &&
-        //     key !== "selected-start-date" &&
-        //     key !== "selected-end-date" &&
-        //     key !== "start-date" &&
-        //     key !== "end-date"
-        //   ) {
-        //     newSummaryResponse[key] = summaryResponse[key];
-        //   }
-        // }
-        // for (const key in metadataResponse) {
-        //   if (key !== "selected-start-date" && key !== "selected-end-date") {
-        //     newMetadataResponse[key] = metadataResponse[key];
-        //   }
-        // }
+        const tripListResponse = await fetchTripList(id);
 
         setStartDate(metadataResponse["data-collection-start-date"]);
         setEndDate(metadataResponse["data-collection-end-date"]);
-        setTripList(scoreResponse["trip_id"]);
-
+        setTripList(tripListResponse);
         setTabs([
           {
             label: "Overall",
@@ -147,10 +128,10 @@ const DriverDashboard = () => {
             scores: {
               scaledScores: scoreResponse["scaledScores"],
               score: scoreResponse["score"],
-              tripid: scoreResponse["trip_id"],
+              tripid: tripListResponse,
             },
             clusterSummary: summaryResponse["direction-all"]["cluster-summary"],
-            speedPercentages: speedPercentagesResponse,
+            speedPercentages: speedPercentagesResponse["direction-all"],
             allClusterSummary:
               allSummaryResponse["direction-all"]["all-cluster-summary"],
           },
@@ -178,12 +159,12 @@ const DriverDashboard = () => {
             scores: {
               scaledScores: scoreResponse["scaledScores"],
               score: scoreResponse["score"],
-              tripid: scoreResponse["trip_id"],
+              tripid: tripListResponse,
             },
             clusterSummary: summaryResponse["direction-1"]["cluster-summary"],
             driverDwellTimeData: dwellTimeResponse["direction-1"],
             driverSpeedAtZone: speedAtZoneResponse["direction-1"],
-            speedPercentages: speedPercentagesResponse,
+            speedPercentages: speedPercentagesResponse["direction-1"],
             allClusterSummary:
               allSummaryResponse["direction-1"]["all-cluster-summary"],
           },
@@ -211,12 +192,12 @@ const DriverDashboard = () => {
             scores: {
               scaledScores: scoreResponse["scaledScores"],
               score: scoreResponse["score"],
-              tripid: scoreResponse["trip_id"],
+              tripid: tripListResponse,
             },
             clusterSummary: summaryResponse["direction-2"]["cluster-summary"],
             driverDwellTimeData: dwellTimeResponse["direction-2"],
             driverSpeedAtZone: speedAtZoneResponse["direction-2"],
-            speedPercentages: speedPercentagesResponse,
+            speedPercentages: speedPercentagesResponse["direction-2"],
             allClusterSummary:
               allSummaryResponse["direction-2"]["all-cluster-summary"],
           },
@@ -225,7 +206,7 @@ const DriverDashboard = () => {
       } catch (error) {
         console.error("Error fetching data: ", error);
         setIsLoading(false);
-        window.location.href = "/";
+        // window.location.href = "/";
       }
     };
 
