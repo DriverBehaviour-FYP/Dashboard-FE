@@ -16,9 +16,11 @@ import {
   fetchAllDriverZoneWiseSpeed,
   fetchDriverList,
 } from "../services/allDriverServices";
+import SpinnerComponent from "../component/SpinnerComponent";
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [isApply, setIsApply] = useState(false);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [selectedStartDate, setSelectedStartDate] = useState("");
@@ -39,7 +41,8 @@ const Dashboard = () => {
   ) => {
     setSelectedStartDate(_selectedStartDate);
     setSelectedEndDate(_selectedEndDate);
-    setSelecetedDriverList(_selectedDriverList.map(str => parseInt(str)));
+    setSelecetedDriverList(_selectedDriverList.map((str) => parseInt(str)));
+    setIsApply(true);
   };
 
   useEffect(() => {
@@ -173,10 +176,11 @@ const Dashboard = () => {
         ]);
 
         setIsLoading(false);
+        setIsApply(false);
       } catch (error) {
         console.error("Error fetching data: ", error);
         setIsLoading(false);
-        // window.location.href = "/not-found";
+        window.location.href = "/not-found";
       }
     };
 
@@ -185,6 +189,7 @@ const Dashboard = () => {
 
   return (
     <div className="container light-purpal-box">
+      {isApply && <SpinnerComponent />}
       {isLoading ? (
         <LoaderComponent />
       ) : (
@@ -196,6 +201,7 @@ const Dashboard = () => {
             endDate={endDate}
             handleData={handleData}
             list={driverList}
+            type={"drivers"}
           />
           <br />
           <div className="container-fluid my-2">

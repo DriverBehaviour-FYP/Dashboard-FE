@@ -7,6 +7,7 @@ import LoaderComponent from "../component/LoaderComponent";
 import DateFilterComponent from "../component/DateFilterComponent";
 import PieChartComponent from "../component/PieChartComponent";
 import TabsComponent from "../component/TabsComponent";
+import SpinnerComponent from "../component/SpinnerComponent";
 import { Tab, Nav } from "react-bootstrap";
 
 import {
@@ -24,7 +25,7 @@ const DriverDashboard = () => {
   const { driverId } = useParams();
 
   const [activeTab, setActiveTab] = useState(0); // State to hold active tab index
-
+  const [isApply, setIsApply] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -45,7 +46,8 @@ const DriverDashboard = () => {
   ) => {
     setSelectedStartDate(_selectedStartDate);
     setSelectedEndDate(_selectedEndDate);
-    setSelecetedTripList(_selectedTripList.map(str => parseInt(str)));
+    setSelecetedTripList(_selectedTripList.map((str) => parseInt(str)));
+    setIsApply(true);
   };
   useEffect(() => {
     const fetchData = async () => {
@@ -203,6 +205,7 @@ const DriverDashboard = () => {
           },
         ]);
         setIsLoading(false); // Set to false when data fetching is completed
+        setIsApply(false);
       } catch (error) {
         console.error("Error fetching data: ", error);
         setIsLoading(false);
@@ -215,6 +218,8 @@ const DriverDashboard = () => {
 
   return (
     <div className="container light-purpal-box">
+      {isApply && <SpinnerComponent />}
+
       {isLoading ? (
         <LoaderComponent />
       ) : (
@@ -226,6 +231,7 @@ const DriverDashboard = () => {
             endDate={endDate}
             handleData={handleData}
             list={tripList}
+            type={"trips"}
           />
           <br />
           <div className="container-fluid my-2">
