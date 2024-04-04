@@ -39,7 +39,7 @@ const Dashboard = () => {
   ) => {
     setSelectedStartDate(_selectedStartDate);
     setSelectedEndDate(_selectedEndDate);
-    setSelecetedDriverList(_selectedDriverList);
+    setSelecetedDriverList(_selectedDriverList.map(str => parseInt(str)));
   };
 
   useEffect(() => {
@@ -176,7 +176,7 @@ const Dashboard = () => {
       } catch (error) {
         console.error("Error fetching data: ", error);
         setIsLoading(false);
-        window.location.href = "/not-found";
+        // window.location.href = "/not-found";
       }
     };
 

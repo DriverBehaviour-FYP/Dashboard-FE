@@ -45,7 +45,7 @@ const DriverDashboard = () => {
   ) => {
     setSelectedStartDate(_selectedStartDate);
     setSelectedEndDate(_selectedEndDate);
-    setSelecetedTripList(_selectedTripList);
+    setSelecetedTripList(_selectedTripList.map(str => parseInt(str)));
   };
   useEffect(() => {
     const fetchData = async () => {

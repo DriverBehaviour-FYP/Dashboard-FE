@@ -67,7 +67,7 @@ const DateFilterComponent = ({ startDate, endDate, handleData, list }) => {
       </div>
       <div className="row">
         <div className="col-md-4 pt-2">
-          <Form.Label>Select multiple items:</Form.Label>
+          <Form.Label>Select multiple drivers:</Form.Label>
           <Form.Select multiple onChange={handleSelectionChange}>
             {list.map((element, index) => (
               <option value={element} key={index}>
@@ -77,7 +77,7 @@ const DateFilterComponent = ({ startDate, endDate, handleData, list }) => {
           </Form.Select>
         </div>
         <div className="col-md-5 pt-2">
-          <h3>Selected Items:</h3>
+          {/* <h3>Selected Items:</h3> */}
           <div className="d-flex flex-wrap">
             {selectedItems.map((item) => (
               <div key={item} className="me-2 mb-2">
