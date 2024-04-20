@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import MapComponent from "../component/MapComponent";
 import LoaderComponent from "../component/LoaderComponent";
 import { Button } from "@mui/material";
 
-import { fetchGPS } from "../services/tripServices";
+import { fetchRealTimeTripSegments } from "../services/realTimeTripServices";
 
 const RealTimeDashboard = () => {
-  const { tripId } = useParams();
   const [gps, setGPS] = useState({});
   const [minSegmentId, setMinSegmentId] = useState(0);
   const [maxSegmentId, setMaxSegmentId] = useState(0);
@@ -16,44 +14,11 @@ const RealTimeDashboard = () => {
   const [spliPoints, setSpliPoints] = useState([]);
   const [filterSpliPoints, setfilterSpliPoints] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedTripId, setSelectedTripId] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const id = parseInt(tripId); // Parse to integer
-        if (isNaN(id)) {
-          window.location.href = "/not-found";
-          return;
-        }
-
-        const gpsResponse = await fetchGPS(id);
-
-        const segmentIds = gpsResponse.gps.map((point) => point.segment_id);
-        const minId = Math.min(...segmentIds);
-        const maxId = Math.max(...segmentIds);
-        setMinSegmentId(minId);
-        setMaxSegmentId(maxId);
-        setGPS(gpsResponse);
-        setSegmentId(minId);
-        const filteredData = gpsResponse.gps.filter(
-          (point) => point.segment_id == minId
-        );
-        setFilteredGPS(filteredData);
-        setSpliPoints(gpsResponse.split_points);
-        setfilterSpliPoints([
-          gpsResponse.split_points[0],
-          gpsResponse.split_points[1],
-        ]);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-        setIsLoading(false);
-        window.location.href = "/not-found";
-      }
-    };
-
-    fetchData();
-  }, [tripId]);
+    setIsLoading(false);
+  }, []);
 
   const handleIncrement = () => {
     if (maxSegmentId > segmentId) {
@@ -95,7 +60,43 @@ const RealTimeDashboard = () => {
       }
     }
   };
+  const handleChangeTripId = (e) => {
+    setSelectedTripId(e.target.value);
+  };
+  const fetchData = async (tempSegmentId) => {
+    try {
+      const gpsResponse = await fetchRealTimeTripSegments(tempSegmentId);
+      console.log(tempSegmentId);
+      const segmentIds = gpsResponse.gps.map((point) => point.segment_id);
+      const minId = Math.min(...segmentIds);
+      const maxId = Math.max(...segmentIds);
+      setMinSegmentId(minId);
+      setMaxSegmentId(maxId);
+      setGPS(gpsResponse);
+      setSegmentId(maxId);
+      const filteredData = gpsResponse.gps.filter(
+        (point) => point.segment_id == minId
+      );
+      setFilteredGPS(filteredData);
+      setSpliPoints(gpsResponse.split_points);
+      setfilterSpliPoints([gpsResponse.split_points]);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      setIsLoading(false);
+      window.location.href = "/not-found";
+    }
+  };
 
+  const handleApplyClick = () => {
+    let tempSegmentId = 31825;
+    const intervalId = setInterval(() => {
+      fetchData(tempSegmentId);
+      tempSegmentId++;
+      if (tempSegmentId === 31842) {
+        clearInterval(intervalId); // Stop the interval
+      }
+    }, 15000);
+  };
   return (
     <div className="container light-purpal-box">
       {isLoading ? (
@@ -103,13 +104,43 @@ const RealTimeDashboard = () => {
       ) : (
         <>
           <br />
-          <h1 style={{ color: "blue" }}>Trip Id {tripId}</h1>
-
+          <h1 style={{ color: "blue" }}>Real Time Trips</h1>
           <div className="row">
-            <MapComponent mapData={filteredGPS} splitPoint={filterSpliPoints} />
+            <div className="col-md-4 pt-2">
+              <label htmlFor="selectTripId" className="form-label">
+                Select Trip:
+              </label>
+              <br />
+              <select
+                id="selectTripId"
+                className="form-control"
+                value={selectedTripId}
+                onChange={handleChangeTripId}
+              >
+                <option value="">Select...</option>
+                <option value="500">500</option>
+                <option value="601">601</option>
+                <option value="701">701</option>
+              </select>
+            </div>
+            <div className="col-md-4 pt-2"></div>
+            <div className="col-md-4 d-flex align-items-end justify-content-center pt-2">
+              <Button
+                onClick={handleApplyClick}
+                variant="contained"
+                color="primary"
+                style={{ width: "80%" }}
+                disabled={selectedTripId == ""}
+              >
+                Apply
+              </Button>
+            </div>
           </div>
+          {/* <div className="row">
+            <MapComponent mapData={filteredGPS} splitPoint={filterSpliPoints} />
+          </div> */}
           <br />
-          <div className="row mt-10">
+          {/* <div className="row mt-10">
             <div className="col-md-5">
               <Button
                 onClick={handleDecrement}
@@ -131,7 +162,7 @@ const RealTimeDashboard = () => {
                 Increment
               </Button>
             </div>
-          </div>
+          </div> */}
           <br />
         </>
       )}
