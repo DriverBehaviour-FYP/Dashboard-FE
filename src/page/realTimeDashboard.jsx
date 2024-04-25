@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 import MapComponent from "../component/MapComponent";
 import LoaderComponent from "../component/LoaderComponent";
 import { Button } from "@mui/material";
+import SpinnerComponent from "../component/SpinnerComponent";
 
 import { fetchRealTimeTripSegments } from "../services/realTimeTripServices";
 
+const clusterLabels = ["Agressive", "Normal", "Safe"];
+const labels = [1, 1, 2, 1, 1, 0, 2, 2, 1, 1, 0, 2, 1, 2, 2, 2, 2, 1];
 const RealTimeDashboard = () => {
   const [gps, setGPS] = useState({});
   const [minSegmentId, setMinSegmentId] = useState(0);
@@ -14,11 +17,11 @@ const RealTimeDashboard = () => {
   const [spliPoints, setSpliPoints] = useState([]);
   const [filterSpliPoints, setfilterSpliPoints] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isFetched, setIsFetched] = useState(false);
+  const [isApply, setIsApply] = useState(false);
   const [selectedTripId, setSelectedTripId] = useState("");
+  const [forcastLabel, setForcastLabel] = useState("");
 
   useEffect(() => {
-    console.log(111);
     setIsLoading(false);
   }, []);
 
@@ -68,7 +71,8 @@ const RealTimeDashboard = () => {
   const fetchData = async (tempSegmentId) => {
     try {
       const gpsResponse = await fetchRealTimeTripSegments(tempSegmentId);
-      console.log(gpsResponse);
+      // console.log(tempSegmentId);
+      // console.log(gpsResponse);
       const segmentIds = gpsResponse.gps.map((point) => point.segment_id);
       const minId = Math.min(...segmentIds);
       const maxId = Math.max(...segmentIds);
@@ -76,37 +80,48 @@ const RealTimeDashboard = () => {
       setMaxSegmentId(maxId);
       setGPS(gpsResponse);
       setSegmentId(maxId);
-      const filteredData = gpsResponse.gps.filter(
-        (point) => point.segment_id == minId
-      );
-      setFilteredGPS(filteredData);
+      // const filteredData = gpsResponse.gps.filter(
+      //   (point) => point.segment_id == minId
+      // );
+      setFilteredGPS(gpsResponse.gps);
+      // console.log(filteredData);
       setSpliPoints(gpsResponse.split_points);
-      setfilterSpliPoints([gpsResponse.split_points]);
+      setfilterSpliPoints(gpsResponse.split_points);
     } catch (error) {
       console.error("Error fetching data: ", error);
       setIsLoading(false);
-      // window.location.href = "/not-found";
+      window.location.href = "/not-found";
     }
   };
 
   const handleApplyClick = () => {
     let tempSegmentId = 31825;
-    
+    let temIndex = 1;
+    setIsApply(true);
     fetchData(tempSegmentId);
+    setForcastLabel(clusterLabels[labels[temIndex]]);
     tempSegmentId++;
-    setIsFetched(true)
+    temIndex++;
+    setIsApply(false);
+
     const intervalId = setInterval(() => {
       fetchData(tempSegmentId);
+      setForcastLabel(clusterLabels[labels[temIndex]]);
       tempSegmentId++;
+      temIndex++;
       if (tempSegmentId === 31842) {
         clearInterval(intervalId); // Stop the interval
       }
     }, 5000);
   };
   return (
-    <div className="container light-purpal-box" style={{
-      height: "90vh",
-    }}>
+    <div
+      className="container light-purpal-box"
+      style={{
+        height: "120vh",
+      }}
+    >
+      {isApply && <SpinnerComponent />}
       {isLoading ? (
         <LoaderComponent />
       ) : (
@@ -144,17 +159,41 @@ const RealTimeDashboard = () => {
               </Button>
             </div>
           </div>
-          <div className="row">
-            {isFetched && filterSpliPoints.length !== 0 && filteredGPS.length !== 0 ? (
-              <MapComponent
-                mapData={filteredGPS}
-                splitPoint={filterSpliPoints}
-              />
-            ) : (
-              <div></div>
-            )}
-          </div>
           <br />
+          <div className="row mt-10">
+            {!isApply &&
+              filterSpliPoints.length !== 0 &&
+              filteredGPS.length !== 0 && (
+                <h4>
+                  Next Behavior :
+                  <span
+                    style={{
+                      color:
+                        forcastLabel === "Agressive"
+                          ? "red"
+                          : forcastLabel === "Normal"
+                          ? "blue"
+                          : forcastLabel === "Safe"
+                          ? "green"
+                          : "",
+                    }}
+                  >
+                    {forcastLabel}
+                  </span>
+                </h4>
+              )}
+          </div>
+          <div className="row mt-10">
+            {!isApply &&
+              filterSpliPoints.length !== 0 &&
+              filteredGPS.length !== 0 && (
+                <MapComponent
+                  mapData={filteredGPS}
+                  splitPoint={filterSpliPoints}
+                />
+              )}
+          </div>
+
           {/* <div className="row mt-10">
             <div className="col-md-5">
               <Button
@@ -178,6 +217,7 @@ const RealTimeDashboard = () => {
               </Button>
             </div>
           </div> */}
+          <br />
           <br />
         </>
       )}

@@ -61,7 +61,7 @@ const TripDashboard = () => {
       } catch (error) {
         console.error("Error fetching data: ", error);
         setIsLoading(false);
-        // window.location.href = "/not-found";
+        window.location.href = "/not-found";
       }
     };
 

@@ -3,7 +3,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import PropTypes from "prop-types";
 const rotateColors = ["red", "blue", "green", "black"]; // Add more colors as needed
-const clusterLabels = ["Agressive", "Normal", "safe"];
+const clusterLabels = ["Agressive", "Normal", "Safe"];
 const getMarkerColor = (cluster_id) => {
   const index = Number(cluster_id);
   return rotateColors[index];
