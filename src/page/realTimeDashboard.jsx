@@ -14,9 +14,11 @@ const RealTimeDashboard = () => {
   const [spliPoints, setSpliPoints] = useState([]);
   const [filterSpliPoints, setfilterSpliPoints] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isFetched, setIsFetched] = useState(false);
   const [selectedTripId, setSelectedTripId] = useState("");
 
   useEffect(() => {
+    console.log(111);
     setIsLoading(false);
   }, []);
 
@@ -66,7 +68,7 @@ const RealTimeDashboard = () => {
   const fetchData = async (tempSegmentId) => {
     try {
       const gpsResponse = await fetchRealTimeTripSegments(tempSegmentId);
-      console.log(tempSegmentId);
+      console.log(gpsResponse);
       const segmentIds = gpsResponse.gps.map((point) => point.segment_id);
       const minId = Math.min(...segmentIds);
       const maxId = Math.max(...segmentIds);
@@ -83,22 +85,28 @@ const RealTimeDashboard = () => {
     } catch (error) {
       console.error("Error fetching data: ", error);
       setIsLoading(false);
-      window.location.href = "/not-found";
+      // window.location.href = "/not-found";
     }
   };
 
   const handleApplyClick = () => {
     let tempSegmentId = 31825;
+    
+    fetchData(tempSegmentId);
+    tempSegmentId++;
+    setIsFetched(true)
     const intervalId = setInterval(() => {
       fetchData(tempSegmentId);
       tempSegmentId++;
       if (tempSegmentId === 31842) {
         clearInterval(intervalId); // Stop the interval
       }
-    }, 15000);
+    }, 5000);
   };
   return (
-    <div className="container light-purpal-box">
+    <div className="container light-purpal-box" style={{
+      height: "90vh",
+    }}>
       {isLoading ? (
         <LoaderComponent />
       ) : (
@@ -136,9 +144,16 @@ const RealTimeDashboard = () => {
               </Button>
             </div>
           </div>
-          {/* <div className="row">
-            <MapComponent mapData={filteredGPS} splitPoint={filterSpliPoints} />
-          </div> */}
+          <div className="row">
+            {isFetched && filterSpliPoints.length !== 0 && filteredGPS.length !== 0 ? (
+              <MapComponent
+                mapData={filteredGPS}
+                splitPoint={filterSpliPoints}
+              />
+            ) : (
+              <div></div>
+            )}
+          </div>
           <br />
           {/* <div className="row mt-10">
             <div className="col-md-5">
