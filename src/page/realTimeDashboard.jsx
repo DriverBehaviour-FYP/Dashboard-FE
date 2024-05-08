@@ -7,7 +7,7 @@ import SpinnerComponent from "../component/SpinnerComponent";
 import { fetchRealTimeTripSegments } from "../services/realTimeTripServices";
 
 const clusterLabels = ["Agressive", "Normal", "Safe"];
-const labels = [1, 1, 2, 1, 1, 0, 2, 2, 1, 1, 0, 2, 1, 2, 2, 2, 2, 1];
+// const labels = [1, 1, 2, 1, 1, 0, 2, 2, 1, 1, 0, 2, 1, 2, 2, 2, 2, 1];
 const RealTimeDashboard = () => {
   const [gps, setGPS] = useState({});
   const [minSegmentId, setMinSegmentId] = useState(0);
@@ -20,6 +20,7 @@ const RealTimeDashboard = () => {
   const [isApply, setIsApply] = useState(false);
   const [selectedTripId, setSelectedTripId] = useState("");
   const [forcastLabel, setForcastLabel] = useState("");
+  // const [nextLabel, setNextLabel] = useState(0);
 
   useEffect(() => {
     setIsLoading(false);
@@ -86,6 +87,8 @@ const RealTimeDashboard = () => {
       setFilteredGPS(gpsResponse.gps);
       // console.log(filteredData);
       setSpliPoints(gpsResponse.split_points);
+      // setNextLabel(gpsResponse.next_label);
+      setForcastLabel(clusterLabels[gpsResponse.next_label]);
       setfilterSpliPoints(gpsResponse.split_points);
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -96,19 +99,19 @@ const RealTimeDashboard = () => {
 
   const handleApplyClick = () => {
     let tempSegmentId = 31825;
-    let temIndex = 1;
+    // let temIndex = 1;
     setIsApply(true);
     fetchData(tempSegmentId);
-    setForcastLabel(clusterLabels[labels[temIndex]]);
+    // setForcastLabel(clusterLabels[labels[temIndex]]);
     tempSegmentId++;
-    temIndex++;
+    // temIndex++;
     setIsApply(false);
 
     const intervalId = setInterval(() => {
       fetchData(tempSegmentId);
-      setForcastLabel(clusterLabels[labels[temIndex]]);
+      // setForcastLabel(clusterLabels[labels[temIndex]]);
       tempSegmentId++;
-      temIndex++;
+      // temIndex++;
       if (tempSegmentId === 31842) {
         clearInterval(intervalId); // Stop the interval
       }
